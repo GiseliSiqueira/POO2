@@ -11,9 +11,6 @@ public class PizzaStore {
         Pizza pizza;
         pizza = PizzaFactory.createPizza();
         pizza.prepare();
-        pizza.box();
-        pizza.cut();
-        pizza.brake();
     }
     
 }

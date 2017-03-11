@@ -5,10 +5,9 @@ package pizzametodofabrica;
  *
  * @author Giseli
  */
-public class PizzaFactory extends Pizza{
+public class PizzaFactory {
     public static Pizza createPizza(){
-        Pizza pizza;
-        pizza = new CheesePizza();
+        Pizza pizza = null;
         return pizza;
     }
 }

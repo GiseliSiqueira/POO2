@@ -1,7 +1,7 @@
 
-Exercício -  Método Fábrica - Gerador de Imagens. 
+#ExercÃ­cio -  MÃ©todo FÃ¡brica - Gerador de Imagens. 
 
-Altere o código exemplo do gerador de imagems para que passe a gerar os formatos gif e bmp.
+CÃ³digo exemplo do gerador de imagems alterado para que passe a gerar os formatos gif e bmp.
 
-Faça também o diagrama de classe da solução. 
-Envie a imagem do diagrama.
+Diagrama de classe da soluÃ§Ã£o editado com a inclusÃ£o das novas classes. 
+![alt tag](https://github.com/GiseliSiqueira/POO2/blob/master/ImagemMetodoFabrica/Imagem%20Metodo%20Fabrica.png)

@@ -1,9 +1,9 @@
 
-Exercício -  Builder - 
+#ExercÃ­cio -  Builder - 
 
 
-Altere o projeto acima e adicione batata como uma opção para o cliente. Faça a alteração como exibido no diagrama de classe baixo:
+CÃ³digo alterado com a adiÃ§Ã£o de batata como uma opÃ§Ã£o para o cliente conforme exibido no diagrama de classe baixo:
 
 
-![alt text](https://github.com/felipefo/poo2/blob/master/Padroes_de_Projeto/Cria%C3%A7%C3%A3o/builder/BuilderRefeicao/exercicio_refeicao_builder_com_batada.png)
+![alt text](https://github.com/GiseliSiqueira/POO2/blob/master/BuilderRefeicao/exercicio_refeicao_builder_com_batada.png)
 

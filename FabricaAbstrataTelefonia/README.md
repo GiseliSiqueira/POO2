@@ -1,5 +1,5 @@
 
-Exercício -  Fábrica Abstrata  - Modelo de classe telefonia. 
+#Exercício -  Fábrica Abstrata  - Modelo de classe telefonia. - RESOLVIDO
 
 Altere o código do projeto para adicionar a Operadora Claro que falta no modelo. 
 O código do exemplo está no pacote fabrica.abstrata

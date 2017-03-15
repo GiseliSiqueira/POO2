@@ -1,24 +1,9 @@
 
-Exercício -  Fábrica Abstrata  - Modelo de classe tema interface. 
+#ExercÃ­cio -  FÃ¡brica Abstrata  - Modelo de classe tema interface. 
 
+AlteraÃ§Ã£o da classe EditorTexto para que sejam utilizadas as classes BotaoOK e BotaoCancel (com Ã­cone) para que o usuÃ¡rio possa configurar sua tela para utilizar com ou sem Ã­cones.
+CriaÃ§Ã£o das fÃ¡bricas concretas baseadas na classe FabricaAbstrataBotoes;
+CriaÃ§Ã£o da classe FabricaPadrÃ£o utilizando a classe JButton e para os botÃµes com Ã­cones criaÃ§Ã£o da classe FabricaBotoesIcones utilizando BotaoOK e BotaoCancel;
+Diagrama de classe da soluÃ§Ã£o.
 
-Ao executar a classe TelaInicial aparecerá um tema a ser escolhido. Como na imagem abaixo.
-
-![alt text](https://github.com/felipefo/poo2/blob/master/Padroes_de_Projeto/Criação/fabrica_abstrata/FabricaAbstrataTemaInterface/tela_inicial.png)
-
-Ao selecionar o tema o usuário pode acessar o menu "Edição" abrirá a tela abaixo:
-
-![alt text](https://github.com/felipefo/poo2/blob/master/Padroes_de_Projeto/Criação/fabrica_abstrata/FabricaAbstrataTemaInterface/tela_edicao.png)
-
-
-Altera a classe EditorTexto para que sejam utilizadas as classes BotaoOK e BotaoCancel.
-Esses botões são diferenciados por possuir um ícone. Como destacado na imagem abaixo:
-
-
-![alt text](https://github.com/felipefo/poo2/blob/master/Padroes_de_Projeto/Criação/fabrica_abstrata/FabricaAbstrataTemaInterface/tela_tema2.png)
-
-
-Dessa forma, o usuário pode configurar sua tela para utilizar com ou sem ícones.
-Além das classes BotaoOK e BotaoCancel utilize também a classe FabricaAbstrataBotoes como base para criar suas Fábricas concretas.
-Crie classe FabricaPadrão utilizando a classe JButton e para os botões com ícones crie a classe FabricaBotoesIcones utilizando BotaoOK e BotaoCancel.
-Faça também o diagrama de classe da sua solução.
+![alt tag](https://github.com/GiseliSiqueira/POO2/blob/5c68dfef8e9cf2f062b39629b4587feb08a3e3ad/FabricaAbstrataTemaInterface/Diagrama%20Tema%20Interface%20com%20fabrica%20abstrata.png)

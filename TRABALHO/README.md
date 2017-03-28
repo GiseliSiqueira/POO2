@@ -62,11 +62,28 @@ Tomando por base o contexto do sistema, foram identificados os seguintes requisi
 ### 2.1  Projeto Arquitetural 
 #### 2.1.1   Plataforma de Implementação e Tecnologias
 
-descrever tecnologias usadas no sistema, justificando cada uma delas com base no contexto
+No desenvolvimento desse sistema será necessária a utilização de algumas ferramentas, desde a parte de análise do sistema até a sua implementação. Para isso foram listadas abaixo tais tecnologias de acordo com sua área de utilização e sua fase de utilização.
+
+* Linguagem de programação:
+
+UML (Unified Modeling Language): Utilizada para elaboração dos diagramas de caso de uso, classes e de sequencia.
+
+Java: Utilizando a orientação a objeto para melhor definir as partes do sistema, sendo usada a JavaSE como ferramenta para criação e execução da aplicação desktop. 
+
+SQL: Linguagem de consulta estruturada para banco de dados relacional.
+
+* Ferramentas:
+
+Diagramas: Astah - ferramenta de apoio para a modelagem UML.
+
+IDE: Netbeans - Ambiente de desenvolvimento integrado, oferecendo as principais ferramentas para o desenvolvimento da aplicação desktop do sistema.
+
+* Armazenamento de dados: 
+
+SGBD: MySQL - sistema para gerenciar o banco de dados que será utilizado pelo sistema e que utiliza a linguagem SQL.
 
 
 # Gestão de Projetos
 
 ## 2.    Cronograma macro de sprints 
 datas dos sprints.
-

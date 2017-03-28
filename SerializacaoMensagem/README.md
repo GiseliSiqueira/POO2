@@ -1,7 +1,7 @@
+# Exercicio - Serializa√ß√£o Mensagem
 
-1)Utilize o modelo abaixo para criar uma inst‚ncia de Mensagem e Usuario.<br>
-2)Salva esses objetos criados utilizando serializaÁ„o
-2)Recupere esses objetos salvos utilizando serializaÁ„o
+Cria√ß√£o de instancia de Mensagem e de Usu√°rio utilizando o modelo abaixo, salvando e recuperando-os utilizando serializa√ß√£o.
 
-![alt text](https://github.com/felipefo/poo2/blob/master/Streams_e_Serializacao/ExercicioSerializacaoMensagem/modelo_mensagem.png)
+
+![alt text](https://github.com/GiseliSiqueira/POO2/blob/master/SerializacaoMensagem/modelo_mensagem.png)
 

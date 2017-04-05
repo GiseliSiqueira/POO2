@@ -1,6 +1,7 @@
-# Exercicio - Builder Piscinas
+# Exercicio -  ProtoType
+## Alteração o exercício Builder - Piscinas (descrito abaixo) - para passar a utilizar além do padrão builder o padrão Prototype utilizando a interface Cloneable.
 
-Implementação do modelo descrito abaixo utilizando o padrão builder:
+Implementação do modelo descrito abaixo utilizando o padrão builder e ProtoType:
 
 Uma empresa tem três tipos de piscinas em seu portfólio de fabricação.
 
@@ -17,4 +18,4 @@ System.out.println("Criando piscina cor azul") adicionado para simular a tarefa 
 Lembre-se de utilizar interfaces e classes abstratas quando forem necessárias.
 
 Diagrama de classe da sua solução:
-![alt tag](https://github.com/GiseliSiqueira/POO2/blob/master/BuilderPiscina/Piscina%20com%20builder.png)
+![alt tag](https://github.com/GiseliSiqueira/POO2/blob/master/ProtoTypeBuilderPiscina/Piscina%20com%20builder.png)

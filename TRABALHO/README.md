@@ -64,7 +64,7 @@ Tomando por base o contexto do sistema, foram identificados os seguintes requisi
 
 No desenvolvimento desse sistema será necessária a utilização de algumas ferramentas, desde a parte de análise do sistema até a sua implementação. Para isso foram listadas abaixo tais tecnologias de acordo com sua área de utilização e sua fase de utilização.
 
-* Linguagem de programação:
+* Linguagens:
 
 UML (Unified Modeling Language): Utilizada para elaboração dos diagramas de caso de uso, classes e de sequencia.
 

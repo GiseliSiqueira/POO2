@@ -1,12 +1,17 @@
-﻿
-Exercício -  Padrão Peso Mosca 
 
-O modelo abaixo exibe um diagrama de um sistema de vendas. A classe StatusItem pode ser compartilhada entre os itens do pedido(ItemPedido), 
-pois ele é imutável, ou seja, seus atributos não mudam depois da sua criação.
+# Exercício -  Padrão Peso Mosca 
+
+Implementação de um sistema de vendas mostrado no modelo abaixo.
+* Implementação sem utilizar o padrão FlyWeight;
+* Implementação utilizando o padrão FlyWeight;
+* Criação das classes Main utilizando e não utilizando o padrão;
+* .txt contendo a diferença de consumo de memória para as duas implementações.
+
+A classe StatusItem pode ser compartilhada entre os itens do pedido(ItemPedido), pois ele é imutável, ou seja, seus atributos não mudam depois da sua criação.
 Ela pode ser criada com as seguintes configurações de atributos: <br><br>
 
 
-![alt text](https://github.com/felipefo/poo2/blob/master/Padroes_de_Projeto/Estrutural/PesoMosca/Pedidos/diagrama_peso_mosca.png)
+![alt text](https://github.com/GiseliSiqueira/POO2/blob/master/PadraoPesoMosca/diagrama_peso_mosca.png)
 
 
 
@@ -20,10 +25,6 @@ new StatusItem(Estado.ENTREGUE, false, true);
 
 <br>
 <br>
-
-Implemente o modelo primeiramente sem utilizar o padrão FlyWeight e depois implemente com o padrão. 
-Crie duas classes Main uma utilizando o padrão e outra sem utilizar o padrão.  
-Informe dentro do projeto em um txt qual a diferença de consumo de memória para as duas implementações.
 
 Para a Main sem o padrão faça:
 ```
@@ -82,9 +83,9 @@ public static void main(String[] args) {
     }
 ```
 
-Qual a diferença entre dos dois códigos?? 
+## Qual a diferença entre dos dois códigos?? 
 
-
+A diferença é a criação do objeto para setar o status do pedido, onde sem o padrão os parametros são passados para o metodo a cada instancia do objeto (e podem ser alterados!). Já com o padrão, os status não mudam (e são compartilhados) e já são armazenados em um ArrayList dentro da classe do padrão, sendo passado apenas o nome do status para que suas configurações sejam recuperadas.
 
 
 

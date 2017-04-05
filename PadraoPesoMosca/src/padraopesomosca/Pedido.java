@@ -9,17 +9,10 @@ import java.util.ArrayList;
  */
 public class Pedido {
 
-    public Pedido() {
-        
-    }
+    public ArrayList<ItemPedido> itemPedido = new ArrayList();
     
     public void addItemPedido(ItemPedido item) {
-       /* ArrayList<ItemPedido> itens = new ArrayList<>();
-        itens.add(item);
-        System.out.println("Item: " + item.getNome()
-                + "\nDescrição: " + item.getDescricao()
-                + "\nItem Adicionado com sucesso!");*/
-       
+        this.itemPedido.add(item);
     }
     
 }

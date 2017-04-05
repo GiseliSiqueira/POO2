@@ -1,0 +1,5 @@
+Diferença de consumo de memória para as duas implementações:
+1. Sem Padrao: 54029.078125 KB
+2. Com Padrão: 53559.5390625 KB
+A diferença é de aproximadamente 460 KB de uso de memória
+otimizado com o uso do padrão.

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="adapterclientes1toclientes2">
+  <ClassDiagramComponents>
+    <Class name="AdapterClientes" package="adapterclientes1toclientes2" visibility="public" xPosition="458.0" yPosition="143.0">
+      <Fields>
+        <Field name="cliente2" type="ClienteS2" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="package">
+          <Argument type="ClienteS2" name="c2"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getNomeCompleto" returnType="String" visibility="public"/>
+        <Method name="getTelefone" returnType="String" visibility="public"/>
+        <Method name="getEmail" returnType="String" visibility="public"/>
+        <Method name="getCelular" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ClienteS1" package="adapterclientes1toclientes2" visibility="public" xPosition="189.0" yPosition="20.0">
+      <Fields>
+        <Field name="nomeCompleto" type="String" visibility="private"/>
+        <Field name="telefone" type="String" visibility="private"/>
+        <Field name="email" type="String" visibility="private"/>
+        <Field name="celular" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="ClienteS2" package="adapterclientes1toclientes2" visibility="public" xPosition="189.0" yPosition="195.0">
+      <Fields>
+        <Field name="nome" type="String" visibility="private"/>
+        <Field name="sobreNome" type="String" visibility="private"/>
+        <Field name="telefone" type="String" visibility="private"/>
+        <Field name="dddTelefone" type="String" visibility="private"/>
+        <Field name="email" type="String" visibility="private"/>
+        <Field name="celular" type="String" visibility="private"/>
+        <Field name="dddCelular" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Main" package="adapterclientes1toclientes2" visibility="public" xPosition="733.0" yPosition="217.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="SalvaCliente" package="adapterclientes1toclientes2" visibility="public" xPosition="643.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="salva" returnType="void" visibility="public">
+          <Argument type="ClienteS1" name="cliente"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="cliente2" source="adapterclientes1toclientes2.AdapterClientes" target="adapterclientes1toclientes2.ClienteS2" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="adapterclientes1toclientes2.AdapterClientes" target="adapterclientes1toclientes2.ClienteS1"/>
+    <UseRelation name="" source="adapterclientes1toclientes2.Main" target="adapterclientes1toclientes2.SalvaCliente" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation name="" source="adapterclientes1toclientes2.Main" target="adapterclientes1toclientes2.AdapterClientes" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="adapterclientes1toclientes2.SalvaCliente" target="adapterclientes1toclientes2.ClienteS1" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

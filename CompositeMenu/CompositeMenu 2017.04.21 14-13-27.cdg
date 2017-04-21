@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="CompositeMenu">
+  <ClassDiagramComponents>
+    <Class name="CompositeMenu" package="compositemenu" visibility="public" xPosition="103.0" yPosition="14.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ExibeMenu" package="compositemenu" visibility="public" xPosition="103.0" yPosition="159.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="ExibirMenu" returnType="void" visibility="public">
+          <Argument type="Menu" name="mc"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ItemMenu" package="compositemenu" visibility="public" xPosition="175.0" yPosition="390.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="opcao"/>
+          <Argument type="String" name="descricao"/>
+          <Argument type="double" name="preco"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="addMenu" returnType="void" visibility="public">
+          <Argument type="Menu" name="menu"/>
+        </Method>
+        <Method name="getMenus" returnType="Menu[]" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Menu" package="compositemenu" visibility="public" isAbstract="true" xPosition="438.0" yPosition="14.0">
+      <Fields>
+        <Field name="opcao" type="String" visibility="private"/>
+        <Field name="descricao" type="String" visibility="private"/>
+        <Field name="preco" type="double" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="opcao"/>
+          <Argument type="String" name="descricao"/>
+          <Argument type="double" name="preco"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getOpcao" returnType="String" visibility="public"/>
+        <Method name="getDescricao" returnType="String" visibility="public"/>
+        <Method name="getPreco" returnType="double" visibility="public"/>
+        <Method name="addMenu" returnType="void" visibility="public" isAbstract="true">
+          <Argument type="Menu" name="menu"/>
+        </Method>
+        <Method name="getMenus" returnType="Menu[]" visibility="public" isAbstract="true"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="MenuComposto" package="compositemenu" visibility="public" xPosition="557.0" yPosition="390.0">
+      <Fields>
+        <Field name="menus" type="List&lt;Menu&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="opcao"/>
+          <Argument type="String" name="descricao"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="addMenu" returnType="void" visibility="public">
+          <Argument type="Menu" name="menu"/>
+        </Method>
+        <Method name="getMenus" returnType="Menu[]" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <IsRelation name="is" source="compositemenu.MenuComposto" target="compositemenu.Menu"/>
+    <UseRelation name="" source="compositemenu.CompositeMenu" target="compositemenu.Menu" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation name="" source="compositemenu.ExibeMenu" target="compositemenu.Menu" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="menus" source="compositemenu.MenuComposto" target="compositemenu.Menu" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Menu&gt;"/>
+    <IsRelation name="is" source="compositemenu.ItemMenu" target="compositemenu.Menu"/>
+    <UseRelation source="compositemenu.MenuComposto" target="compositemenu.Menu" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

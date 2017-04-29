@@ -148,4 +148,23 @@ Totalizando 139 horas dedicadas ao projeto divididas por etapa como segue:
 
 ## 3.    Backlog de histórias de Usuário 
 
-lista de histórias de usuário categorizadas, priorizadas e com o esforço. A categorização deve utilizar a técnica MoSCoW. 
+Abaixo segue a lista de histórias de usuário descritas nos requisitos funcionais categorizadas, priorizadas e com o esforço. Para a categorização foi utilizada a técnica MoSCoW.
+
+|ID|Nome|Categorização|Prioridade|Esforço|
+|---|---|---|---|---|
+|01|Cadastro de produto|Should|10|20|
+|02|Cadastro de Cliente|Should|10|20|
+|03|Cadastro de fornecedores|Should|10|20|
+|04|Controle de Vendas|Must|10|40|
+|05|Registro de pagamento|Must|9|10|
+|06|Registro de prazo de pagamento|Should|9|10|
+|07|Controle de estoque|Could|8|15|
+|08|Monitoramento de pedidos recebidos|Could|7|10|
+|09|Gerenciamento de entregas|Could|6|8|
+|10|Relatório - Aquisição de produtos|Could|6|10|
+|11|Desativação de cliente|Could|5|8|
+|12|Reativação de cliente|Could|5|8|
+|13|Desativação de fornecedor|Could|5|8|
+|14|reativação de fornecedor|Could|5|8|
+|15|Relatório de clientes|Could|4|10|
+|16|Relatório de fornecedores|Could|4|10|

@@ -85,6 +85,21 @@ IDE: Netbeans - Ambiente de desenvolvimento integrado, oferecendo as principais 
 
 SGBD: MySQL - sistema para gerenciar o banco de dados que será utilizado pelo sistema e que utiliza a linguagem SQL.
 
+### 2.2. Projeto Detalhado
+#### 2.2.2. Projeto da Interface com Usuário
+
+##### a. Projeto da Visão
+
+Foram produzidos os protótipos iniciais de tela para os requisitos funcionais com prioridade Must, disponibilizados em PDF navegável:
+(https://github.com/GiseliSiqueira/POO2/blob/master/TRABALHO/Prot%C3%B3tipo%20-%20Nossa%20distribuidora.pdf)
+
+### 2.4. Padrões
+##### Padrões Arquiteturais
+
+* MVC (Model-View-Controller): Padrão utilizado para separar as camadas do software como regras de negócios, lógica e funções, facilitando a reusabiidade de código e a separação de conceitos dentro do projeto.
+##### Padrões de projeto
+
+* Padrão método fábrica: Padrão utilizado para encapsular a criação de objetos, atribuindo a subclasses a responsabilidade da decisão de qual objeto criar. No projeto foi utilizado para resolver o problema de criação dos objetos Produto, permitindo a classe Fábrica definir a instanciação das classes de produto Gás e Água, desacoplando as classes do sistema.
 
 # Gestão de Projetos
 
@@ -130,4 +145,6 @@ Totalizando 133 horas dedicadas ao projeto divididas por etapa como segue:
 * 39 horas dedicadas para Elaboração;
 * 82 horas dedicadas para Construção;
 
+## 3.    Backlog de histórias de Usuário 
 
+lista de histórias de usuário categorizadas, priorizadas e com o esforço. A categorização deve utilizar a técnica MoSCoW. 

@@ -125,8 +125,9 @@ A definição da duração, conforme dita anteriormente, foi baseada nas entrega
 |Construção|Realizar Teste de Sistema|5|26/06|
 
 Totalizando 133 horas dedicadas ao projeto divididas por etapa como segue:
-•	12 horas dedicadas para Planejamento;
-•	39 horas dedicadas para Elaboração;
-•	82 horas dedicadas para Construção;
+
+* 12 horas dedicadas para Planejamento;
+* 39 horas dedicadas para Elaboração;
+* 82 horas dedicadas para Construção;
 
 

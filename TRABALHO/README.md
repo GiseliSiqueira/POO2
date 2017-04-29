@@ -123,6 +123,7 @@ A definição da duração, conforme dita anteriormente, foi baseada nas entrega
 |Elaboração|Análise – Levantamento de Requisitos|6|26/03|
 |Elaboração|Análise – Descrição de casos de uso|10|26/03|
 |Elaboração|Análise – Modelagens|8|26/03|
+|Elaboração|Elaboração de Planejamento de projeto|6|30/04|
 |Elaboração|Projeto – Construção de diagrama de classe|6|30/04|
 |Elaboração|Projeto – planejamento e descrição das tecnologias utilizadas.|3|30/04|
 |Elaboração|Projeto – planejamento dos padrões de projeto utilizados|3|30/04|
@@ -139,10 +140,10 @@ A definição da duração, conforme dita anteriormente, foi baseada nas entrega
 |Construção|Garantia da Qualidade em Manutenção|5|26/06|
 |Construção|Realizar Teste de Sistema|5|26/06|
 
-Totalizando 133 horas dedicadas ao projeto divididas por etapa como segue:
+Totalizando 139 horas dedicadas ao projeto divididas por etapa como segue:
 
 * 12 horas dedicadas para Planejamento;
-* 39 horas dedicadas para Elaboração;
+* 45 horas dedicadas para Elaboração;
 * 82 horas dedicadas para Construção;
 
 ## 3.    Backlog de histórias de Usuário 

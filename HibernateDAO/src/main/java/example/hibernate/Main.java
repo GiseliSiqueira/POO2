@@ -1,13 +1,13 @@
 package example.hibernate;
 
 
-import example.hibernate.model.Cliente;
+import example.hibernate.model.Usuario;
 import example.hibernate.model.Veiculo;
-import example.hibernate.persistencia.ClienteDAO;
-import example.hibernate.persistencia.ClienteDAOImpl;
+import example.hibernate.persistencia.UsuarioDAOImpl;
 import example.hibernate.persistencia.VeiculoDAO;
 import example.hibernate.persistencia.VeiculoDAOImpl;
 import java.util.List;
+import example.hibernate.persistencia.UsuarioDAO;
 
 
 public class Main {    		
@@ -34,28 +34,28 @@ public class Main {
            }
            */
            
-            ClienteDAO clienteDAO = new ClienteDAOImpl();
+            UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
             
-            Cliente cliente = new Cliente();
-            cliente.setLogin("user");
-            cliente.setSenha("1234");
-            cliente.setNome("José");
-            cliente.setEmail("jose@jose.br");
+            Usuario usuario = new Usuario();
+            usuario.setLogin("user");
+            usuario.setSenha("1234");
+            usuario.setNome("José");
+            usuario.setEmail("jose@jose.br");
             
-            Cliente cliente2 = new Cliente();
-            cliente2.setLogin("User2");
-            cliente2.setSenha("4321");
-            cliente2.setNome("Maria");
-            cliente2.setEmail("maria@maria.br");
+            Usuario usuario2 = new Usuario();
+            usuario2.setLogin("User2");
+            usuario2.setSenha("4321");
+            usuario2.setNome("Maria");
+            usuario2.setEmail("maria@maria.br");
             
-            clienteDAO.inserir(cliente);
-            clienteDAO.inserir(cliente2);
-            //List<Cliente> listar = clienteDAO.listar(Cliente.class);
-            //for(Cliente printCliente : listar){
+            usuarioDAO.inserir(usuario);
+            usuarioDAO.inserir(usuario2);
+            //List<Cliente> listar = clienteDAO.listar(Usuario.class);
+            //for(Usuario printCliente : listar){
             //    System.out.println(printCliente.toString());
             //}
             
             //System.out.println(clienteDAO.buscaUsuarioPorNomeESenha("user", "1234"));
-            System.out.println(clienteDAO.buscaUsuarioPorNome("Maria"));
+            System.out.println(usuarioDAO.buscaUsuarioPorNome("Maria"));
 	}                
 }

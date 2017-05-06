@@ -61,6 +61,12 @@ Tomando por base o contexto do sistema, foram identificados os seguintes requisi
 
 # Desenvolvimento do Sistema
 
+## 1. Análise de Sistemas:
+### 1.3 Modelagem Estrutural (Modelo Conceitual)
+
+Abaixo segue o diagrama de classe da aplicação:
+![alt tag](https://github.com/GiseliSiqueira/POO2/blob/master/TRABALHO/Modelo%20conceitual%20-%20Diagrama%20de%20classe.png)
+
 ## 2.    Projeto de Sistemas:
 ### 2.1  Projeto Arquitetural 
 #### 2.1.1   Plataforma de Implementação e Tecnologias

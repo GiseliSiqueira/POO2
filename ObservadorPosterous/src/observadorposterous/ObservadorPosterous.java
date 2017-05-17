@@ -16,7 +16,7 @@ public class ObservadorPosterous {
         Facebook facebook = new Facebook("loginfacebook@facebook.com");
         Twitter twitter = new Twitter("logintwitter@twitter.com");
         
-        CaixaDePublicação cxPublicacao = new CaixaDePublicação();
+        CaixaDePublicacao cxPublicacao = new CaixaDePublicacao();
         cxPublicacao.addObserver(blog);
         cxPublicacao.addObserver(facebook);
         cxPublicacao.addObserver(twitter);

@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author Giseli
  */
-public class CaixaDePublicação extends Observable{
+public class CaixaDePublicacao extends Observable{
     
     private ArrayList<Observer> monitores;
     private String mensagem;

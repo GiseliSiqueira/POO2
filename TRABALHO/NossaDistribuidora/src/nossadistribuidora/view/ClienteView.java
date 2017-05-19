@@ -5,6 +5,8 @@
  */
 package nossadistribuidora.view;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import nossadistribuidora.controller.ClienteController;
 import nossadistribuidora.model.Cliente;
 import nossadistribuidora.model.Endereco;
@@ -334,16 +336,22 @@ public class ClienteView extends javax.swing.JFrame {
         endereco.setCidade(jtEnderecoCidade.getText());
         endereco.setEstado(jcEnderecoEstado.getSelectedItem().toString());
         
+        
+        
         Cliente cliente = new Cliente();
         //cliente.setCodigo();  CRIAR NUMERO SEM REPETIR
         cliente.setNome(jtNome.getText());
         cliente.setTelefone(jtTelefone.getText());
-        cliente.setEndereco(endereco);
+        //cliente.setEndereco(endereco);
         cliente.setStatusAtivacao(true);
         cliente.setStatusPagamento(true);
         
         ClienteController clienteController = new ClienteController();
-        clienteController.inserir(cliente);
+        try {
+            clienteController.inserir(cliente);
+        } catch (Exception ex) {
+            Logger.getLogger(ClienteView.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
     }//GEN-LAST:event_jbSalvarActionPerformed

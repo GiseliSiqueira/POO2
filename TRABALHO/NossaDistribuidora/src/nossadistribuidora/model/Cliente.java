@@ -4,10 +4,14 @@ package nossadistribuidora.model;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 /**
  *
@@ -18,14 +22,16 @@ import javax.persistence.Table;
 */
 
 @Entity
-@Table (name = "Cliente")
+@Table (name = "cliente")
 public class Cliente implements Serializable {
     
     @Id
+    @GeneratedValue
     private int codigo;
     @Column(length = 100)
     private String nome;
-    @OneToOne
+    @ManyToOne
+    @Cascade(CascadeType.DELETE)
     private Endereco endereco;
     @Column(length = 15)
     private String telefone;
@@ -34,6 +40,18 @@ public class Cliente implements Serializable {
     @Column(length = 10)
     private boolean StatusPagamento;
 
+    public Cliente() {
+    }
+
+    public Cliente(String nome, Endereco endereco, String telefone, boolean StatusAtivacao, boolean StatusPagamento) {
+        this.nome = nome;
+        this.endereco = endereco;
+        this.telefone = telefone;
+        this.StatusAtivacao = StatusAtivacao;
+        this.StatusPagamento = StatusPagamento;
+    }
+
+    
     public int getCodigo() {
         return codigo;
     }
@@ -50,14 +68,14 @@ public class Cliente implements Serializable {
         this.nome = nome;
     }
 
-    /*public Endereco getEndereco() {
+    public Endereco getEndereco() {
         return endereco;
     }
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
-    }*/
-
+    }
+    
     public String getTelefone() {
         return telefone;
     }

@@ -1,13 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*Classe que exibe a tela para receber as informações relativas ao cliente como
+*nome, telefone e endereço.
+*/
 package nossadistribuidora.view;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import nossadistribuidora.controller.ClienteController;
+import nossadistribuidora.controller.EnderecoController;
 import nossadistribuidora.model.Cliente;
 import nossadistribuidora.model.Endereco;
 
@@ -315,59 +315,133 @@ public class ClienteView extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    /*Metodo que cancela a operação, encerrando a janela.
+    */
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
-        // TODO add your handling code here:
+
         dispose();
     }//GEN-LAST:event_jbCancelarActionPerformed
 
     private void jtEnderecoRuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtEnderecoRuaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtEnderecoRuaActionPerformed
-
+    
+    /*
+    *Metodo para salvar as informações de cliente no banco de dados
+    */
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
-        // TODO add your handling code here:
-        
-        Endereco endereco = new Endereco();
-        endereco.setCep(jtEnderecoCep.getText());
-        endereco.setRua(jtEnderecoRua.getText());
-        endereco.setNumero(Integer.valueOf(jtEnderecoNumero.getText()));
-        endereco.setBairro(jtEnderecoBairro.getText());
-        endereco.setCidade(jtEnderecoCidade.getText());
-        endereco.setEstado(jcEnderecoEstado.getSelectedItem().toString());
-        
-        
-        
-        Cliente cliente = new Cliente();
-        //cliente.setCodigo();  CRIAR NUMERO SEM REPETIR
-        cliente.setNome(jtNome.getText());
-        cliente.setTelefone(jtTelefone.getText());
-        //cliente.setEndereco(endereco);
-        cliente.setStatusAtivacao(true);
-        cliente.setStatusPagamento(true);
-        
+
+        /*
+        *Cria instancia de endereço e obtém as informações
+        *referentes ao endereço do cliente.
+        */
+        if(jtCodigo.getText()==null){
+            Endereco endereco = new Endereco();
+            endereco.setCep(jtEnderecoCep.getText());
+            endereco.setRua(jtEnderecoRua.getText());
+            endereco.setNumero(Integer.valueOf(jtEnderecoNumero.getText()));
+            endereco.setBairro(jtEnderecoBairro.getText());
+            endereco.setCidade(jtEnderecoCidade.getText());
+            endereco.setEstado(jcEnderecoEstado.getSelectedItem().toString());
+
+
+            /*
+            *Cria instância de cliente e obtém as informações
+            *referentes ao cliente.
+            */
+            Cliente cliente = new Cliente();
+
+            cliente.setNome(jtNome.getText());
+            cliente.setTelefone(jtTelefone.getText());
+            cliente.setEndereco(endereco);
+            cliente.setStatusAtivacao(true);
+            cliente.setStatusPagamento(true);
+
+            /*
+            *Envio das informações do endereço para o controlador
+            *para que sejam realizadas as operações no banco de dados.
+            */
+            EnderecoController enderecoController = new EnderecoController();
+            try {
+                enderecoController.inserir(endereco);
+            } catch (Exception ex) {
+                Logger.getLogger(ClienteView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            /*
+            *Envio das informações do cliente para o controlador
+            *para que sejam realizadas as operações no banco de dados.
+            */
+            ClienteController clienteController = new ClienteController();
+            try {
+                clienteController.inserir(cliente);
+            } catch (Exception ex) {
+                Logger.getLogger(ClienteView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            JOptionPane.showMessageDialog(null, "Cliente inserido com sucesso!");
+            dispose();
+        }else{
+            //RECEBER AS NOVAS INFORMAÇÕES PARA ATUALIZAR
+            ClienteController clienteController = new ClienteController();
+            try {
+                clienteController.alterar(Integer.parseInt(jtCodigo.getText()));
+            } catch (Exception ex) {
+                Logger.getLogger(ClienteView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            JOptionPane.showMessageDialog(null, "Informações de cliente alteradas com sucesso!");
+            dispose();
+        }
+      
+    }//GEN-LAST:event_jbSalvarActionPerformed
+    
+    /*
+    *Metodo para buscar as informações de cliente no banco de dados
+    */
+    private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
+        //Codigo para buscar os dados no banco e mostrar no Frame
+        ClienteController clienteController = new ClienteController();
+        Cliente cliente = clienteController.buscaClientePorNome(jtNome.getText());
+        /*
+        *Exibe as informações do cliente nos jTextField da janela
+        */
+        jtCodigo.setText(Integer.toString(cliente.getCodigo()));
+        jtNome.setText(cliente.getNome());
+        jtTelefone.setText(cliente.getTelefone());
+        jtEnderecoRua.setText(cliente.getEndereco().getRua());
+        jtEnderecoNumero.setText(Integer.toString(cliente.getEndereco().getNumero()));
+        jtEnderecoBairro.setText(cliente.getEndereco().getBairro());
+        jtEnderecoCidade.setText(cliente.getEndereco().getCidade());
+        jcEnderecoEstado.setSelectedItem(cliente.getEndereco().getEstado());
+        jtEnderecoCep.setText(cliente.getEndereco().getCep());
+        if(cliente.getStatusAtivacao() == true){
+            jtAtivacao.setText("Ativo");
+        }else{
+            jtAtivacao.setText("Desativado");
+        }
+        if(cliente.getStatusPagamento() == true){
+            jtPagamento.setText("Ok");
+        }else{
+            jtPagamento.setText("Pendente");
+        }
+    }//GEN-LAST:event_jbBuscarActionPerformed
+    
+    /*
+    *Metodo para excluir as informações de cliente no banco de dados
+    */
+    private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
+        /*
+        *Recebe o Id do cliente que foi pesquisado e chama o metodo de
+        *exclusão do registro do banco da entidade referente.
+        */
+        int id = Integer.parseInt(jtCodigo.getText());
         ClienteController clienteController = new ClienteController();
         try {
-            clienteController.inserir(cliente);
+            clienteController.deletar(id);
         } catch (Exception ex) {
             Logger.getLogger(ClienteView.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-    }//GEN-LAST:event_jbSalvarActionPerformed
-
-    private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-        // TODO add your handling code here:
-        //Codigo para buscar os dados no banco e mostrar no Frame
-    }//GEN-LAST:event_jbBuscarActionPerformed
-
-    private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
-        // TODO add your handling code here:
-        //codigo para excluir cliente do banco
-        //Cliente cliente = new Cliente();
-        
-        
-        //ClienteController.Excluir(cliente);
+        JOptionPane.showConfirmDialog(null, "Confirma a exclusão?", "Confirma a exclusão?", JOptionPane.YES_NO_OPTION);
+        dispose();
     }//GEN-LAST:event_jbExcluirActionPerformed
 
     /**

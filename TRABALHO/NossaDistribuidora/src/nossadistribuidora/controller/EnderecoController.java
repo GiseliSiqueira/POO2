@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package nossadistribuidora.controller;
 
 import nossadistribuidora.model.DAO.EnderecoDAO;
+import nossadistribuidora.model.DAO.EnderecoDAOImpl;
 import nossadistribuidora.model.Endereco;
 
 /**
@@ -13,8 +10,9 @@ import nossadistribuidora.model.Endereco;
  * @author Giseli
  */
 public class EnderecoController {
-    private EnderecoDAO enderecoDAO;
-    public void inserir(Endereco endereco){
+    //private EnderecoDAO enderecoDAO;
+    EnderecoDAO enderecoDAO = new EnderecoDAOImpl();
+    public void inserir(Endereco endereco) throws Exception{
         enderecoDAO.inserir(endereco);
     }
 }

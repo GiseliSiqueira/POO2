@@ -5,26 +5,13 @@
  */
 package nossadistribuidora.model.DAO;
 
+import nossadistribuidora.factoryDAO.GenericDAO;
 import nossadistribuidora.model.Endereco;
 
 /**
  *
  * @author Giseli
  */
-public class EnderecoDAO {
-    public void inserir(Endereco endereco){
-        
-    }
+public interface EnderecoDAO extends GenericDAO<Endereco> {
     
-    /*public void alterar(Endereco endereco){
-        
-    }
-    
-    public List<Endereco> consultar(){
-        
-    }
-    
-    public void excluir(Endereco endereco){
-        
-    }*/
 }

@@ -1,11 +1,23 @@
 
 package nossadistribuidora.model;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  *
  * @author Giseli
  */
-public class Endereco {
+@Entity
+@Table(name = "endereço")
+public class Endereco implements Serializable {
+    
+    @Id
+    @GeneratedValue
+    private int CodEndereco;
     private String rua;
     private int numero;
     private String bairro;
@@ -13,6 +25,18 @@ public class Endereco {
     private String estado;
     private String cep;
 
+    public Endereco() {
+    }
+
+    public Endereco(String rua, int numero, String bairro, String cidade, String estado, String cep) {
+        this.rua = rua;
+        this.numero = numero;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.cep = cep;
+    }
+    
     public String getEstado() {
         return estado;
     }

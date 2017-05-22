@@ -47,5 +47,6 @@ Contributor(s):
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
     <mapping class="nossadistribuidora.model.Cliente"/>
+    <mapping class="nossadistribuidora.model.Endereco"/>
   </session-factory>
 </hibernate-configuration>

@@ -10,17 +10,7 @@ import nossadistribuidora.model.Cliente;
  * @author Giseli
  */
 public interface ClienteDAO extends GenericDAO<Cliente> {
-    //public void inserir();
-    
-    /*public void alterar( Cliente cliente ){
-        
-    }
-    
-    public List<Cliente> consultar(){
-        
-    }
-    
-    public void excluir(Cliente cliente){
-        
-    }*/
+   public Cliente buscaClientePorNome(String nome);
+   public void deletarClientePorId(int id);
+   public void alterarClientePorId(int id);
 }

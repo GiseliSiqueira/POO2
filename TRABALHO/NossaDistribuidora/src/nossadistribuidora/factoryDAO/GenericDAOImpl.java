@@ -58,7 +58,6 @@ public abstract class GenericDAOImpl<T> implements GenericDAO<T>
     {
         sessao = HibernateUtil.getSession();
         transacao = sessao.beginTransaction();
-        //Object objt = sessao.load(clazz, new Integer(Integer.parseInt(pk)) );
         Object ob =  sessao.load(clazz, new Integer(Integer.parseInt(pk)));
         transacao.commit();
         sessao.flush();

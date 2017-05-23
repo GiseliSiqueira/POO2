@@ -1,6 +1,7 @@
 
 package nossadistribuidora.model;
 
+import Util.ValidacaoException;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,7 +29,7 @@ public class Cliente implements Serializable {
     @Id
     @GeneratedValue
     private int codigo;
-    @Column(length = 100)
+    @Column(length = 100,nullable = false)
     private String nome;
     @ManyToOne
     @Cascade(CascadeType.DELETE)
@@ -99,6 +100,4 @@ public class Cliente implements Serializable {
     public void setStatusPagamento(boolean StatusPagamento) {
         this.StatusPagamento = StatusPagamento;
     }
-
-    
 }

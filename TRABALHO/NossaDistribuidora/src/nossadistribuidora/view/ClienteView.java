@@ -20,10 +20,27 @@ public class ClienteView extends javax.swing.JFrame {
     /**
      * Creates new form ClienteView
      */
+    
+    private ClienteController clienteController;
+    private EnderecoController enderecoController;
+    
     public ClienteView() {
+        clienteController = new ClienteController();
+        enderecoController = new EnderecoController();
         initComponents();
+        jtCodigo.setEditable(false);
+        jtAtivacao.setEditable(false);
+        jtPagamento.setEditable(false);
+    }
+    
+    public ClienteController getClienteController() {
+        return clienteController;
     }
 
+    public EnderecoController getEnderecoController() {
+        return enderecoController;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -335,7 +352,8 @@ public class ClienteView extends javax.swing.JFrame {
         *Cria instancia de endereço e obtém as informações
         *referentes ao endereço do cliente.
         */
-        if(jtCodigo.getText()==null){
+        if(jtCodigo.getText().equalsIgnoreCase("")){
+            
             Endereco endereco = new Endereco();
             endereco.setCep(jtEnderecoCep.getText());
             endereco.setRua(jtEnderecoRua.getText());
@@ -343,7 +361,6 @@ public class ClienteView extends javax.swing.JFrame {
             endereco.setBairro(jtEnderecoBairro.getText());
             endereco.setCidade(jtEnderecoCidade.getText());
             endereco.setEstado(jcEnderecoEstado.getSelectedItem().toString());
-
 
             /*
             *Cria instância de cliente e obtém as informações
@@ -361,9 +378,8 @@ public class ClienteView extends javax.swing.JFrame {
             *Envio das informações do endereço para o controlador
             *para que sejam realizadas as operações no banco de dados.
             */
-            EnderecoController enderecoController = new EnderecoController();
             try {
-                enderecoController.inserir(endereco);
+                getEnderecoController().inserir(endereco);
             } catch (Exception ex) {
                 Logger.getLogger(ClienteView.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -372,23 +388,39 @@ public class ClienteView extends javax.swing.JFrame {
             *Envio das informações do cliente para o controlador
             *para que sejam realizadas as operações no banco de dados.
             */
-            ClienteController clienteController = new ClienteController();
             try {
-                clienteController.inserir(cliente);
+                getClienteController().inserir(cliente);
             } catch (Exception ex) {
                 Logger.getLogger(ClienteView.class.getName()).log(Level.SEVERE, null, ex);
             }
-            JOptionPane.showMessageDialog(null, "Cliente inserido com sucesso!");
+            JOptionPane.showMessageDialog(this, "Cliente inserido com sucesso!", 
+                "Inserir cliente",JOptionPane.INFORMATION_MESSAGE);
             dispose();
         }else{
             //RECEBER AS NOVAS INFORMAÇÕES PARA ATUALIZAR
-            ClienteController clienteController = new ClienteController();
+            
+            Cliente cliente = getClienteController().buscaClientePorId(Integer.parseInt(jtCodigo.getText()));
+            Endereco endereco = cliente.getEndereco();
+            
+            endereco.setCep(jtEnderecoCep.getText());
+            endereco.setRua(jtEnderecoRua.getText());
+            endereco.setNumero(Integer.valueOf(jtEnderecoNumero.getText()));
+            endereco.setBairro(jtEnderecoBairro.getText());
+            endereco.setCidade(jtEnderecoCidade.getText());
+            endereco.setEstado(jcEnderecoEstado.getSelectedItem().toString());
+            
+            cliente.setNome(jtNome.getText());
+            cliente.setTelefone(jtTelefone.getText());
+            cliente.setEndereco(endereco);
+            
             try {
-                clienteController.alterar(Integer.parseInt(jtCodigo.getText()));
+                getClienteController().alterar(cliente);
+                getEnderecoController().alterar(endereco);
             } catch (Exception ex) {
                 Logger.getLogger(ClienteView.class.getName()).log(Level.SEVERE, null, ex);
             }
-            JOptionPane.showMessageDialog(null, "Informações de cliente alteradas com sucesso!");
+            JOptionPane.showMessageDialog(this, "Informações de cliente alteradas com "
+                + "sucesso!", "Atualizar cliente",JOptionPane.INFORMATION_MESSAGE);
             dispose();
         }
       
@@ -399,29 +431,39 @@ public class ClienteView extends javax.swing.JFrame {
     */
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         //Codigo para buscar os dados no banco e mostrar no Frame
-        ClienteController clienteController = new ClienteController();
-        Cliente cliente = clienteController.buscaClientePorNome(jtNome.getText());
+        Cliente cliente = getClienteController().buscaClientePorNome(jtNome.getText());
+        
         /*
         *Exibe as informações do cliente nos jTextField da janela
         */
-        jtCodigo.setText(Integer.toString(cliente.getCodigo()));
-        jtNome.setText(cliente.getNome());
-        jtTelefone.setText(cliente.getTelefone());
-        jtEnderecoRua.setText(cliente.getEndereco().getRua());
-        jtEnderecoNumero.setText(Integer.toString(cliente.getEndereco().getNumero()));
-        jtEnderecoBairro.setText(cliente.getEndereco().getBairro());
-        jtEnderecoCidade.setText(cliente.getEndereco().getCidade());
-        jcEnderecoEstado.setSelectedItem(cliente.getEndereco().getEstado());
-        jtEnderecoCep.setText(cliente.getEndereco().getCep());
-        if(cliente.getStatusAtivacao() == true){
-            jtAtivacao.setText("Ativo");
+        if(cliente != null){
+            jtCodigo.setText(Integer.toString(cliente.getCodigo()));
+            jtNome.setText(cliente.getNome());
+            jtTelefone.setText(cliente.getTelefone());
+            jtEnderecoRua.setText(cliente.getEndereco().getRua());
+            jtEnderecoNumero.setText(Integer.toString(cliente.getEndereco().getNumero()));
+            jtEnderecoBairro.setText(cliente.getEndereco().getBairro());
+            jtEnderecoCidade.setText(cliente.getEndereco().getCidade());
+            jcEnderecoEstado.setSelectedItem(cliente.getEndereco().getEstado());
+            jtEnderecoCep.setText(cliente.getEndereco().getCep());
+            if(cliente.getStatusAtivacao() == true){
+                jtAtivacao.setText("Ativo");
+            }else{
+                jtAtivacao.setText("Desativado");
+            }
+            if(cliente.getStatusPagamento() == true){
+                jtPagamento.setText("Ok");
+            }else{jtCodigo.setVisible(true);
+                jtPagamento.setText("Pendente");
+            }
+            jtCodigo.setEnabled(true);
+            jtAtivacao.setEnabled(true);
+            jtPagamento.setEnabled(true);
         }else{
-            jtAtivacao.setText("Desativado");
-        }
-        if(cliente.getStatusPagamento() == true){
-            jtPagamento.setText("Ok");
-        }else{
-            jtPagamento.setText("Pendente");
+            if(JOptionPane.showConfirmDialog(this, "Cliente não cadastrado, deseja cadastrar?",
+                    "realizar novo cadastro?",JOptionPane.YES_NO_OPTION)==JOptionPane.NO_OPTION){
+                dispose();
+            }
         }
     }//GEN-LAST:event_jbBuscarActionPerformed
     
@@ -433,15 +475,18 @@ public class ClienteView extends javax.swing.JFrame {
         *Recebe o Id do cliente que foi pesquisado e chama o metodo de
         *exclusão do registro do banco da entidade referente.
         */
-        int id = Integer.parseInt(jtCodigo.getText());
-        ClienteController clienteController = new ClienteController();
-        try {
-            clienteController.deletar(id);
-        } catch (Exception ex) {
-            Logger.getLogger(ClienteView.class.getName()).log(Level.SEVERE, null, ex);
+        if(JOptionPane.showConfirmDialog(this, "Confirma a exclusão?", "Confirma a exclusão?", JOptionPane.YES_NO_OPTION) ==
+                JOptionPane.YES_OPTION){
+            int id = Integer.parseInt(jtCodigo.getText());
+            try {
+                getClienteController().deletar(id);
+            } catch (Exception ex) {
+                Logger.getLogger(ClienteView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            JOptionPane.showMessageDialog(this, "Cliente excluído com sucesso!", 
+                "Excluir cliente", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
         }
-        JOptionPane.showConfirmDialog(null, "Confirma a exclusão?", "Confirma a exclusão?", JOptionPane.YES_NO_OPTION);
-        dispose();
     }//GEN-LAST:event_jbExcluirActionPerformed
 
     /**
@@ -512,4 +557,5 @@ public class ClienteView extends javax.swing.JFrame {
     private javax.swing.JTextField jtPagamento;
     private javax.swing.JTextField jtTelefone;
     // End of variables declaration//GEN-END:variables
+
 }

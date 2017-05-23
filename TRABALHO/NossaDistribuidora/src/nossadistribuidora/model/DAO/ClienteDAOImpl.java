@@ -28,8 +28,22 @@ public class ClienteDAOImpl extends GenericDAOImpl<Cliente> implements ClienteDA
         }
         return (Cliente)lista.get(0);
     } 
-
-    @Override
+    
+        @Override
+        public Cliente buscaClientePorId(int id) {
+            sessao = HibernateUtil.getSession();
+            transacao = sessao.beginTransaction();
+            List lista = sessao.createQuery("from Cliente where id = '" + id + "'").list();
+            sessao.flush();
+            transacao.commit();
+            sessao.close();
+            if (lista.isEmpty()){
+                return null;
+            }
+            return (Cliente)lista.get(0);
+        }
+    
+        @Override
     public void deletarClientePorId(int id) {
         sessao = HibernateUtil.getSession();
         transacao = sessao.beginTransaction();
@@ -50,6 +64,8 @@ public class ClienteDAOImpl extends GenericDAOImpl<Cliente> implements ClienteDA
         transacao.commit();
         sessao.close();
     }
+
+    
 
     
 }

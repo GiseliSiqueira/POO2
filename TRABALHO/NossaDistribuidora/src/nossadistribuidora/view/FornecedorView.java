@@ -5,7 +5,10 @@
  */
 package nossadistribuidora.view;
 
-import nossadistribuidora.controller.ClienteController;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import nossadistribuidora.controller.EnderecoController;
 import nossadistribuidora.controller.FornecedorController;
 import nossadistribuidora.model.Endereco;
 import nossadistribuidora.model.Fornecedor;
@@ -14,15 +17,39 @@ import nossadistribuidora.model.Fornecedor;
  *
  * @author Giseli
  */
+
+/*Classe que exibe a tela para receber as informações relativas ao fornecedor como
+*cnpj, razão social, telefone e endereço.
+*/
 public class FornecedorView extends javax.swing.JFrame {
 
     /**
-     * Creates new form ClienteView
+     * Creates new form FornecedorView
      */
+    
+    private FornecedorController fornecedorController;
+    private EnderecoController enderecoController;
+    
+    /*
+    *Construtor que cria as instancias dos controllers e dos models necessários para as operações
+    */
     public FornecedorView() {
+        fornecedorController = new FornecedorController();
+        enderecoController = new EnderecoController();
         initComponents();
     }
 
+    /*
+    *Get's dos controladores.
+    */
+    public FornecedorController getFornecedorController() {
+        return fornecedorController;
+    }
+    
+    public EnderecoController getEnderecoController() {
+        return enderecoController;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -64,6 +91,7 @@ public class FornecedorView extends javax.swing.JFrame {
         jbSalvar = new javax.swing.JButton();
         jbCancelar = new javax.swing.JButton();
         jbExcluir = new javax.swing.JButton();
+        jbAtivacao = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -166,12 +194,14 @@ public class FornecedorView extends javax.swing.JFrame {
 
         jLabel3.setText("Numero Registro:");
 
+        jtNumRegistro.setEditable(false);
         jtNumRegistro.setEnabled(false);
 
         jLabel10.setText("CNPJ:");
 
         jLabel11.setText("Ativação");
 
+        jtAtivacao.setEditable(false);
         jtAtivacao.setEnabled(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -185,13 +215,21 @@ public class FornecedorView extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jtAtivacao, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtAtivacao, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel1)
+                                            .addComponent(jLabel2))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jtRazaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addComponent(jLabel3)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -200,17 +238,9 @@ public class FornecedorView extends javax.swing.JFrame {
                                         .addComponent(jLabel10)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jtCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jbBuscar))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel1)
-                                            .addComponent(jLabel2))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jtRazaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(0, 6, Short.MAX_VALUE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jbBuscar)))
+                                .addGap(0, 1, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
         jPanel3Layout.setVerticalGroup(
@@ -237,7 +267,7 @@ public class FornecedorView extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jtAtivacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         jPanel5.setBackground(new java.awt.Color(102, 102, 102));
@@ -263,36 +293,49 @@ public class FornecedorView extends javax.swing.JFrame {
             }
         });
 
+        jbAtivacao.setText("Ativar/Desativar");
+        jbAtivacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAtivacaoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(83, 83, 83)
+                .addGap(49, 49, 49)
                 .addComponent(jbSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jbExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jbAtivacao)
                 .addGap(18, 18, 18)
                 .addComponent(jbCancelar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbSalvar)
-                    .addComponent(jbCancelar)
-                    .addComponent(jbExcluir))
-                .addContainerGap(12, Short.MAX_VALUE))
+                    .addComponent(jbExcluir)
+                    .addComponent(jbAtivacao)
+                    .addComponent(jbCancelar))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,7 +343,8 @@ public class FornecedorView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -308,9 +352,8 @@ public class FornecedorView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,44 +371,199 @@ public class FornecedorView extends javax.swing.JFrame {
     }//GEN-LAST:event_jtEnderecoRuaActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-        // TODO add your handling code here:
-        //Codigo para buscar os dados no banco e mostrar no Frame
+        /*Codigo para buscar os dados no banco e mostrar no Frame
+        *Busca o fornecedor por cnpj, Razão Social ou por telefone.
+        */
+        Fornecedor fornecedor = null;
+        
+        if(!(jtCnpj.getText().equals(""))){
+            fornecedor = getFornecedorController().buscaFornecedorPorCnpj(jtCnpj.getText());
+        }else if(!(jtRazaoSocial.getText().equals(""))){
+            fornecedor = getFornecedorController().buscaFornecedorPorRazaoSocial(jtRazaoSocial.getText());
+        }else if(!(jtTelefone.getText().equals(""))){
+            fornecedor = getFornecedorController().buscaFornecedorPorTelefone(jtTelefone.getText()); 
+        }
+        /*
+        *Exibe as informações do fornecedor nos jTextField da janela.
+        */
+        if(fornecedor != null){
+            jtNumRegistro.setText(Integer.toString(fornecedor.getNumeroRegistro()));
+            jtRazaoSocial.setText(fornecedor.getRazaoSocial());
+            jtTelefone.setText(fornecedor.getTelefone());
+            jtEnderecoRua.setText(fornecedor.getEndereco().getRua());
+            jtEnderecoNumero.setText(Integer.toString(fornecedor.getEndereco().getNumero()));
+            jtEnderecoBairro.setText(fornecedor.getEndereco().getBairro());
+            jtEnderecoCidade.setText(fornecedor.getEndereco().getCidade());
+            jcEnderecoEstado.setSelectedItem(fornecedor.getEndereco().getEstado());
+            jtEnderecoCep.setText(fornecedor.getEndereco().getCep());
+            if(fornecedor.getStatusAtivacao() == true){
+                jtAtivacao.setText("Ativo");
+            }else{
+                jtAtivacao.setText("Desativado");
+            }
+        
+            //configura os campos como ativos (porém nao são editáveis)
+            jtNumRegistro.setEnabled(true);
+            jtAtivacao.setEnabled(true);
+        }
+        /*
+        *Caso os dados para busca(cnpj, razão social ou telefone) não tenham sido informados
+        */
+        else if(jtCnpj.getText().equals("") && jtRazaoSocial.getText().equals("") && jtTelefone.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Informar dados para busca", 
+                    "Buscar fornecedor",JOptionPane.INFORMATION_MESSAGE);
+        }
+        /*
+        *Caso o fornecedor cujos dados informados não exista, solicita o cadastro
+        */
+        else if(JOptionPane.showConfirmDialog(this, "Fornecedor não cadastrado, deseja cadastrar?",
+                    "realizar novo cadastro?",JOptionPane.YES_NO_OPTION)==JOptionPane.NO_OPTION){
+                dispose();
+            }
     }//GEN-LAST:event_jbBuscarActionPerformed
 
-    private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
-        // TODO add your handling code here:
+    /*
+    *Metodo para excluir as informações de cliente no banco de dados
+    */
+    private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
+        /*
+        *Recebe o Id do fornecedor que foi pesquisado e chama o metodo de
+        *exclusão do registro do banco da entidade referente.
+        */
+        Fornecedor fornecedor = getFornecedorController().buscaFornecedorPorId(Integer.parseInt(jtNumRegistro.getText()));
+    
+        if(JOptionPane.showConfirmDialog(this, "Confirma a exclusão?", "Confirma a exclusão?", JOptionPane.YES_NO_OPTION) ==
+                    JOptionPane.YES_OPTION){
+            int id = fornecedor.getNumeroRegistro();
+                
+            try {
+                getFornecedorController().deletar(id);
+            } catch (Exception ex) {
+                Logger.getLogger(FornecedorView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            JOptionPane.showMessageDialog(this, "Fornecedor excluído com sucesso!", 
+                "Excluir fornecedor", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+            }
+    }//GEN-LAST:event_jbExcluirActionPerformed
 
-        Endereco endereco = new Endereco();
-        endereco.setCep(jtEnderecoCep.getText());
-        endereco.setRua(jtEnderecoRua.getText());
-        endereco.setNumero(Integer.valueOf(jtEnderecoNumero.getText()));
-        endereco.setBairro(jtEnderecoBairro.getText());
-        endereco.setCidade(jtEnderecoCidade.getText());
-        endereco.setEstado(jcEnderecoEstado.getSelectedItem().toString());
-
-        Fornecedor fornecedor = new Fornecedor();
-        //fornecedor.setNumeroRegistro();   CRIAR NUMERO SEM REPETIR
-        fornecedor.setCnpj(jtCnpj.getText());
-        fornecedor.setRazaoSocial(jtRazaoSocial.getText());
-        fornecedor.setTelefone(jtTelefone.getText());
-        fornecedor.setEndereco(endereco);
-        fornecedor.setStatusAtivacao(true);
-
-        FornecedorController fornecedorController = new FornecedorController();
-        fornecedorController.inserir(fornecedor);
-
-    }//GEN-LAST:event_jbSalvarActionPerformed
-
+    /*
+    *Metodo que cancela a operação, encerrando a janela.
+    */
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
-        // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jbCancelarActionPerformed
 
-    private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
-        // TODO add your handling code here:
-        //Excluir fornecedor do banco
-    }//GEN-LAST:event_jbExcluirActionPerformed
+    /*
+    *Metodo para salvar ou atualizar as informações de fornecedor no banco de dados
+    */
+    private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
+        /*
+        *Verifica se o fornecedor já existe pela busca do numero de registro
+        *Caso exista: atualiza os dados do fornecedor;
+        *caso nao exista: salva os dados do fornecedor;
+        */
+        if(jtNumRegistro.getText().equalsIgnoreCase("")){
+            //Dados de endereço são recebidos primeiro para serem inseridos na tabela fornecedor
+            Endereco endereco = new Endereco();
+            endereco.setCep(jtEnderecoCep.getText());
+            endereco.setRua(jtEnderecoRua.getText());
+            endereco.setNumero(Integer.valueOf(jtEnderecoNumero.getText()));
+            endereco.setBairro(jtEnderecoBairro.getText());
+            endereco.setCidade(jtEnderecoCidade.getText());
+            endereco.setEstado(jcEnderecoEstado.getSelectedItem().toString());
 
+            /*
+            *Cria instância de fornecedor e obtém as informações
+            *referentes ao fornecedor.
+            */
+            Fornecedor fornecedor = new Fornecedor();
+
+            fornecedor.setCnpj(jtCnpj.getText());
+            fornecedor.setRazaoSocial(jtRazaoSocial.getText());
+            fornecedor.setTelefone(jtTelefone.getText());
+            fornecedor.setEndereco(endereco);
+            fornecedor.setStatusAtivacao(true);
+
+            /*
+            *Envio das informações do endereço e do fornecedor para o respectivo controlador
+            *para que sejam realizadas as operações de inserção no banco de dados.
+            */
+            try {
+                getEnderecoController().inserir(endereco);
+                getFornecedorController().inserir(fornecedor);
+            } catch (Exception ex) {
+                Logger.getLogger(FornecedorView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            JOptionPane.showMessageDialog(this, "Fornecedor inserido com sucesso!", 
+                "Inserir fornecedor",JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+        }else{
+            //RECEBER AS NOVAS INFORMAÇÕES PARA ATUALIZAR
+            //Busca o fornecedor pelo Id para atualização.
+            Fornecedor fornecedor = getFornecedorController().buscaFornecedorPorId(Integer.parseInt(jtNumRegistro.getText()));
+            Endereco endereco = fornecedor.getEndereco();
+            
+            //Substituição das informações atualizadas na classe Endereço
+            endereco.setCep(jtEnderecoCep.getText());
+            endereco.setRua(jtEnderecoRua.getText());
+            endereco.setNumero(Integer.valueOf(jtEnderecoNumero.getText()));
+            endereco.setBairro(jtEnderecoBairro.getText());
+            endereco.setCidade(jtEnderecoCidade.getText());
+            endereco.setEstado(jcEnderecoEstado.getSelectedItem().toString());
+            //Substituição das informações atualizadas na classe Fornecedor
+            fornecedor.setCnpj(jtCnpj.getText());
+            fornecedor.setRazaoSocial(jtRazaoSocial.getText());
+            fornecedor.setTelefone(jtTelefone.getText());
+            fornecedor.setEndereco(endereco);
+            
+            /*
+            *Envio das informações do endereço e do fornecedor para o respectivo controlador
+            *para que sejam realizadas as operações de atualização no banco de dados.
+            */
+            try {
+                getFornecedorController().alterar(fornecedor);
+                getEnderecoController().alterar(endereco);
+            } catch (Exception ex) {
+                Logger.getLogger(FornecedorView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            JOptionPane.showMessageDialog(this, "Informações de fornecedor alteradas com "
+                + "sucesso!", "Atualizar fornecedor",JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+        }
+    }//GEN-LAST:event_jbSalvarActionPerformed
+
+    private void jbAtivacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAtivacaoActionPerformed
+        /*
+        *Metodo que altera o status de ativação do fornecedor pelo seu Id após a busca
+        *de suas informaçoes no banco.
+        *Caso o fornecedor esteja ativo, será desativado;
+        *Caso o fornecedor esteja desativado, será ativado;
+        */
+        String mensagem;
+        Fornecedor fornecedor =  getFornecedorController().buscaFornecedorPorId(Integer.parseInt(jtNumRegistro.getText()));
+            
+        if(fornecedor.getStatusAtivacao()){
+            fornecedor.setStatusAtivacao(false);
+            mensagem = "Fornecedor desativado com sucesso!";
+        }else{
+                fornecedor.setStatusAtivacao(true);
+                mensagem = "Fornecedor ativado com sucesso!";
+        }
+        if(!(mensagem.equals(""))){
+            try {
+                getFornecedorController().alterar(fornecedor);
+                JOptionPane.showMessageDialog(this, mensagem, 
+                    "Ativar/Desativar fornecedor", JOptionPane.INFORMATION_MESSAGE);
+                dispose();
+            } catch (Exception ex) {
+                Logger.getLogger(FornecedorView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jbAtivacaoActionPerformed
+
+   
     /**
      * @param args the command line arguments
      */
@@ -420,6 +618,7 @@ public class FornecedorView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbAtivacao;
     private javax.swing.JButton jbBuscar;
     private javax.swing.JButton jbCancelar;
     private javax.swing.JButton jbExcluir;

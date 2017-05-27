@@ -6,15 +6,46 @@
 package nossadistribuidora.controller;
 
 import nossadistribuidora.model.DAO.FornecedorDAO;
+import nossadistribuidora.model.DAO.FornecedorDAOImpl;
 import nossadistribuidora.model.Fornecedor;
 
 /**
  *
  * @author Giseli
  */
+
+/*
+*Classe que controla a comunicação entre a View e o DAO do Fornecedor.
+*/
 public class FornecedorController {
-    private FornecedorDAO fornecedorDAO;
-    public void inserir(Fornecedor fornecedor){
+    
+    FornecedorDAO fornecedorDAO = new FornecedorDAOImpl();
+    
+    public void inserir(Fornecedor fornecedor) throws Exception{
         fornecedorDAO.inserir(fornecedor);
+    }
+    
+    public Fornecedor buscaFornecedorPorId(int id){
+        return fornecedorDAO.buscaFornecedorPorId(id);
+    }
+    
+    public void alterar(Fornecedor fornecedor ) throws Exception{
+        fornecedorDAO.alterar(fornecedor);
+    }
+    
+     public void deletar(int id) throws Exception{
+        fornecedorDAO.deletarFornecedorPorId(id);
+    }
+
+    public Fornecedor buscaFornecedorPorCnpj(String cnpj) {
+        return fornecedorDAO.buscaFornecedorPorCnpj(cnpj);
+    }
+
+    public Fornecedor buscaFornecedorPorRazaoSocial(String razaoSocial) {
+        return fornecedorDAO.buscaFornecedorPorRazaoSocial(razaoSocial);
+    }
+
+    public Fornecedor buscaFornecedorPorTelefone(String telefone) {
+        return fornecedorDAO.buscaFornecedorPorTelefone(telefone);
     }
 }

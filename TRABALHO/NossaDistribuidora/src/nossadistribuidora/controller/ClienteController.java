@@ -9,6 +9,10 @@ import nossadistribuidora.model.DAO.ClienteDAOImpl;
  *
  * @author Giseli
  */
+
+/*
+*Classe que controla a comunicação entre a View e o DAO do Cliente.
+*/
 public class ClienteController {
     
     ClienteDAO clienteDAO = new ClienteDAOImpl();
@@ -25,12 +29,15 @@ public class ClienteController {
         return clienteDAO.buscaClientePorId(id);
     }
     
+    public Cliente buscaClientePorTelefone(String telefone){
+        return clienteDAO.buscaClientePorTelefone(telefone);
+    }
+    
     public void deletar(int id) throws Exception{
         clienteDAO.deletarClientePorId(id);
     }
     
     public void alterar( Cliente cliente ) throws Exception{
-        clienteDAO.alterar(cliente);
-        
+        clienteDAO.alterar(cliente); 
     }
 }

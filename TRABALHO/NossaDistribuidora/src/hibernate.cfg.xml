@@ -48,5 +48,6 @@ Contributor(s):
     <property name="hibernate.hbm2ddl.auto">update</property>
     <mapping class="nossadistribuidora.model.Cliente"/>
     <mapping class="nossadistribuidora.model.Endereco"/>
+    <mapping class="nossadistribuidora.model.Fornecedor"/>
   </session-factory>
 </hibernate-configuration>

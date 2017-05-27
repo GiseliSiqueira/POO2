@@ -1,30 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package nossadistribuidora.model.DAO;
 
+import nossadistribuidora.factoryDAO.GenericDAO;
 import nossadistribuidora.model.Fornecedor;
 
 /**
  *
  * @author Giseli
  */
-public class FornecedorDAO {
-    public void inserir(Fornecedor fornecedor){
-        
-    }
+
+/*
+*Classe que define os métodos específicos para manipulação dos dados na tabela fornecedor. 
+*/
+public interface FornecedorDAO extends GenericDAO<Fornecedor> {
+
+    public Fornecedor buscaFornecedorPorId(int id);
+
+    public void deletarFornecedorPorId(int id);
+
+    public Fornecedor buscaFornecedorPorCnpj(String cnpj);
+
+    public Fornecedor buscaFornecedorPorRazaoSocial(String razaoSocial);
+
+    public Fornecedor buscaFornecedorPorTelefone(String telefone);
     
-    /*public void alterar(Fornecedor fornecedor){
-        
-    }
-    
-    public List<Fornecedor> consultar(){
-        
-    }
-    
-    public void excluir(Fornecedor fornecedor){
-        
-    }*/
 }

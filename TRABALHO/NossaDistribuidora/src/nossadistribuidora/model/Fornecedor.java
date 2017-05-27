@@ -5,17 +5,53 @@
  */
 package nossadistribuidora.model;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 /**
  *
  * @author Giseli
  */
-public class Fornecedor {
+
+/*
+* Anotações com @ são para configuração da persistência com Hibernate;
+*/
+
+@Entity
+@Table (name = "fornecedor")
+public class Fornecedor implements Serializable {
+    @Id
+    @GeneratedValue
     private int numeroRegistro;
+    @Column(length = 20,nullable = false)
     private String cnpj;
+    @Column(length = 100,nullable = false)
     private String razaoSocial;
+    @Column(length = 15)
     private String telefone;
+    @Column(length = 10)
     private boolean statusAtivacao;
+    @ManyToOne
+    @Cascade(CascadeType.DELETE)
     private Endereco endereco;
+
+    public Fornecedor() {
+    }
+
+    public Fornecedor(String cnpj, String razaoSocial, String telefone, boolean statusAtivacao, Endereco endereco) {
+        this.cnpj = cnpj;
+        this.razaoSocial = razaoSocial;
+        this.telefone = telefone;
+        this.statusAtivacao = statusAtivacao;
+        this.endereco = endereco;
+    }
 
     public int getNumeroRegistro() {
         return numeroRegistro;
@@ -49,7 +85,7 @@ public class Fornecedor {
         this.telefone = telefone;
     }
 
-    public boolean isStatusAtivacao() {
+    public boolean getStatusAtivacao() {
         return statusAtivacao;
     }
 

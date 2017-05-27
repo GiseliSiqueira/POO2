@@ -1,6 +1,4 @@
-/*Classe que exibe a tela para receber as informações relativas ao cliente como
-*nome, telefone e endereço.
-*/
+
 package nossadistribuidora.view;
 
 import java.util.logging.Level;
@@ -15,6 +13,10 @@ import nossadistribuidora.model.Endereco;
  *
  * @author Giseli
  */
+
+/*Classe que exibe a tela para receber as informações relativas ao cliente como
+*nome, telefone e endereço.
+*/
 public class ClienteView extends javax.swing.JFrame {
 
     /**
@@ -23,20 +25,23 @@ public class ClienteView extends javax.swing.JFrame {
     
     private ClienteController clienteController;
     private EnderecoController enderecoController;
-    
+  
+    /*
+    *Construtor que cria as instancias dos controllers e dos models necessários para as operações
+    */
     public ClienteView() {
         clienteController = new ClienteController();
         enderecoController = new EnderecoController();
         initComponents();
-        jtCodigo.setEditable(false);
-        jtAtivacao.setEditable(false);
-        jtPagamento.setEditable(false);
     }
     
+    /*
+    *Get's dos controladores.
+    */
     public ClienteController getClienteController() {
         return clienteController;
     }
-
+    
     public EnderecoController getEnderecoController() {
         return enderecoController;
     }
@@ -56,6 +61,7 @@ public class ClienteView extends javax.swing.JFrame {
         jbSalvar = new javax.swing.JButton();
         jbCancelar = new javax.swing.JButton();
         jbExcluir = new javax.swing.JButton();
+        jbAtivaDesativa = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jtNome = new javax.swing.JTextField();
@@ -110,15 +116,24 @@ public class ClienteView extends javax.swing.JFrame {
             }
         });
 
+        jbAtivaDesativa.setText("Ativar/Desativar");
+        jbAtivaDesativa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAtivaDesativaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(83, 83, 83)
+                .addGap(41, 41, 41)
                 .addComponent(jbSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jbExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jbAtivaDesativa)
                 .addGap(18, 18, 18)
                 .addComponent(jbCancelar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -130,7 +145,8 @@ public class ClienteView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbSalvar)
                     .addComponent(jbCancelar)
-                    .addComponent(jbExcluir))
+                    .addComponent(jbExcluir)
+                    .addComponent(jbAtivaDesativa))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -230,14 +246,17 @@ public class ClienteView extends javax.swing.JFrame {
 
         jLabel3.setText("Codigo:");
 
+        jtCodigo.setEditable(false);
         jtCodigo.setEnabled(false);
 
         jLabel10.setText("Ativação");
 
+        jtAtivacao.setEditable(false);
         jtAtivacao.setEnabled(false);
 
         jLabel11.setText("Pagamento");
 
+        jtPagamento.setEditable(false);
         jtPagamento.setEnabled(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -250,34 +269,31 @@ public class ClienteView extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtAtivacao, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtAtivacao, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel1)
+                                .addGap(26, 26, 26)
+                                .addComponent(jtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jbBuscar))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addGap(26, 26, 26)
-                                        .addComponent(jtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jbBuscar))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -332,10 +348,11 @@ public class ClienteView extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    /*Metodo que cancela a operação, encerrando a janela.
+    
+    /*
+    *Metodo que cancela a operação, encerrando a janela.
     */
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
-
         dispose();
     }//GEN-LAST:event_jbCancelarActionPerformed
 
@@ -344,16 +361,16 @@ public class ClienteView extends javax.swing.JFrame {
     }//GEN-LAST:event_jtEnderecoRuaActionPerformed
     
     /*
-    *Metodo para salvar as informações de cliente no banco de dados
+    *Metodo para salvar ou atualizar as informações de cliente no banco de dados
     */
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
-
         /*
-        *Cria instancia de endereço e obtém as informações
-        *referentes ao endereço do cliente.
+        *Verifica se o cliente já existe pela busca do código
+        *Caso exista: atualiza os dados do cliente;
+        *caso nao exista: salva os dados do cliente;
         */
         if(jtCodigo.getText().equalsIgnoreCase("")){
-            
+            //Dados de endereço são recebidos primeiro para serem inseridos na tabela cliente
             Endereco endereco = new Endereco();
             endereco.setCep(jtEnderecoCep.getText());
             endereco.setRua(jtEnderecoRua.getText());
@@ -375,44 +392,41 @@ public class ClienteView extends javax.swing.JFrame {
             cliente.setStatusPagamento(true);
 
             /*
-            *Envio das informações do endereço para o controlador
-            *para que sejam realizadas as operações no banco de dados.
+            *Envio das informações do endereço e do cliente para o respectivo controlador
+            *para que sejam realizadas as operações de inserção no banco de dados.
             */
             try {
                 getEnderecoController().inserir(endereco);
-            } catch (Exception ex) {
-                Logger.getLogger(ClienteView.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            /*
-            *Envio das informações do cliente para o controlador
-            *para que sejam realizadas as operações no banco de dados.
-            */
-            try {
                 getClienteController().inserir(cliente);
             } catch (Exception ex) {
                 Logger.getLogger(ClienteView.class.getName()).log(Level.SEVERE, null, ex);
             }
+
             JOptionPane.showMessageDialog(this, "Cliente inserido com sucesso!", 
                 "Inserir cliente",JOptionPane.INFORMATION_MESSAGE);
             dispose();
         }else{
             //RECEBER AS NOVAS INFORMAÇÕES PARA ATUALIZAR
-            
+            //Busca o cliente pelo Id para atualização.
             Cliente cliente = getClienteController().buscaClientePorId(Integer.parseInt(jtCodigo.getText()));
             Endereco endereco = cliente.getEndereco();
             
+            //Substituição das informações atualizadas na classe Endereço
             endereco.setCep(jtEnderecoCep.getText());
             endereco.setRua(jtEnderecoRua.getText());
             endereco.setNumero(Integer.valueOf(jtEnderecoNumero.getText()));
             endereco.setBairro(jtEnderecoBairro.getText());
             endereco.setCidade(jtEnderecoCidade.getText());
             endereco.setEstado(jcEnderecoEstado.getSelectedItem().toString());
-            
+            //Substituição das informações atualizadas na classe Cliente
             cliente.setNome(jtNome.getText());
             cliente.setTelefone(jtTelefone.getText());
             cliente.setEndereco(endereco);
             
+            /*
+            *Envio das informações do endereço e do cliente para o respectivo controlador
+            *para que sejam realizadas as operações de atualização no banco de dados.
+            */
             try {
                 getClienteController().alterar(cliente);
                 getEnderecoController().alterar(endereco);
@@ -430,11 +444,19 @@ public class ClienteView extends javax.swing.JFrame {
     *Metodo para buscar as informações de cliente no banco de dados
     */
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-        //Codigo para buscar os dados no banco e mostrar no Frame
-        Cliente cliente = getClienteController().buscaClientePorNome(jtNome.getText());
+        /*Codigo para buscar os dados no banco e mostrar no Frame
+        *Busca o Cliente por nome ou por telefone
+        */
+        Cliente cliente = null;
+        
+        if(!(jtNome.getText().equals(""))){
+            cliente = getClienteController().buscaClientePorNome(jtNome.getText());
+        }else if(!(jtTelefone.getText().equals(""))){
+            cliente = getClienteController().buscaClientePorTelefone(jtTelefone.getText());
+        } 
         
         /*
-        *Exibe as informações do cliente nos jTextField da janela
+        *Exibe as informações do cliente nos jTextField da janela.
         */
         if(cliente != null){
             jtCodigo.setText(Integer.toString(cliente.getCodigo()));
@@ -456,15 +478,26 @@ public class ClienteView extends javax.swing.JFrame {
             }else{jtCodigo.setVisible(true);
                 jtPagamento.setText("Pendente");
             }
+            //configura os campos como ativos (porém nao são editáveis)
             jtCodigo.setEnabled(true);
             jtAtivacao.setEnabled(true);
             jtPagamento.setEnabled(true);
-        }else{
-            if(JOptionPane.showConfirmDialog(this, "Cliente não cadastrado, deseja cadastrar?",
+        }
+        /*
+        *Caso os dados para busca(nome ou telefone) não tenham sido informados
+        */
+        else if(jtNome.getText().equals("") && jtTelefone.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Informar dados para busca", 
+                    "Buscar cliente",JOptionPane.INFORMATION_MESSAGE);
+        }
+        /*
+        *Caso o cliente cujos dados informados não exista, solicita o cadastro
+        */
+        else if(JOptionPane.showConfirmDialog(this, "Cliente não cadastrado, deseja cadastrar?",
                     "realizar novo cadastro?",JOptionPane.YES_NO_OPTION)==JOptionPane.NO_OPTION){
                 dispose();
             }
-        }
+        
     }//GEN-LAST:event_jbBuscarActionPerformed
     
     /*
@@ -475,19 +508,67 @@ public class ClienteView extends javax.swing.JFrame {
         *Recebe o Id do cliente que foi pesquisado e chama o metodo de
         *exclusão do registro do banco da entidade referente.
         */
-        if(JOptionPane.showConfirmDialog(this, "Confirma a exclusão?", "Confirma a exclusão?", JOptionPane.YES_NO_OPTION) ==
-                JOptionPane.YES_OPTION){
-            int id = Integer.parseInt(jtCodigo.getText());
-            try {
-                getClienteController().deletar(id);
-            } catch (Exception ex) {
-                Logger.getLogger(ClienteView.class.getName()).log(Level.SEVERE, null, ex);
+        Cliente cliente = getClienteController().buscaClientePorId(Integer.parseInt(jtCodigo.getText()));
+    
+        if(cliente.getStatusPagamento()){
+    
+            if(JOptionPane.showConfirmDialog(this, "Confirma a exclusão?", "Confirma a exclusão?", JOptionPane.YES_NO_OPTION) ==
+                    JOptionPane.YES_OPTION){
+                int id = cliente.getCodigo();
+                try {
+                    getClienteController().deletar(id);
+                } catch (Exception ex) {
+                    Logger.getLogger(ClienteView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                JOptionPane.showMessageDialog(this, "Cliente excluído com sucesso!", 
+                    "Excluir cliente", JOptionPane.INFORMATION_MESSAGE);
+                dispose();
             }
-            JOptionPane.showMessageDialog(this, "Cliente excluído com sucesso!", 
-                "Excluir cliente", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(this, "Cliente selecionado possui pendência de"
+                    + "pagamento, não podendo ser excluído!", 
+                    "Excluir cliente", JOptionPane.INFORMATION_MESSAGE);
             dispose();
         }
     }//GEN-LAST:event_jbExcluirActionPerformed
+
+    private void jbAtivaDesativaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAtivaDesativaActionPerformed
+        /*
+        *Metodo que altera o status de ativação do cliente pelo seu Id após a busca
+        *de suas informaçoes no banco.
+        *Caso o cliente esteja ativo e caso não possua pendências de pagamento, 
+        *será desativado;
+        *Caso o cliente esteja desativado, será ativado;
+        */
+        String mensagem = "";
+        Cliente cliente =  getClienteController().buscaClientePorId(Integer.parseInt(jtCodigo.getText()));
+            
+            if(cliente.getStatusAtivacao()){
+                if(cliente.getStatusPagamento()){
+                    cliente.setStatusAtivacao(false);
+                    mensagem = "Cliente desativado com sucesso!";
+                }else{
+                    JOptionPane.showMessageDialog(this, "O cliente informado possui pendência de"
+                    + "pagamento não podendo ser desativado!", 
+                    "Ativar/Desativar cliente", JOptionPane.INFORMATION_MESSAGE);
+                    dispose();
+                }
+            }else{
+                cliente.setStatusAtivacao(true);
+                mensagem = "Cliente ativado com sucesso!";
+            }
+            if(!(mensagem.equals(""))){
+                try {
+                    getClienteController().alterar(cliente);
+                    JOptionPane.showMessageDialog(this, mensagem, 
+                        "Ativar/Desativar cliente", JOptionPane.INFORMATION_MESSAGE);
+                    dispose();
+                } catch (Exception ex) {
+                    Logger.getLogger(ClienteView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+               
+    }//GEN-LAST:event_jbAtivaDesativaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -524,6 +605,7 @@ public class ClienteView extends javax.swing.JFrame {
         });
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -541,6 +623,7 @@ public class ClienteView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbAtivaDesativa;
     private javax.swing.JButton jbBuscar;
     private javax.swing.JButton jbCancelar;
     private javax.swing.JButton jbExcluir;

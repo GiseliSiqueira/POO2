@@ -102,7 +102,10 @@ Foram produzidos os protótipos iniciais de tela para os requisitos funcionais c
 ### 2.4. Padrões
 ##### Padrões Arquiteturais
 
-* MVC (Model-View-Controller): Padrão utilizado para separar as camadas do software como regras de negócios, lógica e funções, facilitando a reusabiidade de código e a separação de conceitos dentro do projeto.
+* MVC (Model-View-Controller): Padrão utilizado para separar as camadas do software como regras de negócios, lógica e funções, facilitando a reusabiidade de código e a separação de conceitos dentro do projeto.<br/>Diagrama do padão:
+
+![alt tag](https://github.com/GiseliSiqueira/POO2/blob/master/TRABALHO/Padrao%20MVC.png)
+
 ##### Padrões de projeto
 
 * Padrão método fábrica: Padrão utilizado para encapsular a criação de objetos, atribuindo a subclasses a responsabilidade da decisão de qual objeto criar. No projeto foi utilizado para resolver o problema de criação dos objetos Produto, permitindo a classe Fábrica definir a instanciação das classes de produto Gás e Água, desacoplando as classes do sistema.<br/>Diagrama do padrão destacado:

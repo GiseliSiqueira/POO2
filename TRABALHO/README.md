@@ -91,6 +91,10 @@ IDE: Netbeans - Ambiente de desenvolvimento integrado, oferecendo as principais 
 
 SGBD: MySQL - sistema para gerenciar o banco de dados que será utilizado pelo sistema e que utiliza a linguagem SQL.
 
+* Frameworks:
+
+Hibernate: Utilizado para realizar o mapeamento objeto relacional escrito em java e que diminui a complexidade no desenvolvimento de aplicações que utilizam banco de dados relacionais o relacionando com a aplicação.
+
 ### 2.2. Projeto Detalhado
 #### 2.2.2. Projeto da Interface com Usuário
 
@@ -111,6 +115,10 @@ Foram produzidos os protótipos iniciais de tela para os requisitos funcionais c
 * Padrão método fábrica: Padrão utilizado para encapsular a criação de objetos, atribuindo a subclasses a responsabilidade da decisão de qual objeto criar. No projeto foi utilizado para resolver o problema de criação dos objetos Produto, permitindo a classe Fábrica definir a instanciação das classes de produto Gás e Água, desacoplando as classes do sistema.<br/>Diagrama do padrão destacado:
 
 ![alt tag](https://github.com/GiseliSiqueira/POO2/blob/master/TRABALHO/Padrao%20m%C3%A9todo%20f%C3%A1brica.png)
+
+* Padrão DAO: Padrão utilizado para separar as operações de acesso aos dados da aplicação, contendo uma Inteface DAO - define operações padrões a serem implementadas em uma classe concreta de acesso aos dados, uma classe DAO concreta - responsável pelo acesso ao mecanismo de armazenamento dos dados e uma classe model - objeto que terá seus dados persistidos. Diagrama do padrão:
+
+![alt tag](https://github.com/GiseliSiqueira/POO2/blob/master/TRABALHO/Padr%C3%A3o%20DAO.png)
 
 # Gestão de Projetos
 

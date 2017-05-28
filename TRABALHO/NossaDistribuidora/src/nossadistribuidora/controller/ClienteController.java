@@ -1,6 +1,7 @@
 
 package nossadistribuidora.controller;
 
+import java.util.List;
 import nossadistribuidora.model.DAO.ClienteDAO;
 import nossadistribuidora.model.Cliente;
 import nossadistribuidora.model.DAO.ClienteDAOImpl;
@@ -39,5 +40,9 @@ public class ClienteController {
     
     public void alterar( Cliente cliente ) throws Exception{
         clienteDAO.alterar(cliente); 
+    }
+    
+    public List<Cliente> listar(Class clazz) throws Exception{
+        return clienteDAO.listar(clazz);
     }
 }

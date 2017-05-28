@@ -1,18 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Patterns;
 
 import nossadistribuidora.model.Produto;
 import nossadistribuidora.model.ProdutoAgua;
 import nossadistribuidora.model.ProdutoGas;
+import nossadistribuidora.view.ProdutoAguaView;
+import nossadistribuidora.view.ProdutoGasView;
 
 /**
  *
  * @author Giseli
  */
+
+/*
+* Classe fábrica que define a criação de um produto;
+*/
 public class FabricaProduto {
     public static Produto criaProduto(String tipo){
         Produto produto = null;

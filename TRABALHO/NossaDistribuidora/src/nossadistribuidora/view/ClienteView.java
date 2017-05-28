@@ -19,15 +19,11 @@ import nossadistribuidora.model.Endereco;
 */
 public class ClienteView extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ClienteView
-     */
-    
     private ClienteController clienteController;
     private EnderecoController enderecoController;
   
     /*
-    *Construtor que cria as instancias dos controllers e dos models necessários para as operações
+    *Construtor que cria as instancias dos controllers necessários para as operações
     */
     public ClienteView() {
         clienteController = new ClienteController();
@@ -398,13 +394,14 @@ public class ClienteView extends javax.swing.JFrame {
             try {
                 getEnderecoController().inserir(endereco);
                 getClienteController().inserir(cliente);
+                JOptionPane.showMessageDialog(this, "Cliente inserido com sucesso!", 
+                "Inserir cliente",JOptionPane.INFORMATION_MESSAGE);
+                dispose();
             } catch (Exception ex) {
                 Logger.getLogger(ClienteView.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            JOptionPane.showMessageDialog(this, "Cliente inserido com sucesso!", 
-                "Inserir cliente",JOptionPane.INFORMATION_MESSAGE);
-            dispose();
+            
         }else{
             //RECEBER AS NOVAS INFORMAÇÕES PARA ATUALIZAR
             //Busca o cliente pelo Id para atualização.
@@ -428,16 +425,15 @@ public class ClienteView extends javax.swing.JFrame {
             *para que sejam realizadas as operações de atualização no banco de dados.
             */
             try {
-                getClienteController().alterar(cliente);
                 getEnderecoController().alterar(endereco);
+                getClienteController().alterar(cliente);
+                JOptionPane.showMessageDialog(this, "Informações de cliente alteradas com "
+                + "sucesso!", "Atualizar cliente",JOptionPane.INFORMATION_MESSAGE);
+                dispose();
             } catch (Exception ex) {
                 Logger.getLogger(ClienteView.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            JOptionPane.showMessageDialog(this, "Informações de cliente alteradas com "
-                + "sucesso!", "Atualizar cliente",JOptionPane.INFORMATION_MESSAGE);
-            dispose();
+            } 
         }
-      
     }//GEN-LAST:event_jbSalvarActionPerformed
     
     /*
@@ -445,12 +441,13 @@ public class ClienteView extends javax.swing.JFrame {
     */
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         /*Codigo para buscar os dados no banco e mostrar no Frame
-        *Busca o Cliente por nome ou por telefone
+        *Busca o Cliente por nome
         */
         Cliente cliente = null;
         
+        //Testa se os campos nome ou telefone não estão vazios e busca no banco com operação específica
         if(!(jtNome.getText().equals(""))){
-            cliente = getClienteController().buscaClientePorNome(jtNome.getText());
+            cliente = getClienteController().buscaClientePorNome(jtNome.getText()); //recebe null caso o cliente não exista
         }else if(!(jtTelefone.getText().equals(""))){
             cliente = getClienteController().buscaClientePorTelefone(jtTelefone.getText());
         } 

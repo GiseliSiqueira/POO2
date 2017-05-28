@@ -5,26 +5,43 @@
  */
 package nossadistribuidora.view;
 
-import Patterns.FabricaProduto;
-import nossadistribuidora.controller.ClienteController;
-import nossadistribuidora.model.Cliente;
-import nossadistribuidora.model.Produto;
-import nossadistribuidora.model.ProdutoAgua;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import nossadistribuidora.controller.FornecedorController;
+import nossadistribuidora.controller.ProdutoGasController;
+import nossadistribuidora.model.Fornecedor;
 import nossadistribuidora.model.ProdutoGas;
 /**
  *
  * @author Giseli
  */
+
+/*Classe que exibe a tela para receber as informações relativas ao produto gás como
+*nome, marca, caracteristica, valor, peso, quantidade em estoque e fornecedor.
+*/
 public class ProdutoGasView extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ClienteView
-     */
+    private ProdutoGasController gasController;
+    
+    
+    /*
+    *Construtor que cria a instancia do controller necessário para as operações
+    */
     public ProdutoGasView() {
+        gasController = new ProdutoGasController();
         initComponents();
-        
     }
 
+    /*
+    *Get do controlador.
+    */
+    public ProdutoGasController getGasController() {
+        return gasController;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,6 +73,8 @@ public class ProdutoGasView extends javax.swing.JFrame {
         jtPeso = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jcListaFornecedores = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        jtId = new javax.swing.JTextField();
 
         jButton1.setText("jButton1");
 
@@ -132,7 +151,17 @@ public class ProdutoGasView extends javax.swing.JFrame {
 
         jLabel5.setText("Fornecedor:");
 
-        jcListaFornecedores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcListaFornecedores.setModel(new Util.FornecedorComboBox());
+        jcListaFornecedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcListaFornecedoresActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("ID:");
+
+        jtId.setEditable(false);
+        jtId.setEnabled(false);
 
         javax.swing.GroupLayout jPainel2Layout = new javax.swing.GroupLayout(jPainel2);
         jPainel2.setLayout(jPainel2Layout);
@@ -152,13 +181,10 @@ public class ProdutoGasView extends javax.swing.JFrame {
                         .addGroup(jPainel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel12)
-                            .addComponent(jLabel6))
-                        .addGap(57, 57, 57)))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
+                        .addGap(51, 51, 51)))
                 .addGroup(jPainel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPainel2Layout.createSequentialGroup()
-                        .addComponent(jtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
-                        .addComponent(jbBuscar))
                     .addComponent(jtCaracteristicas)
                     .addGroup(jPainel2Layout.createSequentialGroup()
                         .addGroup(jPainel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,15 +201,25 @@ public class ProdutoGasView extends javax.swing.JFrame {
                                     .addComponent(jLabel5))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPainel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jcListaFornecedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jcListaFornecedores, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jtQuantEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 32, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPainel2Layout.createSequentialGroup()
+                        .addGroup(jPainel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jtId, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtNome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                        .addComponent(jbBuscar)))
                 .addContainerGap())
         );
         jPainel2Layout.setVerticalGroup(
             jPainel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPainel2Layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPainel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
                 .addGroup(jPainel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -208,7 +244,7 @@ public class ProdutoGasView extends javax.swing.JFrame {
                     .addComponent(jtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(jcListaFornecedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(139, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -235,30 +271,92 @@ public class ProdutoGasView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /*
+    *Metodo que cancela a operação, encerrando a janela.
+    */
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
-        // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jbCancelarActionPerformed
 
+    /*
+    *Metodo para salvar ou atualizar as informações de produto gás no banco de dados
+    */
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
-        // TODO add your handling code here:
-        ProdutoGas gas = new ProdutoGas();
-        gas.setNome(jtNome.getText());
-        gas.setMarca(jtMarca.getText());
-        gas.setCaracteristica(jtCaracteristicas.getText());
-        gas.setValor(Float.parseFloat(jtValor.getText()));
-        gas.setQuantidadeEstoque(Integer.parseInt(jtQuantEstoque.getText()));
-        gas.setPeso(Float.parseFloat(jtPeso.getText()));
-        if(gas.getQuantidadeEstoque()>0){
-            gas.setDisponibilidadeEstoque(true);
-        }else{
-            gas.setDisponibilidadeEstoque(false);
-        }
-        
-        /*ClienteController clienteController = new ClienteController();
-        clienteController.inserir(cliente);
+        /*
+        *Verifica se o gás já existe pela busca do nome
+        *Caso exista: atualiza os dados do produto;
+        *caso nao exista: salva os dados do produto;
         */
+        if(jtId.getText().equals("")){
+            
+            /*
+            *Cria instância de produto gás e obtém as informações
+            *referentes ao mesmo, obtendo as entradas de dados.
+            */
         
+            ProdutoGas gas = new ProdutoGas();
+            gas.setNome(jtNome.getText());
+            gas.setMarca(jtMarca.getText());
+            gas.setCaracteristica(jtCaracteristicas.getText());
+            gas.setValor(Float.parseFloat(jtValor.getText()));
+            gas.setQuantidadeEstoque(Integer.parseInt(jtQuantEstoque.getText()));
+            gas.setPeso(Float.parseFloat(jtPeso.getText()));
+            if(gas.getQuantidadeEstoque()>0){
+                gas.setDisponibilidadeEstoque(true);
+            }else{
+                gas.setDisponibilidadeEstoque(false);
+            }
+            //Cria instância do Fornecedor selecionado no ComboBox e o seta no produto
+            Fornecedor fornecedorSelecionado = (Fornecedor) jcListaFornecedores.getSelectedItem();
+            gas.setFornecedor(fornecedorSelecionado);
+            
+        
+            
+            /*
+            *Envio das informações do produto para o respectivo controlador
+            *para que sejam realizadas as operações de inserção no banco de dados.
+            */
+            try {
+                getGasController().inserir(gas);
+                JOptionPane.showMessageDialog(this, "Produto inserido com sucesso!", 
+                "Inserir Produto",JOptionPane.INFORMATION_MESSAGE);
+                dispose();
+            } catch (Exception ex) {
+                Logger.getLogger(ProdutoGasView.class.getName()).log(Level.SEVERE, null, ex);
+            } 
+        }else{
+            //RECEBER AS NOVAS INFORMAÇÕES PARA ATUALIZAR
+            //Busca o produto pelo Id para atualização.
+            ProdutoGas gas = getGasController().buscaGasPorId(Integer.parseInt(jtId.getText()));
+            //Substituição das informações atualizadas na classe ProdutoGas
+            gas.setNome(jtNome.getText());
+            gas.setMarca(jtMarca.getText());
+            gas.setCaracteristica(jtCaracteristicas.getText());
+            gas.setPeso(Float.parseFloat(jtPeso.getText()));
+            gas.setValor(Float.parseFloat(jtValor.getText()));
+            gas.setQuantidadeEstoque(Integer.parseInt(jtValor.getText()));
+            if(gas.getQuantidadeEstoque()>0){
+                gas.setDisponibilidadeEstoque(true);
+            }else{
+                gas.setDisponibilidadeEstoque(false);
+            }
+            //Cria instância do Fornecedor selecionado no ComboBox e o seta no produto
+            Fornecedor fornecedorSelecionado = (Fornecedor) jcListaFornecedores.getSelectedItem();
+            gas.setFornecedor(fornecedorSelecionado);
+            
+            /*
+            *Envio das informações do produto para o respectivo controlador
+            *para que sejam realizadas as operações de atualização no banco de dados.
+            */
+            try {    
+                getGasController().alterar(gas);
+                JOptionPane.showMessageDialog(this, "Informações de produto alteradas com "
+                + "sucesso!", "Atualizar produto",JOptionPane.INFORMATION_MESSAGE);
+                dispose();
+            } catch (Exception ex) {
+                Logger.getLogger(ProdutoGasView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } 
     }//GEN-LAST:event_jbSalvarActionPerformed
 
     private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
@@ -270,10 +368,40 @@ public class ProdutoGasView extends javax.swing.JFrame {
         //ClienteController.Excluir(cliente);
     }//GEN-LAST:event_jbExcluirActionPerformed
 
+    /*
+    *Metodo para buscar as informações de produto no banco de dados
+    */
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-        // TODO add your handling code here:
-        //Codigo para buscar os dados no banco e mostrar no Frame
+        /*Codigo para buscar os dados no banco e mostrar no Frame
+        *Busca o produto por nome
+        */
+        
+        if(!(jtNome.getText().equals(""))){
+            ProdutoGas gas = getGasController().buscarGasPorNome(jtNome.getText());
+            if(gas != null){
+                jtId.setText(Long.toString(gas.getID()));
+                jtNome.setText(gas.getNome());
+                jtMarca.setText(gas.getMarca());
+                jtCaracteristicas.setText(gas.getCaracteristica());
+                jtPeso.setText(Float.toString(gas.getPeso()));
+                jtValor.setText(Float.toString(gas.getValor()));
+                jtQuantEstoque.setText(Integer.toString(gas.getQuantidadeEstoque()));
+                jcListaFornecedores.setSelectedItem(gas.getFornecedor());
+                //Configura o campo Id como ativo
+                jtId.setEnabled(true);
+            }else if(JOptionPane.showConfirmDialog(this, "Produto não cadastrado, deseja cadastrar?",
+                    "realizar novo cadastro?",JOptionPane.YES_NO_OPTION)==JOptionPane.NO_OPTION){
+                    dispose();
+                }
+        }else{
+            JOptionPane.showMessageDialog(this, "Informar dados para busca", 
+                    "Buscar cliente",JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_jbBuscarActionPerformed
+
+    private void jcListaFornecedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcListaFornecedoresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcListaFornecedoresActionPerformed
 
     /**
      * @param args the command line arguments
@@ -304,7 +432,7 @@ public class ProdutoGasView extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -323,6 +451,7 @@ public class ProdutoGasView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPainel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -330,8 +459,9 @@ public class ProdutoGasView extends javax.swing.JFrame {
     private javax.swing.JButton jbCancelar;
     private javax.swing.JButton jbExcluir;
     private javax.swing.JButton jbSalvar;
-    private javax.swing.JComboBox<String> jcListaFornecedores;
+    private javax.swing.JComboBox<Fornecedor> jcListaFornecedores;
     private javax.swing.JTextField jtCaracteristicas;
+    private javax.swing.JTextField jtId;
     private javax.swing.JTextField jtMarca;
     private javax.swing.JTextField jtNome;
     private javax.swing.JTextField jtPeso;

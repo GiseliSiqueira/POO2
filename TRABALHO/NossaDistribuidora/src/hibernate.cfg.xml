@@ -49,5 +49,9 @@ Contributor(s):
     <mapping class="nossadistribuidora.model.Cliente"/>
     <mapping class="nossadistribuidora.model.Endereco"/>
     <mapping class="nossadistribuidora.model.Fornecedor"/>
+    <mapping class="nossadistribuidora.model.Produto"/>
+    <mapping class="nossadistribuidora.model.ProdutoAgua"/>
+    <mapping class="nossadistribuidora.model.ProdutoGas"/>
+    <mapping class="nossadistribuidora.model.ProdutoGas"/>
   </session-factory>
 </hibernate-configuration>

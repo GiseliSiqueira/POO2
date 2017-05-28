@@ -6,6 +6,7 @@
 package nossadistribuidora.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -100,4 +101,22 @@ public class Fornecedor implements Serializable {
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
+    
+    /*
+    *Metodos toString e equals sobrescritos para implementação do ComboModel utilizado
+    *na View do produto.
+    */
+    @Override
+    public String toString(){
+        String texto = razaoSocial;
+        return texto;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Fornecedor fornecedor = (Fornecedor) obj;
+        return Objects.equals(this.numeroRegistro, fornecedor.numeroRegistro);
+    }
+    
+    
 }

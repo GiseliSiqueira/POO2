@@ -38,6 +38,7 @@ public class MenuCadastros extends javax.swing.JFrame {
         jbClientes = new javax.swing.JButton();
         jbFornecedor = new javax.swing.JButton();
         jcProduto = new javax.swing.JComboBox<>();
+        jbCompras = new javax.swing.JButton();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -75,6 +76,14 @@ public class MenuCadastros extends javax.swing.JFrame {
             }
         });
 
+        jbCompras.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jbCompras.setText("Compras");
+        jbCompras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbComprasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -84,19 +93,22 @@ public class MenuCadastros extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jbClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                    .addComponent(jcProduto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jcProduto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbCompras, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(68, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(16, 16, 16)
                 .addComponent(jbClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jcProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbCompras, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -139,18 +151,21 @@ public class MenuCadastros extends javax.swing.JFrame {
         String tipo = jcProduto.getSelectedItem().toString();
         
         Produto produto = FabricaProduto.criaProduto(tipo);
-        if(produto instanceof ProdutoGas){
-           ProdutoGasView gasView = new ProdutoGasView();
-           gasView.setVisible(true);
-           dispose();
-           //this.jPanel3.add(gasView);
-           //gasView.setVisible(true);
+        
+        if(produto instanceof ProdutoGas){   
+            ProdutoGasView gasView = new ProdutoGasView(); 
+            gasView.setVisible(true);
+            dispose();
         }else if(produto instanceof ProdutoAgua){
             ProdutoAguaView aguaView = new ProdutoAguaView();
             aguaView.setVisible(true);
             dispose();
         }
     }//GEN-LAST:event_jcProdutoActionPerformed
+
+    private void jbComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbComprasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbComprasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,6 +207,7 @@ public class MenuCadastros extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbClientes;
+    private javax.swing.JButton jbCompras;
     private javax.swing.JButton jbFornecedor;
     private javax.swing.JComboBox<String> jcProduto;
     // End of variables declaration//GEN-END:variables

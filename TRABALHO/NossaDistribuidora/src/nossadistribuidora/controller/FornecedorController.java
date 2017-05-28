@@ -5,6 +5,7 @@
  */
 package nossadistribuidora.controller;
 
+import java.util.List;
 import nossadistribuidora.model.DAO.FornecedorDAO;
 import nossadistribuidora.model.DAO.FornecedorDAOImpl;
 import nossadistribuidora.model.Fornecedor;
@@ -47,5 +48,9 @@ public class FornecedorController {
 
     public Fornecedor buscaFornecedorPorTelefone(String telefone) {
         return fornecedorDAO.buscaFornecedorPorTelefone(telefone);
+    }
+    
+    public List<Fornecedor> listar(Class clazz) throws Exception{
+        return fornecedorDAO.listar(clazz);
     }
 }

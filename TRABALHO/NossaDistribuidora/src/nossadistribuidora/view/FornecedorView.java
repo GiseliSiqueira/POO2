@@ -61,6 +61,9 @@ public class FornecedorView extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
+        entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("nossadistribuidora?zeroDateTimeBehavior=convertToNullPU").createEntityManager();
+        produtoAguaQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT p FROM ProdutoAgua p");
+        produtoAguaList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : produtoAguaQuery.getResultList();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -601,6 +604,7 @@ public class FornecedorView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.persistence.EntityManager entityManager;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -634,5 +638,7 @@ public class FornecedorView extends javax.swing.JFrame {
     private javax.swing.JTextField jtNumRegistro;
     private javax.swing.JTextField jtRazaoSocial;
     private javax.swing.JTextField jtTelefone;
+    private java.util.List<nossadistribuidora.model.ProdutoAgua> produtoAguaList;
+    private javax.persistence.Query produtoAguaQuery;
     // End of variables declaration//GEN-END:variables
 }

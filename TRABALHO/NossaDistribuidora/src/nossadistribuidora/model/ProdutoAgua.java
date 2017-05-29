@@ -18,7 +18,7 @@ import javax.persistence.Table;
 *classe será uma tabela no banco.
 */
 @Entity
-@Table (name = "água")
+@Table (name = "agua")
 public class ProdutoAgua extends Produto{
 
     @Column(length = 15,nullable = false)

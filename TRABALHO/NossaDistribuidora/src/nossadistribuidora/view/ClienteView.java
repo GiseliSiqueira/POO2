@@ -480,20 +480,20 @@ public class ClienteView extends javax.swing.JFrame {
             jtAtivacao.setEnabled(true);
             jtPagamento.setEnabled(true);
         }
-        /*
-        *Caso os dados para busca(nome ou telefone) não tenham sido informados
-        */
-        else if(jtNome.getText().equals("") && jtTelefone.getText().equals("")){
-            JOptionPane.showMessageDialog(this, "Informar dados para busca", 
+            /*
+            *Caso os dados para busca(nome ou telefone) não tenham sido informados
+            */
+            else if(jtNome.getText().equals("") && jtTelefone.getText().equals("")){
+                JOptionPane.showMessageDialog(this, "Informar dados para busca", 
                     "Buscar cliente",JOptionPane.INFORMATION_MESSAGE);
-        }
-        /*
-        *Caso o cliente cujos dados informados não exista, solicita o cadastro
-        */
-        else if(JOptionPane.showConfirmDialog(this, "Cliente não cadastrado, deseja cadastrar?",
-                    "realizar novo cadastro?",JOptionPane.YES_NO_OPTION)==JOptionPane.NO_OPTION){
-                dispose();
             }
+                /*
+                *Caso o cliente cujos dados informados não exista, solicita o cadastro
+                */
+                else if(JOptionPane.showConfirmDialog(this, "Cliente não cadastrado, deseja cadastrar?",
+                    "realizar novo cadastro?",JOptionPane.YES_NO_OPTION)==JOptionPane.NO_OPTION){
+                    dispose();
+                }
         
     }//GEN-LAST:event_jbBuscarActionPerformed
     
@@ -511,15 +511,15 @@ public class ClienteView extends javax.swing.JFrame {
     
             if(JOptionPane.showConfirmDialog(this, "Confirma a exclusão?", "Confirma a exclusão?", JOptionPane.YES_NO_OPTION) ==
                     JOptionPane.YES_OPTION){
-                int id = cliente.getCodigo();
+                
                 try {
-                    getClienteController().deletar(id);
+                    getClienteController().deletar(cliente);
+                    JOptionPane.showMessageDialog(this, "Cliente excluído com sucesso!", 
+                    "Excluir cliente", JOptionPane.INFORMATION_MESSAGE);
+                    dispose();
                 } catch (Exception ex) {
                     Logger.getLogger(ClienteView.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                JOptionPane.showMessageDialog(this, "Cliente excluído com sucesso!", 
-                    "Excluir cliente", JOptionPane.INFORMATION_MESSAGE);
-                dispose();
             }
         }else{
             JOptionPane.showMessageDialog(this, "Cliente selecionado possui pendência de"

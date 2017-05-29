@@ -35,7 +35,7 @@ public class ProdutoGasController {
         return gasDAO.buscaGasPorId(id);
     }
 
-    public ProdutoGas buscarGasPorNome(String nome) {
+    public ProdutoGas buscaGasPorNome(String nome) {
         return gasDAO.buscaGasPorNome(nome);
     }
 }

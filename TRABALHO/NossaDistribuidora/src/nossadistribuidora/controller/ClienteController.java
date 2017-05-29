@@ -34,8 +34,8 @@ public class ClienteController {
         return clienteDAO.buscaClientePorTelefone(telefone);
     }
     
-    public void deletar(int id) throws Exception{
-        clienteDAO.deletarClientePorId(id);
+    public void deletar(Cliente cliente) throws Exception{
+        clienteDAO.deletar(cliente);
     }
     
     public void alterar( Cliente cliente ) throws Exception{

@@ -1,16 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package nossadistribuidora.view;
 
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import nossadistribuidora.controller.FornecedorController;
 import nossadistribuidora.controller.ProdutoGasController;
 import nossadistribuidora.model.Fornecedor;
 import nossadistribuidora.model.ProdutoGas;
@@ -310,8 +303,6 @@ public class ProdutoGasView extends javax.swing.JFrame {
             Fornecedor fornecedorSelecionado = (Fornecedor) jcListaFornecedores.getSelectedItem();
             gas.setFornecedor(fornecedorSelecionado);
             
-        
-            
             /*
             *Envio das informações do produto para o respectivo controlador
             *para que sejam realizadas as operações de inserção no banco de dados.
@@ -334,7 +325,7 @@ public class ProdutoGasView extends javax.swing.JFrame {
             gas.setCaracteristica(jtCaracteristicas.getText());
             gas.setPeso(Float.parseFloat(jtPeso.getText()));
             gas.setValor(Float.parseFloat(jtValor.getText()));
-            gas.setQuantidadeEstoque(Integer.parseInt(jtValor.getText()));
+            gas.setQuantidadeEstoque(Integer.parseInt(jtQuantEstoque.getText()));
             if(gas.getQuantidadeEstoque()>0){
                 gas.setDisponibilidadeEstoque(true);
             }else{
@@ -359,13 +350,27 @@ public class ProdutoGasView extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_jbSalvarActionPerformed
 
+    /*
+    *Metodo para excluir as informações de produto no banco de dados
+    */
     private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
-        // TODO add your handling code here:
-        //codigo para excluir cliente do banco
-        //Cliente cliente = new Cliente();
-        
-        
-        //ClienteController.Excluir(cliente);
+        /*
+        *Recebe o Id do produto que foi pesquisado e chama o metodo de
+        *exclusão do registro do banco da entidade referente.
+        */
+        ProdutoGas gas = getGasController().buscaGasPorId(Integer.parseInt(jtId.getText()));
+        //exibe mensagem de confirmação de exclusão
+        if(JOptionPane.showConfirmDialog(this, "Confirma a exclusão?", "Confirma a exclusão?", JOptionPane.YES_NO_OPTION) ==
+                    JOptionPane.YES_OPTION){
+            try {
+                getGasController().deletar(gas);
+                JOptionPane.showMessageDialog(this, "Produto excluído com sucesso!", 
+                    "Excluir Produto", JOptionPane.INFORMATION_MESSAGE);
+                    dispose();
+            } catch (Exception ex) {
+                Logger.getLogger(ProdutoGasView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_jbExcluirActionPerformed
 
     /*
@@ -375,9 +380,8 @@ public class ProdutoGasView extends javax.swing.JFrame {
         /*Codigo para buscar os dados no banco e mostrar no Frame
         *Busca o produto por nome
         */
-        
         if(!(jtNome.getText().equals(""))){
-            ProdutoGas gas = getGasController().buscarGasPorNome(jtNome.getText());
+            ProdutoGas gas = getGasController().buscaGasPorNome(jtNome.getText());
             if(gas != null){
                 jtId.setText(Long.toString(gas.getID()));
                 jtNome.setText(gas.getNome());
@@ -392,11 +396,11 @@ public class ProdutoGasView extends javax.swing.JFrame {
             }else if(JOptionPane.showConfirmDialog(this, "Produto não cadastrado, deseja cadastrar?",
                     "realizar novo cadastro?",JOptionPane.YES_NO_OPTION)==JOptionPane.NO_OPTION){
                     dispose();
-                }
+            }
         }else{
-            JOptionPane.showMessageDialog(this, "Informar dados para busca", 
-                    "Buscar cliente",JOptionPane.INFORMATION_MESSAGE);
-        }
+                JOptionPane.showMessageDialog(this, "Informar dados para busca", 
+                "Buscar cliente",JOptionPane.INFORMATION_MESSAGE);
+            }    
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jcListaFornecedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcListaFornecedoresActionPerformed

@@ -3,8 +3,6 @@ package nossadistribuidora.controller;
 
 import nossadistribuidora.model.DAO.AguaDAO;
 import nossadistribuidora.model.DAO.AguaDAOImpl;
-import nossadistribuidora.model.DAO.ProdutoDAO;
-import nossadistribuidora.model.Produto;
 import nossadistribuidora.model.ProdutoAgua;
 
 /**

@@ -3,8 +3,6 @@ package nossadistribuidora.controller;
 
 import nossadistribuidora.model.DAO.GasDAO;
 import nossadistribuidora.model.DAO.GasDAOImpl;
-import nossadistribuidora.model.DAO.ProdutoDAO;
-import nossadistribuidora.model.Produto;
 import nossadistribuidora.model.ProdutoGas;
 
 /**

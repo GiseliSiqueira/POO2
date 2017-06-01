@@ -15,7 +15,7 @@ public interface CanalSetupState {
     
     public void canalAnterior();
     
-    public void selecionaCanal();
+    public void selecionaCanal(String opcao);
 
     public int getCanalSelecionado();
 }

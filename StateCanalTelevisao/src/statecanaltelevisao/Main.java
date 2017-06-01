@@ -23,20 +23,22 @@ public class Main {
         
         CanalSetup canalSetup = new CanalSetup();
         
-        
+        System.out.println("canal atual: " + canalSetup.getEstadoCorrente().getCanalSelecionado());
+
         while(ligar){
-            System.out.println("mudar canal? S/N");
+            System.out.println("\nAumentar canal: Pressione 'A'\nDiminuir canal: Pressione 'D'\n"
+                    + "Desligar: pressione qualquer outra tecla\n");
             Scanner entrada = new Scanner(System.in);
             opcao = entrada.nextLine();
-            if(opcao.equalsIgnoreCase("S")){                
-                //System.out.println("canal atual: " + canalSetup.getEstadoCorrente().getCanalSelecionado());
-                if(canalSetup.getEstadoCorrente() == canalSetup.getCanalQuatro()){
-                    System.out.println("canal atual: " + canalSetup.getEstadoCorrente().getCanalSelecionado());
-                }
+           
+            if(opcao.equalsIgnoreCase("A")){  
                 canalSetup.pressionaBotaoAumentar();
-                canalSetup.getEstadoCorrente().selecionaCanal();
-                //System.out.println("canal atual: " + canalSetup.getEstadoCorrente().getCanalSelecionado());
-
+                System.out.println("canal atual: " + canalSetup.getEstadoCorrente().getCanalSelecionado());
+                canalSetup.getEstadoCorrente().selecionaCanal(opcao);
+            }else if(opcao.equalsIgnoreCase("D")){
+                canalSetup.pressionaBotaoDiminuir();
+                System.out.println("canal atual: " + canalSetup.getEstadoCorrente().getCanalSelecionado());
+                canalSetup.getEstadoCorrente().selecionaCanal(opcao);
             }else{
                 ligar = false;
             }

@@ -21,18 +21,21 @@ public class CanalQuatro implements CanalSetupState{
 
     @Override
     public void canalSeguinte() {
-        canal++;
+        canal = 5;
     }
 
     @Override
     public void canalAnterior() {
-        canal--;
+        canal = 7;
     }
 
     @Override
-    public void selecionaCanal() {
-        //System.out.println("Canal selecionado:" + canal);
-        canalSetup.setEstado(canalSetup.getCanalCinco());
+    public void selecionaCanal(String opcao) {
+        if(opcao.equalsIgnoreCase("A")){
+            canalSetup.setEstado(canalSetup.getCanalCinco());
+        }else if(opcao.equalsIgnoreCase("D")){
+            canalSetup.setEstado(canalSetup.getCanalSete());
+        }
     }
 
     @Override

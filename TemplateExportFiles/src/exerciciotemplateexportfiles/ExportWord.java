@@ -37,17 +37,7 @@ public class ExportWord extends Export{
         }
         
     }
-
-    @Override
-    public void exportaAquivo(String txt) {
-        String[] txtLinhas = txt.split("\n");
-        for(Object linhas : txtLinhas )
-        {
-            printLineArquivo((String)linhas);
-        }   
-        salvaArquivo(); 
-    }
-
+    
     @Override
     public void printLineArquivo(String linha) {
         XWPFParagraph paragraph = document.createParagraph();

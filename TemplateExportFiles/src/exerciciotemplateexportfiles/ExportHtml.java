@@ -35,17 +35,7 @@ public class ExportHtml extends Export{
             Logger.getLogger(ExportFiles.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    @Override
-    public void exportaAquivo(String txt) {
-        String[] txtLinhas = txt.split("\n");
-        for(Object linhas : txtLinhas )
-        {
-            printLineArquivo((String)linhas);
-        }   
-        salvaArquivo();
-    }
-
+    
     @Override
     public void printLineArquivo(String linha) {
         try {

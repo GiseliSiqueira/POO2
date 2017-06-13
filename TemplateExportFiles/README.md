@@ -6,3 +6,6 @@ No projeto, ao executar a classe TemplateMain, serão criados dois tipos de arqu
 
 
 Diagrama de classes da sua solução:
+
+
+![alt tag](https://github.com/GiseliSiqueira/POO2/blob/master/TemplateExportFiles/Template%20Export%20Files%20-%20Diagrama%20de%20classes.png)

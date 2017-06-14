@@ -164,7 +164,9 @@ public class MenuCadastros extends javax.swing.JFrame {
     }//GEN-LAST:event_jcProdutoActionPerformed
 
     private void jbComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbComprasActionPerformed
-        // TODO add your handling code here:
+        ComprasView telaCadastroCompras = new ComprasView();
+        telaCadastroCompras.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jbComprasActionPerformed
 
     /**

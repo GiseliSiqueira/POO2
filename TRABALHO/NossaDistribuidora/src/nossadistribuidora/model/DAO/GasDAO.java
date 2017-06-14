@@ -2,6 +2,7 @@
 package nossadistribuidora.model.DAO;
 
 import nossadistribuidora.factoryDAO.GenericDAO;
+import nossadistribuidora.model.Produto;
 import nossadistribuidora.model.ProdutoGas;
 
 /**

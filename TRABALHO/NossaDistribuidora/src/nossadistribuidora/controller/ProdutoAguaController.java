@@ -1,14 +1,20 @@
 
 package nossadistribuidora.controller;
 
+import java.util.List;
 import nossadistribuidora.model.DAO.AguaDAO;
 import nossadistribuidora.model.DAO.AguaDAOImpl;
+import nossadistribuidora.model.Produto;
 import nossadistribuidora.model.ProdutoAgua;
 
 /**
  *
  * @author Giseli
  */
+
+/*
+*Classe que controla a comunicação entre a View e o DAO do Produto Água.
+*/
 public class ProdutoAguaController {
     AguaDAO aguaDAO = new AguaDAOImpl();
     
@@ -30,5 +36,9 @@ public class ProdutoAguaController {
 
     public ProdutoAgua buscaAguaPorNome(String nome) {
         return aguaDAO.buscaAguaPorNome(nome);
+    }
+    
+    public List<ProdutoAgua> listar(Class clazz) throws Exception{
+        return aguaDAO.listar(clazz);
     }
 }

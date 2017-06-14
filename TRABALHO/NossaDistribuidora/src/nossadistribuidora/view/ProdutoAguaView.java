@@ -145,6 +145,11 @@ public class ProdutoAguaView extends javax.swing.JFrame {
 
         jcListaFornecedores.setModel(new Util.FornecedorComboBox()
         );
+        jcListaFornecedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcListaFornecedoresActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("ID:");
 
@@ -397,6 +402,10 @@ public class ProdutoAguaView extends javax.swing.JFrame {
                 "Buscar cliente",JOptionPane.INFORMATION_MESSAGE);
             }
     }//GEN-LAST:event_jbBuscarActionPerformed
+
+    private void jcListaFornecedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcListaFornecedoresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcListaFornecedoresActionPerformed
 
     /**
      * @param args the command line arguments

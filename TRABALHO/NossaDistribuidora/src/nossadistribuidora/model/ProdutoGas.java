@@ -1,9 +1,12 @@
 
 package nossadistribuidora.model;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -21,6 +24,9 @@ import javax.persistence.Table;
 @Table (name = "gas")
 public class ProdutoGas extends Produto{
 
+    @Transient
+    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
+
     @Column(length = 15,nullable = false)
     private float peso;
 
@@ -29,7 +35,17 @@ public class ProdutoGas extends Produto{
     }
 
     public void setPeso(float peso) {
+        float oldPeso = this.peso;
         this.peso = peso;
+        changeSupport.firePropertyChange("peso", oldPeso, peso);
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.removePropertyChangeListener(listener);
     }
     
 }

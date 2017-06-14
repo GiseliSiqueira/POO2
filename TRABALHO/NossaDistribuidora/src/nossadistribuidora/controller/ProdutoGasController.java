@@ -1,8 +1,10 @@
 
 package nossadistribuidora.controller;
 
+import java.util.List;
 import nossadistribuidora.model.DAO.GasDAO;
 import nossadistribuidora.model.DAO.GasDAOImpl;
+import nossadistribuidora.model.Produto;
 import nossadistribuidora.model.ProdutoGas;
 
 /**
@@ -35,5 +37,9 @@ public class ProdutoGasController {
 
     public ProdutoGas buscaGasPorNome(String nome) {
         return gasDAO.buscaGasPorNome(nome);
+    }
+    
+    public List<ProdutoGas> listar(Class clazz) throws Exception{
+        return gasDAO.listar(clazz);
     }
 }

@@ -68,11 +68,11 @@ public class FornecedorComboBox extends AbstractListModel<Fornecedor> implements
             listFornecedor = fornecedorController.listar(Fornecedor.class);
 
             // Cria o primeiro registro da lista que é o título
-            //Fornecedor primeiro = new Fornecedor();
-            //primeiro.setRazaoSocial("Selecione");
+            Fornecedor primeiro = new Fornecedor();
+            primeiro.setRazaoSocial("Selecione");
 
-            // Adiciona o primeiro registro a lista 
-            //listFornecedor.add(0, primeiro);
+            //Adiciona o primeiro registro a lista 
+            listFornecedor.add(0, primeiro);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

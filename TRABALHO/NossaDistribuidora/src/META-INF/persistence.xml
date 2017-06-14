@@ -4,6 +4,7 @@
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>nossadistribuidora.model.ProdutoAgua</class>
     <class>nossadistribuidora.model.ProdutoGas</class>
+    <class>nossadistribuidora.model.Cliente</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/nossadistribuidora?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

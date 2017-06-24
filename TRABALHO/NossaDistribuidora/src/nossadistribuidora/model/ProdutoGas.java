@@ -48,4 +48,8 @@ public class ProdutoGas extends Produto{
         changeSupport.removePropertyChangeListener(listener);
     }
     
+    public String toString() {
+        return (getNome() + " - " + getMarca() + " - " + getPeso());
+    }
+    
 }

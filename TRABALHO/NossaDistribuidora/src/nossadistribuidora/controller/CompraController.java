@@ -7,14 +7,17 @@ package nossadistribuidora.controller;
 
 import nossadistribuidora.model.DAO.CompraDAO;
 import nossadistribuidora.model.Compra;
+import nossadistribuidora.model.DAO.CompraDAOImpl;
 
 /**
  *
  * @author Giseli
  */
 public class CompraController {
-    private CompraDAO compraDAO;
-    public void inserir(Compra compra){
+    
+    CompraDAO compraDAO = new CompraDAOImpl();
+    
+    public void inserir(Compra compra) throws Exception{
         compraDAO.inserir(compra);
     }
 }

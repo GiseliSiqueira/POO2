@@ -38,6 +38,10 @@ public class ProdutoAguaController {
         return aguaDAO.buscaAguaPorNome(nome);
     }
     
+    public ProdutoAgua buscaAguaPorNomeMarcaCapacidade(String nome, String marca, float capacidade){
+        return aguaDAO.buscaAguaPorNomeMarcaCapacidade(nome, marca, capacidade);
+    }
+    
     public List<ProdutoAgua> listar(Class clazz) throws Exception{
         return aguaDAO.listar(clazz);
     }

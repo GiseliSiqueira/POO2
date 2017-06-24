@@ -5,26 +5,16 @@
  */
 package nossadistribuidora.model.DAO;
 
+/*
+*Classe que define os métodos específicos para manipulação dos dados na tabela compra. 
+*/
+import nossadistribuidora.factoryDAO.GenericDAO;
 import nossadistribuidora.model.Compra;
 
 /**
  *
  * @author Giseli
  */
-public class CompraDAO {
-    public void inserir(Compra compra){
-        
-    }
+public interface CompraDAO extends GenericDAO<Compra>{
     
-    /*public void alterar(Compra compra){
-        
-    }
-    
-    public List<Compra> consultar(){
-        
-    }
-    
-    public void excluir(Compra compra){
-        
-    }*/
 }

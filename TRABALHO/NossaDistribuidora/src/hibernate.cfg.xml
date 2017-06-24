@@ -52,6 +52,7 @@ Contributor(s):
     <mapping class="nossadistribuidora.model.Produto"/>
     <mapping class="nossadistribuidora.model.ProdutoAgua"/>
     <mapping class="nossadistribuidora.model.ProdutoGas"/>
-    <mapping class="nossadistribuidora.model.ProdutoGas"/>
+    <mapping class="nossadistribuidora.model.Compra"/>
+    <mapping class="nossadistribuidora.model.Venda"/>
   </session-factory>
 </hibernate-configuration>

@@ -40,4 +40,19 @@ public class AguaDAOImpl extends GenericDAOImpl<ProdutoAgua> implements AguaDAO{
         }
         return (ProdutoAgua)lista.get(0);
     }
+
+    @Override
+    public ProdutoAgua buscaAguaPorNomeMarcaCapacidade(String nome, String marca, float capacidade) {
+        sessao = HibernateUtil.getSession();
+        transacao = sessao.beginTransaction();
+        List lista = sessao.createQuery("from ProdutoAgua where nome= '" + nome + "' and marca= '" + marca + 
+                "' and capacidade= '" + capacidade + "'").list();
+        sessao.flush();
+        transacao.commit();
+        sessao.close();
+        if (lista.isEmpty()){
+            return null;
+        }
+        return (ProdutoAgua)lista.get(0);
+    }
 }

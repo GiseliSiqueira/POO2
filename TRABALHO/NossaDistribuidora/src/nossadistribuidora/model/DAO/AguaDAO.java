@@ -19,5 +19,7 @@ public interface AguaDAO extends GenericDAO<ProdutoAgua> {
 
     public ProdutoAgua buscaAguaPorNome(String nome);
     
+    public ProdutoAgua buscaAguaPorNomeMarcaCapacidade(String nome, String marca, float capacidade);
+    
     
 }

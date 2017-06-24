@@ -5,6 +5,7 @@
  */
 package nossadistribuidora.view;
 
+import Patterns.FabricaCompras;
 import Patterns.FabricaProduto;
 import nossadistribuidora.model.Produto;
 import nossadistribuidora.model.ProdutoAgua;
@@ -38,7 +39,7 @@ public class MenuCadastros extends javax.swing.JFrame {
         jbClientes = new javax.swing.JButton();
         jbFornecedor = new javax.swing.JButton();
         jcProduto = new javax.swing.JComboBox<>();
-        jbCompras = new javax.swing.JButton();
+        jcCompras = new javax.swing.JComboBox<>();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -76,11 +77,11 @@ public class MenuCadastros extends javax.swing.JFrame {
             }
         });
 
-        jbCompras.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jbCompras.setText("Compras");
-        jbCompras.addActionListener(new java.awt.event.ActionListener() {
+        jcCompras.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jcCompras.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Compra", "Água", "Gás" }));
+        jcCompras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbComprasActionPerformed(evt);
+                jcComprasActionPerformed(evt);
             }
         });
 
@@ -91,10 +92,10 @@ public class MenuCadastros extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jcProduto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                    .addComponent(jcProduto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbCompras, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jcCompras, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(68, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -107,8 +108,8 @@ public class MenuCadastros extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jcProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbCompras, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addComponent(jcCompras, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -124,8 +125,8 @@ public class MenuCadastros extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -163,11 +164,9 @@ public class MenuCadastros extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jcProdutoActionPerformed
 
-    private void jbComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbComprasActionPerformed
-        ComprasView telaCadastroCompras = new ComprasView();
-        telaCadastroCompras.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jbComprasActionPerformed
+    private void jcComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcComprasActionPerformed
+        FabricaCompras.criaTelaCompra(jcCompras.getSelectedItem().toString());
+    }//GEN-LAST:event_jcComprasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,8 +208,8 @@ public class MenuCadastros extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbClientes;
-    private javax.swing.JButton jbCompras;
     private javax.swing.JButton jbFornecedor;
+    private javax.swing.JComboBox<String> jcCompras;
     private javax.swing.JComboBox<String> jcProduto;
     // End of variables declaration//GEN-END:variables
 }

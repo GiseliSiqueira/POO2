@@ -139,6 +139,8 @@ public class ProdutoAguaView extends javax.swing.JFrame {
 
         jLabel4.setText("Quantidade em Estoque:");
 
+        jtQuantEstoque.setEditable(false);
+
         jLabel6.setText("Capacidade:");
 
         jLabel5.setText("Fornecedor:");
@@ -292,7 +294,7 @@ public class ProdutoAguaView extends javax.swing.JFrame {
             agua.setMarca(jtMarca.getText());
             agua.setCaracteristica(jtCaracteristicas.getText());
             agua.setValor(Float.parseFloat(jtValor.getText()));
-            agua.setQuantidadeEstoque(Integer.parseInt(jtQuantEstoque.getText()));
+            agua.setQuantidadeEstoque(0);
             agua.setCapacidade(Float.parseFloat(jtCapacidade.getText()));
             if(agua.getQuantidadeEstoque()>0){
                 agua.setDisponibilidadeEstoque(true);

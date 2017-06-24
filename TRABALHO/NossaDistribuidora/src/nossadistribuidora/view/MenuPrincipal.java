@@ -74,7 +74,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jbVenda.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jbVenda.setText("Venda");
-        jbVenda.setEnabled(false);
         jbVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbVendaActionPerformed(evt);
@@ -162,7 +161,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbCadastrarActionPerformed
 
     private void jbVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVendaActionPerformed
-        // TODO add your handling code here:
+        VendaView telaVenda = new VendaView();
+        telaVenda.setVisible(true);
     }//GEN-LAST:event_jbVendaActionPerformed
 
     /**

@@ -427,6 +427,7 @@ public class CompraGasView extends javax.swing.JFrame {
         jtbListaProdutos.setValueAt(selecionado.getMarca(), cont, 2);
         jtbListaProdutos.setValueAt(selecionado.getPeso(), cont, 3);
         lstProdutosCompraGas.add(selecionado); //Adiciona o produto selecionado à lista de produtos da compra
+        
         cont++;
 
     }//GEN-LAST:event_jbAdicionarProdutoActionPerformed

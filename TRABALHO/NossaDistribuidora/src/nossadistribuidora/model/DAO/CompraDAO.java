@@ -16,5 +16,6 @@ import nossadistribuidora.model.Compra;
  * @author Giseli
  */
 public interface CompraDAO extends GenericDAO<Compra>{
+    public Compra buscaCompraPorNumero(int numero);
     
 }

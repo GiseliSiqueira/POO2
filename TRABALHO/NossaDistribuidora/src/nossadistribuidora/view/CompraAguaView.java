@@ -164,23 +164,23 @@ public class CompraAguaView extends javax.swing.JFrame {
 
         jtbListaProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nome", "Marca", "Capacidade", "Quantidade", "Valor Un."
+                "ID", "Nome", "Marca", "Capacidade", "Quantidade"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, true
+                false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -188,6 +188,13 @@ public class CompraAguaView extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jtbListaProdutos);
+
+        jbBuscarCompra.setText("Buscar");
+        jbBuscarCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscarCompraActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -210,12 +217,13 @@ public class CompraAguaView extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtNumeroCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jcMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbAdicionarProduto)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jtNumeroCompra, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                    .addComponent(jcMarca, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jbAdicionarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbBuscarCompra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -224,7 +232,8 @@ public class CompraAguaView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jtNumeroCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtNumeroCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbBuscarCompra))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -241,12 +250,7 @@ public class CompraAguaView extends javax.swing.JFrame {
                 .addGap(26, 26, 26))
         );
 
-        jbBuscarCompra.setText("Buscar");
-        jbBuscarCompra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbBuscarCompraActionPerformed(evt);
-            }
-        });
+        jbBuscarCompra.getAccessibleContext().setAccessibleParent(jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -256,10 +260,6 @@ public class CompraAguaView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbBuscarCompra)
-                .addGap(188, 188, 188))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -269,15 +269,13 @@ public class CompraAguaView extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jbBuscarCompra)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 254, Short.MAX_VALUE)
+                .addContainerGap(299, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(49, Short.MAX_VALUE)))
+                    .addContainerGap(46, Short.MAX_VALUE)))
         );
 
         pack();
@@ -340,11 +338,34 @@ public class CompraAguaView extends javax.swing.JFrame {
     }//GEN-LAST:event_jbCancelarActionPerformed
 
     private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
-        /*
-        *Recebe o Id do cliente que foi pesquisado e chama o metodo de
-        *exclusão do registro do banco da entidade referente.
-        */
         
+        /*Verifica se o numero da compra a ser excluída foi informado.
+        *Caso informado: exclui a compra
+        *Caso não informado: informa que nao é possível excluir.
+        */
+        if(!(jtNumeroCompra.getText().equals(""))){
+            /*
+            *Recebe o numero da compra e chama o metodo de
+            *exclusão do registro do banco da entidade referente.
+            */
+            Compra compra = getCompraController().buscaCompraPorNumero(Integer.parseInt(jtNumeroCompra.getText()));
+
+            if(JOptionPane.showConfirmDialog(this, "Confirma a exclusão?", "Confirma a exclusão?", JOptionPane.YES_NO_OPTION) ==
+                        JOptionPane.YES_OPTION){
+                try {
+                    getCompraController().deletar(compra);
+                    JOptionPane.showMessageDialog(this, "Compra excluída com sucesso!", 
+                        "Excluir compra", JOptionPane.INFORMATION_MESSAGE);
+                        dispose();
+                } catch (Exception ex) {
+                    Logger.getLogger(CompraAguaView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }else{
+           JOptionPane.showMessageDialog(this, "Informe o numero da compra para realizar a exclusão! Tente novamente.", 
+                        "Excluir compra", JOptionPane.INFORMATION_MESSAGE);
+                        dispose(); 
+        }
     }//GEN-LAST:event_jbExcluirActionPerformed
 
     private void jcMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcMarcaActionPerformed
@@ -354,10 +375,6 @@ public class CompraAguaView extends javax.swing.JFrame {
     private void jftDataCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jftDataCompraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jftDataCompraActionPerformed
-
-    private void jbBuscarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarCompraActionPerformed
-        
-    }//GEN-LAST:event_jbBuscarCompraActionPerformed
 
     private void jbAdicionarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAdicionarProdutoActionPerformed
         
@@ -378,6 +395,49 @@ public class CompraAguaView extends javax.swing.JFrame {
     private void jtValorCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtValorCompraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtValorCompraActionPerformed
+
+    private void jbBuscarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarCompraActionPerformed
+        /*Codigo para buscar os dados no banco e mostrar no Frame
+        *Busca a compra por numero
+        */
+        Compra compra = null;
+        
+        //Verifica se o numero da compra que se deseja buscar foi informado
+        if(!(jtNumeroCompra.getText().equals(""))){
+            compra = getCompraController().buscaCompraPorNumero(Integer.parseInt(jtNumeroCompra.getText()));
+        }
+        /*
+        *Exibe as informações da compra nos jTextField da janela.
+        */
+        if(compra != null){
+            lstProdutosCompraAgua = compra.getListaDeProdutosAgua(); // Carrega a lista dos produtos da compra
+            
+            //Exibe as informações por produto na tabela
+            for(ProdutoAgua agua : lstProdutosCompraAgua){
+                int linha = lstProdutosCompraAgua.indexOf(agua);
+                jtbListaProdutos.setValueAt(agua.getID(), linha, 0);
+                jtbListaProdutos.setValueAt(agua.getNome(), linha, 1);
+                jtbListaProdutos.setValueAt(agua.getMarca(), linha, 2);
+                jtbListaProdutos.setValueAt(agua.getCapacidade(), linha, 3);
+                
+            }
+            jftDataCompra.setValue(compra.getData()); //Exibe informação de data da compra
+            jtValorCompra.setText(Float.toString(compra.getValorCompra()));//Exibe informação de valor total da compra
+        }/*
+        *Caso não seja informado o numero da compra para busca:
+        */
+        else if(jtNumeroCompra.getText().equals("")){
+                JOptionPane.showMessageDialog(this, "Informar numero da compra para busca!", 
+                    "Buscar compra",JOptionPane.INFORMATION_MESSAGE);
+            }
+                /*
+                *Caso a compra cujo numero informados não exista, informa o nao cadastramento
+                */
+                else{
+                    JOptionPane.showMessageDialog(this, "Compra não cadastrada!", 
+                    "Buscar compra",JOptionPane.INFORMATION_MESSAGE);
+                }
+    }//GEN-LAST:event_jbBuscarCompraActionPerformed
 
     /**
      * @param args the command line arguments

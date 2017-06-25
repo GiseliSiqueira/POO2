@@ -3,15 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Giseli/Desktop/IFES/periodo%205/POO2/POO2/TRABALHO/NossaDistribuidora/src/Patterns/FabricaCompras.java</file>
-            <file>file:/C:/Users/Giseli/Desktop/IFES/periodo%205/POO2/POO2/TRABALHO/NossaDistribuidora/src/Patterns/FabricaProdutoComboBox.java</file>
+            <file>file:/C:/Users/Giseli/Desktop/IFES/periodo%205/POO2/POO2/TRABALHO/NossaDistribuidora/src/nossadistribuidora/model/DAO/CompraDAOImpl.java</file>
             <file>file:/C:/Users/Giseli/Desktop/IFES/periodo%205/POO2/POO2/TRABALHO/NossaDistribuidora/src/nossadistribuidora/view/CompraGasView.java</file>
             <file>file:/C:/Users/Giseli/Desktop/IFES/periodo%205/POO2/POO2/TRABALHO/NossaDistribuidora/src/nossadistribuidora/view/ClienteView.java</file>
             <file>file:/C:/Users/Giseli/Desktop/IFES/periodo%205/POO2/POO2/TRABALHO/NossaDistribuidora/src/nossadistribuidora/view/CompraAguaView.java</file>
             <file>file:/C:/Users/Giseli/Desktop/IFES/periodo%205/POO2/POO2/TRABALHO/NossaDistribuidora/src/nossadistribuidora/view/VendaView.java</file>
-            <file>file:/C:/Users/Giseli/Desktop/IFES/periodo%205/POO2/POO2/TRABALHO/NossaDistribuidora/src/nossadistribuidora/model/Cliente.java</file>
+            <file>file:/C:/Users/Giseli/Desktop/IFES/periodo%205/POO2/POO2/TRABALHO/NossaDistribuidora/src/nossadistribuidora/model/DAO/CompraDAO.java</file>
+            <file>file:/C:/Users/Giseli/Desktop/IFES/periodo%205/POO2/POO2/TRABALHO/NossaDistribuidora/src/nossadistribuidora/controller/CompraController.java</file>
             <file>file:/C:/Users/Giseli/Desktop/IFES/periodo%205/POO2/POO2/TRABALHO/NossaDistribuidora/src/nossadistribuidora/model/Compra.java</file>
-            <file>file:/C:/Users/Giseli/Desktop/IFES/periodo%205/POO2/POO2/TRABALHO/NossaDistribuidora/src/nossadistribuidora/view/MenuCadastros.java</file>
         </group>
     </open-files>
 </project-private>

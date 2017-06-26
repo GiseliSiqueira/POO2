@@ -22,7 +22,7 @@ import nossadistribuidora.view.CompraGasView;
 public class FabricaProdutoComboBox {
     
     public static void criaJComboBoxProduto(String tipoProduto, JComboBox comboBox){
-        
+        comboBox.removeAllItems(); //Remove os itens do comboBox para o caso de ser selecionado outro tipo de produto
         if(tipoProduto.equalsIgnoreCase("Água")){
             ProdutoAguaController aguaController = new ProdutoAguaController();
             try {

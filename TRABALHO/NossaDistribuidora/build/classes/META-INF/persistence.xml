@@ -7,6 +7,8 @@
     <class>nossadistribuidora.model.Cliente</class>
     <class>nossadistribuidora.model.Endereco</class>
     <class>nossadistribuidora.model.Fornecedor</class>
+    <class>nossadistribuidora.model.Compra</class>
+    <class>nossadistribuidora.model.Venda</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/nossadistribuidora?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

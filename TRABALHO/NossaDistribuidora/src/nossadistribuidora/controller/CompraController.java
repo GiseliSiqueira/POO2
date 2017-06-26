@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package nossadistribuidora.controller;
 
 import nossadistribuidora.model.DAO.CompraDAO;
@@ -13,6 +9,10 @@ import nossadistribuidora.model.DAO.CompraDAOImpl;
  *
  * @author Giseli
  */
+
+/*
+*Classe que controla a comunicação entre a View e o DAO da Compra.
+*/
 public class CompraController {
     
     CompraDAO compraDAO = new CompraDAOImpl();

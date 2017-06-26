@@ -33,12 +33,10 @@ public class Compra implements Serializable {
     @Column(length = 10)
     private int quantidadeProduto;
     
-    @ManyToMany //(cascade = CascadeType.REMOVE)
-    //@Cascade (org.hibernate.annotations.CascadeType.DELETE)
+    @ManyToMany 
     private List<ProdutoAgua> listaDeProdutosAgua;
 
-    @ManyToMany //(cascade = CascadeType.REMOVE)
-    //@Cascade (org.hibernate.annotations.CascadeType.DELETE)
+    @ManyToMany 
     private List<ProdutoGas> listaDeProdutosGas;
     
     public Compra() {

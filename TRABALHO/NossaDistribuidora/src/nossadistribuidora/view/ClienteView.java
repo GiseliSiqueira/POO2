@@ -366,42 +366,45 @@ public class ClienteView extends javax.swing.JFrame {
         *caso nao exista: salva os dados do cliente;
         */
         if(jtCodigo.getText().equalsIgnoreCase("")){
-            //Dados de endereço são recebidos primeiro para serem inseridos na tabela cliente
-            Endereco endereco = new Endereco();
-            endereco.setCep(jtEnderecoCep.getText());
-            endereco.setRua(jtEnderecoRua.getText());
-            endereco.setNumero(Integer.valueOf(jtEnderecoNumero.getText()));
-            endereco.setBairro(jtEnderecoBairro.getText());
-            endereco.setCidade(jtEnderecoCidade.getText());
-            endereco.setEstado(jcEnderecoEstado.getSelectedItem().toString());
-
-            /*
-            *Cria instância de cliente e obtém as informações
-            *referentes ao cliente.
-            */
-            Cliente cliente = new Cliente();
-
-            cliente.setNome(jtNome.getText());
-            cliente.setTelefone(jtTelefone.getText());
-            cliente.setEndereco(endereco);
-            cliente.setStatusAtivacao(true);
-            cliente.setStatusPagamento(true);
-
-            /*
-            *Envio das informações do endereço e do cliente para o respectivo controlador
-            *para que sejam realizadas as operações de inserção no banco de dados.
-            */
-            try {
-                getEnderecoController().inserir(endereco);
-                getClienteController().inserir(cliente);
-                JOptionPane.showMessageDialog(this, "Cliente inserido com sucesso!", 
+            if(jtNome.getText().equals("")){
+                JOptionPane.showMessageDialog(this, "Informe todos os dados do cliente para poder salvar!", 
                 "Inserir cliente",JOptionPane.INFORMATION_MESSAGE);
-                dispose();
-            } catch (Exception ex) {
-                Logger.getLogger(ClienteView.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }else{
+                //Dados de endereço são recebidos primeiro para serem inseridos na tabela cliente
+                Endereco endereco = new Endereco();
+                endereco.setCep(jtEnderecoCep.getText());
+                endereco.setRua(jtEnderecoRua.getText());
+                endereco.setNumero(Integer.valueOf(jtEnderecoNumero.getText()));
+                endereco.setBairro(jtEnderecoBairro.getText());
+                endereco.setCidade(jtEnderecoCidade.getText());
+                endereco.setEstado(jcEnderecoEstado.getSelectedItem().toString());
 
-            
+                /*
+                *Cria instância de cliente e obtém as informações
+                *referentes ao cliente.
+                */
+                Cliente cliente = new Cliente();
+
+                cliente.setNome(jtNome.getText());
+                cliente.setTelefone(jtTelefone.getText());
+                cliente.setEndereco(endereco);
+                cliente.setStatusAtivacao(true);
+                cliente.setStatusPagamento(true);
+
+                /*
+                *Envio das informações do endereço e do cliente para o respectivo controlador
+                *para que sejam realizadas as operações de inserção no banco de dados.
+                */
+                try {
+                    getEnderecoController().inserir(endereco);
+                    getClienteController().inserir(cliente);
+                    JOptionPane.showMessageDialog(this, "Cliente inserido com sucesso!", 
+                    "Inserir cliente",JOptionPane.INFORMATION_MESSAGE);
+                    dispose();
+                } catch (Exception ex) {
+                    Logger.getLogger(ClienteView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }   
         }else{
             //RECEBER AS NOVAS INFORMAÇÕES PARA ATUALIZAR
             //Busca o cliente pelo Id para atualização.
@@ -472,7 +475,7 @@ public class ClienteView extends javax.swing.JFrame {
             }
             if(cliente.getStatusPagamento() == true){
                 jtPagamento.setText("Ok");
-            }else{jtCodigo.setVisible(true);
+            }else{
                 jtPagamento.setText("Pendente");
             }
             //configura os campos como ativos (porém nao são editáveis)

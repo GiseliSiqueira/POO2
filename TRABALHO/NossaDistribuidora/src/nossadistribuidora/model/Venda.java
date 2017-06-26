@@ -1,23 +1,53 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package nossadistribuidora.model;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author Giseli
  */
-public class Venda {
+/*
+* Anotações com @ são para configuração da persistência com Hibernate;
+*/
+@Entity
+@Table (name = "venda")
+public class Venda implements Serializable {
+    @Id
+    @GeneratedValue
     private int codigo;
+    @Column(length = 10)
     private Date data;
+    @Column(length = 25)
     private String statusEntrega;
+    @Column(length = 10)
     private boolean statusPagamento;
+    @Column(length = 10)
     private Date dataRecebimento;
 
+    @ManyToMany
+    private List<Object> listaDeProdutos;
+
+    public Venda() {
+    }
+
+    public Venda(int codigo, Date data, String statusEntrega, boolean statusPagamento, Date dataRecebimento, List<Object> listaDeProdutos) {
+        this.codigo = codigo;
+        this.data = data;
+        this.statusEntrega = statusEntrega;
+        this.statusPagamento = statusPagamento;
+        this.dataRecebimento = dataRecebimento;
+        this.listaDeProdutos = listaDeProdutos;
+    }
+    
     public int getCodigo() {
         return codigo;
     }
@@ -56,5 +86,13 @@ public class Venda {
 
     public void setDataRecebimento(Date dataRecebimento) {
         this.dataRecebimento = dataRecebimento;
+    }
+
+    public List<Object> getListaDeProdutos() {
+        return listaDeProdutos;
+    }
+
+    public void setListaDeProdutos(List<Object> listaDeProdutos) {
+        this.listaDeProdutos = listaDeProdutos;
     }
 }

@@ -1,30 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package nossadistribuidora.model.DAO;
 
+import nossadistribuidora.factoryDAO.GenericDAO;
 import nossadistribuidora.model.Venda;
 
 /**
  *
  * @author Giseli
  */
-public class VendaDAO {
-    public void inserir(Venda venda){
-        
-    }
+/*
+*Classe que define os métodos específicos para manipulação dos dados na tabela venda. 
+*/
+public interface VendaDAO extends GenericDAO<Venda>{
     
-    /*public void alterar(Venda venda){
-        
-    }
-    
-    public List<Venda> consultar(){
-        
-    }
-    
-    public void excluir(Venda venda){
-        
-    }*/
 }

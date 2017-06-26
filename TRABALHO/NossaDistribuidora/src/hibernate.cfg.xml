@@ -47,12 +47,12 @@ Contributor(s):
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
     <mapping class="nossadistribuidora.model.Cliente"/>
+    <mapping class="nossadistribuidora.model.Compra"/>
     <mapping class="nossadistribuidora.model.Endereco"/>
     <mapping class="nossadistribuidora.model.Fornecedor"/>
     <mapping class="nossadistribuidora.model.Produto"/>
     <mapping class="nossadistribuidora.model.ProdutoAgua"/>
     <mapping class="nossadistribuidora.model.ProdutoGas"/>
-    <mapping class="nossadistribuidora.model.Compra"/>
     <mapping class="nossadistribuidora.model.Venda"/>
   </session-factory>
 </hibernate-configuration>

@@ -154,6 +154,12 @@ public class CompraGasView extends javax.swing.JFrame {
 
         jftDataCompra.setColumns(1);
         jftDataCompra.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        try{ 
+            javax.swing.text.MaskFormatter data= new javax.swing.text.MaskFormatter("##/##/####");
+            jftDataCompra = new javax.swing.JFormattedTextField(data);
+        }
+        catch (Exception e){
+        }
         jftDataCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jftDataCompraActionPerformed(evt);
@@ -204,7 +210,7 @@ public class CompraGasView extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
-                .addComponent(jftDataCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jftDataCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel11)
                 .addGap(18, 18, 18)

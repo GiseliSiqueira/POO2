@@ -1,20 +1,29 @@
 
 package nossadistribuidora.view;
 
+import Patterns.CadRespFormaPagamento.AbstractPagamentoHandler;
+import Patterns.CadRespFormaPagamento.FormaDePagamento;
 import Patterns.FabricaProdutoComboBox;
+import Util.ConverteDatas;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import nossadistribuidora.controller.ClienteController;
 import nossadistribuidora.controller.EnderecoController;
+import nossadistribuidora.controller.ProdutoAguaController;
+import nossadistribuidora.controller.ProdutoGasController;
 import nossadistribuidora.controller.VendaController;
 import nossadistribuidora.model.Cliente;
 import nossadistribuidora.model.Produto;
 import nossadistribuidora.model.ProdutoAgua;
 import nossadistribuidora.model.ProdutoGas;
+import nossadistribuidora.model.Venda;
 
 /**
  *
@@ -29,6 +38,9 @@ public class VendaView extends javax.swing.JFrame {
     private VendaController vendaController;
     private ClienteController clienteController;
     private EnderecoController enderecoController;
+    private ProdutoAguaController aguaController;
+    private ProdutoGasController gasController;
+    
     private int cont = 0; //Contador que controla a inserção de itens na tabela de itens da venda.
     private float valorTotal = 0; //Variável que calcula o valor total da venda de acordo com os produtos inseridos
     private List<Produto> lstProdutos;
@@ -41,6 +53,8 @@ public class VendaView extends javax.swing.JFrame {
         vendaController = new VendaController();
         clienteController = new ClienteController();
         enderecoController = new EnderecoController();
+        aguaController = new ProdutoAguaController();
+        gasController = new ProdutoGasController();
         lstProdutos = new ArrayList<>();
         lstQuantidadeProduto = new ArrayList<Integer>();
         initComponents();
@@ -50,7 +64,7 @@ public class VendaView extends javax.swing.JFrame {
     /*
     *Get's dos controladores.
     */
-    public VendaController getCompraController() {
+    public VendaController getVendaController() {
         return vendaController;
     }
     
@@ -62,6 +76,13 @@ public class VendaView extends javax.swing.JFrame {
         return enderecoController;
     }
     
+    public ProdutoAguaController getAguaController(){
+        return aguaController;
+    }
+    
+    public ProdutoGasController getGasController(){
+        return gasController;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -75,6 +96,7 @@ public class VendaView extends javax.swing.JFrame {
         jbSalvar = new javax.swing.JButton();
         jbCancelar = new javax.swing.JButton();
         jbExcluir = new javax.swing.JButton();
+        jbBuscarVenda = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -150,18 +172,27 @@ public class VendaView extends javax.swing.JFrame {
             }
         });
 
+        jbBuscarVenda.setText("Buscar");
+        jbBuscarVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscarVendaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(173, 173, 173)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbBuscarVenda)
+                .addGap(18, 18, 18)
                 .addComponent(jbSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jbExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jbCancelar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(125, 125, 125))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,7 +201,8 @@ public class VendaView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbSalvar)
                     .addComponent(jbCancelar)
-                    .addComponent(jbExcluir))
+                    .addComponent(jbExcluir)
+                    .addComponent(jbBuscarVenda))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -179,9 +211,6 @@ public class VendaView extends javax.swing.JFrame {
         jLabel1.setText("Cliente:");
 
         jLabel3.setText("Código:");
-
-        jtCodigoVenda.setEditable(false);
-        jtCodigoVenda.setEnabled(false);
 
         jLabel11.setText("Valor total:");
 
@@ -399,7 +428,7 @@ public class VendaView extends javax.swing.JFrame {
             }
         });
 
-        jLabel15.setText("Data de Compra:");
+        jLabel15.setText("Data da venda:");
 
         jftDataVenda.setEditable(false);
         jftDataVenda.setColumns(1);
@@ -552,10 +581,76 @@ public class VendaView extends javax.swing.JFrame {
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
        
-        
+        /*
+        *Adiciona uma venda a partir do valor "vazio" no campo 'código' da compra
+        *caso nao haja valor: salva os dados da venda;
+        *caso haja valor: informa que a venda nao pode ser registrada quando informado
+        *o numero da venda(é gerado altomáticamente).
+        */
+        if(jtCodigoVenda.getText().equals("")){
+            Venda venda = new Venda();
+            
+            //verifica se a data de pagamento é maior ou igual a data da compra
+            ConverteDatas converterData = new ConverteDatas();
+            try {
+                Date dataVenda = converterData.converteData(jftDataVenda.getText());
+                Date dataPagamento = converterData.converteData(jftDataPagamento.getText());
+                //Se a data for maior ou igual a data da venda
+                if((dataPagamento.after(dataVenda)) || (dataPagamento.equals(dataVenda))){
+                    venda.setDataRecebimento(dataPagamento);
+            
+            
+                    Cliente cliente = getClienteController().buscaClientePorId(Integer.parseInt(jtCodigoCliente.getText()));
+                    venda.setCliente(cliente);
+                    venda.setListaDeProdutos(lstProdutos);
+                    venda.setData((Date)jftDataVenda.getValue());
 
-        //verificar se a data de pagamento é maior ou igual a data da compra
-        
+                    //Verifica se há descondo definido para a venda
+                    if(!(jtDesconto.getText().equals(""))){
+                        venda.setDesconto(valorTotal);
+                        valorTotal = valorTotal - Float.parseFloat(jtDesconto.getText());
+                    }else{
+                        venda.setDesconto(0);
+                    }
+                    venda.setValorTotal(valorTotal);
+                    venda.setStatusEntrega("pendente");
+                    venda.setStatusPagamento(false);
+                    //Verifica a forma de pagamento
+                    FormaDePagamento formaPagamento = new FormaDePagamento();
+                    if(jcFormaDePagamento.getSelectedItem().equals("Dinheiro")){
+                        formaPagamento.selecionaFormaDePagamento(AbstractPagamentoHandler.Pagamento.DINHEIRO,venda);
+                    }else if(jcFormaDePagamento.getSelectedItem().equals("Cartão")){
+                        formaPagamento.selecionaFormaDePagamento(AbstractPagamentoHandler.Pagamento.CARTAO, venda);
+                    }
+            
+                    /*
+                    *Envio das informações da venda para o respectivo controlador
+                    *para que sejam realizadas as operações de inserção no banco de dados.
+                    */
+                    try {
+
+                        getVendaController().inserir(venda);
+                        cliente.setStatusPagamento(false);
+                        getClienteController().alterar(cliente);
+                        JOptionPane.showMessageDialog(this, "Venda inserida com sucesso!", 
+                        "Inserir venda",JOptionPane.INFORMATION_MESSAGE);
+                        dispose();
+                    } catch (Exception ex) {
+                        Logger.getLogger(VendaView.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(this, "Data de pagamento informada é inválida. Verifique essa informação e"
+                            + "tente novamente!",
+                            "Inserir venda",JOptionPane.INFORMATION_MESSAGE);
+                } 
+            } catch (ParseException ex) {
+                Logger.getLogger(VendaView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "O campo 'Código' da venda deve estar vazio para inserção de nova venda. "
+                    + "Verifique essa informação e tente novamente!", "Inserir venda",JOptionPane.INFORMATION_MESSAGE);
+                dispose();
+        }
     }//GEN-LAST:event_jbSalvarActionPerformed
 
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
@@ -574,37 +669,63 @@ public class VendaView extends javax.swing.JFrame {
         */
         if(jcbProduto.getSelectedItem().equals("Gás")){
             ProdutoGas selecionado = (ProdutoGas)jcbMarca.getSelectedItem();
-            jtbListaProdutos.setValueAt(selecionado.getID(), cont, 0);
-            jtbListaProdutos.setValueAt(selecionado.getNome(), cont, 1);
-            jtbListaProdutos.setValueAt(selecionado.getMarca(), cont, 2);
-            jtbListaProdutos.setValueAt(selecionado.getPeso(), cont, 3);
-            jtbListaProdutos.setValueAt(selecionado.getValor(), cont, 4);
-            jtbListaProdutos.setValueAt(jcQuantidadeProduto.getSelectedItem(), cont, 5);
-            lstProdutos.add(selecionado); //Adiciona o produto selecionado à lista de produtos da venda
-            //Adiciona a quantidade do produto selecionado em uma lista.
-            lstQuantidadeProduto.add(Integer.parseInt(jcQuantidadeProduto.getSelectedItem().toString()));
-            valorTotal = valorTotal+(selecionado.getValor()*lstQuantidadeProduto.get(cont));
-            jtValorTotal.setText(String.valueOf(valorTotal));
-            cont++;
+            //Verifica a disponibilidade de produto em estoque
+            if(Integer.parseInt(jcQuantidadeProduto.getSelectedItem().toString())<= selecionado.getQuantidadeEstoque()){
+                jtbListaProdutos.setValueAt(selecionado.getID(), cont, 0);
+                jtbListaProdutos.setValueAt(selecionado.getNome(), cont, 1);
+                jtbListaProdutos.setValueAt(selecionado.getMarca(), cont, 2);
+                jtbListaProdutos.setValueAt(selecionado.getPeso(), cont, 3);
+                jtbListaProdutos.setValueAt(selecionado.getValor(), cont, 4);
+                jtbListaProdutos.setValueAt(jcQuantidadeProduto.getSelectedItem(), cont, 5);
+                lstProdutos.add(selecionado); //Adiciona o produto selecionado à lista de produtos da venda
+                //Adiciona a quantidade do produto selecionado em uma lista.
+                lstQuantidadeProduto.add(Integer.parseInt(jcQuantidadeProduto.getSelectedItem().toString()));
+                //Reduz a quantidade de produto selecionada da quantidade de produto em estoque
+                selecionado.setQuantidadeEstoque(selecionado.getQuantidadeEstoque()-lstQuantidadeProduto.get(cont));
+                try {
+                    getGasController().alterar(selecionado);
+                } catch (Exception ex) {
+                    Logger.getLogger(VendaView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                valorTotal = valorTotal+(selecionado.getValor()*lstQuantidadeProduto.get(cont));
+                jtValorTotal.setText(String.valueOf(valorTotal));
+                cont++;
+            } else{
+                JOptionPane.showMessageDialog(this, "Quantidade do produto selecionado está indisponível. "
+                        + "Selecione outro valor e tente novamente!", "Inserir venda",JOptionPane.INFORMATION_MESSAGE);
+            }
             
         }else if(jcbProduto.getSelectedItem().equals("Água")){
             ProdutoAgua selecionado = (ProdutoAgua)jcbMarca.getSelectedItem();
-            jtbListaProdutos.setValueAt(selecionado.getID(), cont, 0);
-            jtbListaProdutos.setValueAt(selecionado.getNome(), cont, 1);
-            jtbListaProdutos.setValueAt(selecionado.getMarca(), cont, 2);
-            jtbListaProdutos.setValueAt(selecionado.getCapacidade(), cont, 3);
-            jtbListaProdutos.setValueAt(selecionado.getValor(), cont, 4);
-            jtbListaProdutos.setValueAt(jcQuantidadeProduto.getSelectedItem(), cont, 5);
-            lstProdutos.add(selecionado);//Adiciona o produto selecionado à lista de produtos da venda
-            //Adiciona a quantidade do produto selecionado em uma lista.
-            lstQuantidadeProduto.add(Integer.parseInt(jcQuantidadeProduto.getSelectedItem().toString()));
-            valorTotal = valorTotal+(selecionado.getValor()*lstQuantidadeProduto.get(cont));
-            jtValorTotal.setText(String.valueOf(valorTotal));
-            cont++;
+            if(Integer.parseInt(jcQuantidadeProduto.getSelectedItem().toString())<= selecionado.getQuantidadeEstoque()){
+                jtbListaProdutos.setValueAt(selecionado.getID(), cont, 0);
+                jtbListaProdutos.setValueAt(selecionado.getNome(), cont, 1);
+                jtbListaProdutos.setValueAt(selecionado.getMarca(), cont, 2);
+                jtbListaProdutos.setValueAt(selecionado.getCapacidade(), cont, 3);
+                jtbListaProdutos.setValueAt(selecionado.getValor(), cont, 4);
+                jtbListaProdutos.setValueAt(jcQuantidadeProduto.getSelectedItem(), cont, 5);
+                lstProdutos.add(selecionado);//Adiciona o produto selecionado à lista de produtos da venda
+                //Adiciona a quantidade do produto selecionado em uma lista.
+                lstQuantidadeProduto.add(Integer.parseInt(jcQuantidadeProduto.getSelectedItem().toString()));
+                //Reduz a quantidade de produto selecionada da quantidade de produto em estoque
+                selecionado.setQuantidadeEstoque(selecionado.getQuantidadeEstoque()-lstQuantidadeProduto.get(cont));
+                try {
+                    getAguaController().alterar(selecionado);
+                } catch (Exception ex) {
+                    Logger.getLogger(VendaView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                valorTotal = valorTotal+(selecionado.getValor()*lstQuantidadeProduto.get(cont));
+                jtValorTotal.setText(String.valueOf(valorTotal));
+                cont++;
+            }else{
+                JOptionPane.showMessageDialog(this, "Quantidade do produto selecionado está indisponível. "
+                    + "Selecione outro valor e tente novamente!", "Inserir venda",JOptionPane.INFORMATION_MESSAGE);
+            }
         }
     }//GEN-LAST:event_jbAdicionarProdutoActionPerformed
 
     private void jcbProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbProdutoActionPerformed
+        //Fabrica que cria o comboBox de acordo com o tipo de produto selecionado.
         FabricaProdutoComboBox.criaJComboBoxProduto(jcbProduto.getSelectedItem().toString(), jcbMarca);
     }//GEN-LAST:event_jcbProdutoActionPerformed
 
@@ -636,12 +757,28 @@ public class VendaView extends javax.swing.JFrame {
                 jtAtivacao.setText("Ativo");
             }else{
                 jtAtivacao.setText("Desativado");
+                //Informa que o cliente está desativo e oferece opção de reativação
+                if(JOptionPane.showConfirmDialog(this, "Cliente informado está desativo, deseja reativar?",
+                    "Buscar cliente",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+                    ClienteView clienteView = new ClienteView();
+                    clienteView.setVisible(true);
+                }else {
+                    dispose();
+                }
+            
             }
             if(cliente.getStatusPagamento() == true){
                 jtStatusPagamento.setText("Ok");
             }else{
                 jtStatusPagamento.setText("Pendente");
+                //Caso o cliente tenha status de pagamento pendente informa que a venda nao pode ser realizada
+                JOptionPane.showMessageDialog(this, "O cliente informado possui pendência de pagamento!"
+                        + " Regularizar situação para concluir operação.", 
+                    "Buscar cliente",JOptionPane.INFORMATION_MESSAGE);
+                dispose();
             }
+            
+            
         }   /*
             *Caso o dado para busca(nome) não tenha sido informado
             */
@@ -657,11 +794,82 @@ public class VendaView extends javax.swing.JFrame {
                     ClienteView clienteView = new ClienteView();
                     clienteView.setVisible(true);
                     dispose();
-                }else if(JOptionPane.showConfirmDialog(this, "Cliente não cadastrado, deseja cadastrar?",
-                    "realizar novo cadastro?",JOptionPane.YES_NO_OPTION)==JOptionPane.NO_OPTION){
+                }else {
                     dispose();
                 }
     }//GEN-LAST:event_jbBuscarClienteActionPerformed
+
+    private void jbBuscarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarVendaActionPerformed
+        /*Codigo para buscar os dados no banco e mostrar no Frame
+        *Busca a venda por código
+        */
+        Venda venda = null;
+        //Verifica se o numero da venda que se deseja buscar foi informado
+        if(!(jtCodigoVenda.getText().equals(""))){
+            venda = getVendaController().buscaVendaPorCodigo(Integer.parseInt(jtCodigoVenda.getText()));
+        }
+        /*
+        *Exibe as informações da compra nos jTextField da janela.
+        */
+        if(venda != null){
+            jtCodigoVenda.setText(String.valueOf(venda.getCodigo()));
+            
+            //Informações de cliente
+            jtNomeCliente.setText(venda.getCliente().getNome());
+            jtCodigoCliente.setText(String.valueOf(venda.getCliente().getCodigo()));
+            jtEnderecoCep.setText(venda.getCliente().getEndereco().getCep());
+            jtEnderecoRua.setText(venda.getCliente().getEndereco().getRua());
+            jtEnderecoBairro.setText(venda.getCliente().getEndereco().getBairro());
+            jtEnderecoCidade.setText(venda.getCliente().getEndereco().getCidade());
+            jcEnderecoEstado.setSelectedItem(venda.getCliente().getEndereco().getEstado());
+            jtbListaProdutos.setValueAt(5,0, 0);
+            //Preenche a lista de produtos da compra e a quantidade respectiva de cada um
+            //for(int indice = 0; indice < venda.getListaDeProdutos().size(); indice++){
+            int indice = 0;
+            for(Produto produto : venda.getListaDeProdutos()){ 
+                int linha = venda.getListaDeProdutos().indexOf(produto);
+                jtbListaProdutos.setValueAt(linha, linha, linha);
+                if(venda.getListaDeProdutos().get(indice).getClass().equals(ProdutoAgua.class)){
+                    System.out.println(venda.getListaDeProdutos().get(indice));
+                    ProdutoAgua agua = (ProdutoAgua) venda.getListaDeProdutos().get(indice);
+                    jtbListaProdutos.setValueAt(agua.getID(), indice, 0);
+                    jtbListaProdutos.setValueAt(agua.getNome(), indice, 1);
+                    jtbListaProdutos.setValueAt(agua.getMarca(), indice, 2);
+                    jtbListaProdutos.setValueAt(agua.getCapacidade(), indice, 3);
+                    jtbListaProdutos.setValueAt(agua.getValor(), indice, 4);
+                    jtbListaProdutos.setValueAt(lstQuantidadeProduto.get(indice), indice, 5);
+                }else if(venda.getListaDeProdutos().get(indice).getClass().equals(ProdutoGas.class)){
+                    System.out.println(venda.getListaDeProdutos().get(indice));
+                    ProdutoGas gas = (ProdutoGas) venda.getListaDeProdutos().get(indice);
+                    jtbListaProdutos.setValueAt(gas.getID(), indice, 0);
+                    jtbListaProdutos.setValueAt(gas.getNome(), indice, 1);
+                    jtbListaProdutos.setValueAt(gas.getMarca(), indice, 2);
+                    jtbListaProdutos.setValueAt(gas.getPeso(), indice, 3);
+                    jtbListaProdutos.setValueAt(gas.getValor(), indice, 4);
+                    jtbListaProdutos.setValueAt(lstQuantidadeProduto.get(indice), indice, 5);
+                }
+                indice++;
+            }
+            jftDataVenda.setValue(venda.getData());
+            jftDataPagamento.setValue(venda.getDataRecebimento());
+            jtDesconto.setText(String.valueOf(venda.getDesconto()));
+            jtValorTotal.setText(String.valueOf(venda.getValorTotal()));
+            jcFormaDePagamento.setSelectedItem(venda.getFormaDePagamento());
+       }    /*
+            *Caso o dado para busca(codigo da venda) não tenha sido informado
+            */
+            else if(jtCodigoVenda.getText().equals("")){
+                JOptionPane.showMessageDialog(this, "Informar o código da venda para busca", 
+                    "Buscar venda",JOptionPane.INFORMATION_MESSAGE);
+            }
+                /*
+                *Caso a venda cujos dados informados não exista
+                */
+            else{ JOptionPane.showMessageDialog(this, "A venda informada não existe! Verifique o código e tente novamente.", 
+                    "Buscar venda",JOptionPane.INFORMATION_MESSAGE);
+                    dispose();
+                }
+    }//GEN-LAST:event_jbBuscarVendaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -724,6 +932,7 @@ public class VendaView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbAdicionarProduto;
     private javax.swing.JButton jbBuscarCliente;
+    private javax.swing.JButton jbBuscarVenda;
     private javax.swing.JButton jbCancelar;
     private javax.swing.JButton jbExcluir;
     private javax.swing.JButton jbSalvar;

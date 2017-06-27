@@ -1,6 +1,7 @@
 
 package Util;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.AbstractListModel;
 import javax.swing.ComboBoxModel;
@@ -22,6 +23,7 @@ public class FornecedorComboBox extends AbstractListModel<Fornecedor> implements
     private Fornecedor selecionado;
 
     public FornecedorComboBox() {
+        
         //Preenche a lista com os valores obtidos da classe
         preencherLista();
         //Define o objeto inicialmente selecionado.
@@ -66,6 +68,13 @@ public class FornecedorComboBox extends AbstractListModel<Fornecedor> implements
 
             // Recupera os registros da tabela atraves do método listar
             listFornecedor = fornecedorController.listar(Fornecedor.class);
+            
+            //Elimina os fornecedores que estejam cadastrados na base de dados mas desativos
+            for(Fornecedor fornecedorAtivo : listFornecedor){
+                if(fornecedorAtivo.getStatusAtivacao() == false){
+                    listFornecedor.remove(fornecedorAtivo);
+                }
+            }
 
             // Cria o primeiro registro da lista que é o título
             Fornecedor primeiro = new Fornecedor();

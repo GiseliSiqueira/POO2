@@ -3,6 +3,7 @@ package Patterns.CadRespFormaPagamento;
 
 import java.util.LinkedList;
 import java.util.List;
+import nossadistribuidora.model.Venda;
 
 /**
  *
@@ -15,9 +16,9 @@ import java.util.List;
 */
 public class FormaDePagamento {
     //Método que recebe a forma de pagamento selecionada na aplicação venda
-    public void selecionaFormaDePagamento(AbstractPagamentoHandler.Pagamento formaPagamento){
-        AbstractPagamentoHandler dinheiro = new DinheiroHandler();
-        AbstractPagamentoHandler cartao = new CartaoHandler();
+    public void selecionaFormaDePagamento(AbstractPagamentoHandler.Pagamento formaPagamento, Venda venda){
+        AbstractPagamentoHandler dinheiro = new DinheiroHandler(venda);
+        AbstractPagamentoHandler cartao = new CartaoHandler(venda);
         
         //Especifica a cadeia de receivers
         dinheiro.setProxOpcao(cartao);

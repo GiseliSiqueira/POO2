@@ -152,7 +152,21 @@ public class ClienteView extends javax.swing.JFrame {
 
         jLabel2.setText("Telefone:");
 
+        try{ 
+            javax.swing.text.MaskFormatter telefone= new javax.swing.text.MaskFormatter("(##)####-####");
+            jtTelefone = new javax.swing.JFormattedTextField(telefone);
+        }
+        catch (Exception e){
+        }
+
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.ABOVE_TOP));
+
+        try{ 
+            javax.swing.text.MaskFormatter cep= new javax.swing.text.MaskFormatter("#####-###");
+            jtEnderecoCep = new javax.swing.JFormattedTextField(cep);
+        }
+        catch (Exception e){
+        }
 
         jLabel4.setText("CEP:");
 

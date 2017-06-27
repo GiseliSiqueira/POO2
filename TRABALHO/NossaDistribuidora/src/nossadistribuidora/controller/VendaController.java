@@ -26,4 +26,8 @@ public class VendaController {
     public void alterar(Venda venda) throws Exception{
         vendaDAO.alterar(venda);
     }
+    
+    public Venda buscaVendaPorCodigo(int codigo){
+        return vendaDAO.buscaVendaPorCodigo(codigo);
+    }
 }

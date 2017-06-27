@@ -2,6 +2,7 @@
 package Patterns.CadRespFormaPagamento;
 
 import java.util.List;
+import nossadistribuidora.model.Venda;
 
 /**
  *

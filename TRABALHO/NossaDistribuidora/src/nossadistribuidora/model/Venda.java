@@ -9,7 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 /**
  *
@@ -32,20 +35,37 @@ public class Venda implements Serializable {
     private boolean statusPagamento;
     @Column(length = 10)
     private Date dataRecebimento;
-
+    @Column(length = 15)
+    private String formaDePagamento;
+    
+    @Column(length = 10)
+    private float desconto; // Vai estar em ItemVenda
+    @Column(length = 10)
+    private float valorTotal; // Vai estar em ItemVenda
+    
+    @ManyToOne
+    @Cascade(CascadeType.DELETE)
+    private Cliente cliente;
+    
     @ManyToMany
-    private List<Object> listaDeProdutos;
+    private List<Produto> listaDeProdutos;
 
     public Venda() {
     }
 
-    public Venda(int codigo, Date data, String statusEntrega, boolean statusPagamento, Date dataRecebimento, List<Object> listaDeProdutos) {
+    public Venda(int codigo, Date data, String statusEntrega, boolean statusPagamento, 
+            Date dataRecebimento, List<Produto> listaDeProdutos, Cliente cliente,
+            float desconto, float valorTotal, String formaDePagamento) {
         this.codigo = codigo;
         this.data = data;
         this.statusEntrega = statusEntrega;
         this.statusPagamento = statusPagamento;
         this.dataRecebimento = dataRecebimento;
         this.listaDeProdutos = listaDeProdutos;
+        this.cliente = cliente;
+        this.desconto = desconto;
+        this.valorTotal = valorTotal;
+        this.formaDePagamento = formaDePagamento;
     }
     
     public int getCodigo() {
@@ -72,7 +92,7 @@ public class Venda implements Serializable {
         this.statusEntrega = statusEntrega;
     }
 
-    public boolean isStatusPagamento() {
+    public boolean getStatusPagamento() {
         return statusPagamento;
     }
 
@@ -88,11 +108,43 @@ public class Venda implements Serializable {
         this.dataRecebimento = dataRecebimento;
     }
 
-    public List<Object> getListaDeProdutos() {
+    public List<Produto> getListaDeProdutos() {
         return listaDeProdutos;
     }
 
-    public void setListaDeProdutos(List<Object> listaDeProdutos) {
+    public void setListaDeProdutos(List<Produto> listaDeProdutos) {
         this.listaDeProdutos = listaDeProdutos;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public float getDesconto() {
+        return desconto;
+    }
+
+    public void setDesconto(float desconto) {
+        this.desconto = desconto;
+    }
+
+    public float getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(float valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+    public String getFormaDePagamento() {
+        return formaDePagamento;
+    }
+
+    public void setFormaDePagamento(String formaDePagamento) {
+        this.formaDePagamento = formaDePagamento;
     }
 }

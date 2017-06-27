@@ -2,6 +2,8 @@
 package nossadistribuidora.view;
 
 import Patterns.FabricaProdutoComboBox;
+import Util.ConverteDatas;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.logging.Level;
@@ -298,9 +300,15 @@ public class CompraAguaView extends javax.swing.JFrame {
         if(jtNumeroCompra.getText().equals("")){
             Compra compra = new Compra();
             
+            ConverteDatas converterData = new ConverteDatas();
             
             compra.setListaDeProdutosAgua(lstProdutosCompraAgua);
-            compra.setData((Date)jftDataCompra.getValue());
+            //Converte a String recebida referente a data para o tipo Date e armazena na compra
+            try {
+                compra.setData(converterData.converteData((String) jftDataCompra.getValue()));
+            } catch (ParseException ex) {
+                Logger.getLogger(CompraAguaView.class.getName()).log(Level.SEVERE, null, ex);
+            }
             compra.setValorCompra(Float.parseFloat(jtValorCompra.getText()));
             compra.setQuantidadeProduto(lstProdutosCompraAgua.size());
             /*
@@ -313,11 +321,11 @@ public class CompraAguaView extends javax.swing.JFrame {
                 *Percorre a lista de produtos adicionados na compra e atualiza a quantidade em estoque
                 *do produto de acordo com a quantidade adquirida do produto.
                 */
-                for(ProdutoAgua agua : lstProdutosCompraAgua){
+                for(ProdutoAgua agua : compra.getListaDeProdutosAgua()){
                     ProdutoAguaController aguaController = new ProdutoAguaController();
                     //Atualiza a quantidade em estoque do produto comprado 
-                    agua.setQuantidadeEstoque(agua.getQuantidadeEstoque() + (Integer.parseInt(jtbListaProdutos
-                            .getValueAt(lstProdutosCompraAgua.indexOf(agua), 4).toString())));
+                    agua.setQuantidadeEstoque(agua.getQuantidadeEstoque() + (Integer.parseInt((String) jtbListaProdutos.
+                            getValueAt(compra.getListaDeProdutosAgua().indexOf(agua), 4))));
                     //Atualiza o status de disponibilidade em estoque caso este esteja zerado.
                     if(agua.getDisponibilidadeEstoque()==false){
                         agua.setDisponibilidadeEstoque(true);
@@ -335,7 +343,7 @@ public class CompraAguaView extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "O campo 'numero' da venda deve estar vazio para inserção de nova venda. "
                     + "Verifique essa informação e tente novamente!", "Inserir compra",JOptionPane.INFORMATION_MESSAGE);
-                dispose();
+                
         }
     }//GEN-LAST:event_jbSalvarActionPerformed
 

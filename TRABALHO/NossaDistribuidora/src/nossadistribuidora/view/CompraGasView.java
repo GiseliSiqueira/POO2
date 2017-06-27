@@ -2,6 +2,8 @@
 package nossadistribuidora.view;
 
 import Patterns.FabricaProdutoComboBox;
+import Util.ConverteDatas;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.logging.Level;
@@ -292,14 +294,20 @@ public class CompraGasView extends javax.swing.JFrame {
         *Adiciona uma compra a partir do valor "vazio" no campo 'numero' da compra
         *caso nao haja valor: salva os dados da compra;
         *caso haja valor: informa que a compra nao pode ser registrada quando informado
-        *o numero da venda(é gerado altomáticamente).
+        *o numero da compra(é gerado altomáticamente).
         */
         if(jtNumeroCompra.getText().equals("")){
             Compra compra = new Compra();
             
+            ConverteDatas converterData = new ConverteDatas();
             
             compra.setListaDeProdutosGas(lstProdutosCompraGas);
-            compra.setData((Date)jftDataCompra.getValue());
+            try {
+                //Converte a String recebida referente a data para o tipo Date e armazena na compra
+                compra.setData(converterData.converteData(jftDataCompra.getText()));
+            } catch (ParseException ex) {
+                Logger.getLogger(CompraGasView.class.getName()).log(Level.SEVERE, null, ex);
+            }
             compra.setValorCompra(Float.parseFloat(jtValorCompra.getText()));
             compra.setQuantidadeProduto(lstProdutosCompraGas.size());
             /*
@@ -312,11 +320,11 @@ public class CompraGasView extends javax.swing.JFrame {
                 *Percorre a lista de produtos adicionados na compra e atualiza a quantidade em estoque
                 *do produto de acordo com a quantidade adquirida do produto.
                 */
-                for(ProdutoGas gas : lstProdutosCompraGas){
+                for(ProdutoGas gas : compra.getListaDeProdutosGas()){
                     ProdutoGasController gasController = new ProdutoGasController();
                     //Atualiza a quantidade em estoque do produto comprado 
-                    gas.setQuantidadeEstoque(gas.getQuantidadeEstoque() + (Integer.parseInt(jtbListaProdutos
-                            .getValueAt(lstProdutosCompraGas.indexOf(gas), 4).toString())));
+                    gas.setQuantidadeEstoque(gas.getQuantidadeEstoque() + (Integer.parseInt((String) jtbListaProdutos.
+                            getValueAt(compra.getListaDeProdutosGas().indexOf(gas), 4))));
                     //Atualiza o status de disponibilidade em estoque caso este esteja zerado.
                     if(gas.getDisponibilidadeEstoque()==false){
                         gas.setDisponibilidadeEstoque(true);
@@ -332,7 +340,7 @@ public class CompraGasView extends javax.swing.JFrame {
                 Logger.getLogger(CompraGasView.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
-            JOptionPane.showMessageDialog(this, "O campo 'numero' da venda deve estar vazio para inserção de nova venda. "
+            JOptionPane.showMessageDialog(this, "O campo 'numero' da compra deve estar vazio para inserção de nova compra. "
                     + "Verifique essa informação e tente novamente!", "Inserir compra",JOptionPane.INFORMATION_MESSAGE);
                 dispose();
         }

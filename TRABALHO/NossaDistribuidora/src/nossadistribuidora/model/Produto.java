@@ -3,9 +3,12 @@ package nossadistribuidora.model;
 
 import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 
@@ -20,11 +23,13 @@ import javax.persistence.MappedSuperclass;
 *define que apenas as classes concretas geram suas respectivas tabelas.
 */
 
-@MappedSuperclass // Define que os atributos pertencentes a está classe irão ser mapeados por outra classe, ou seja, por uma subclasse.
+//@MappedSuperclass // Define que os atributos pertencentes a está classe irão ser mapeados por outra classe, ou seja, por uma subclasse.
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Produto implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long ID;//Atributo criado para a realização de persistência
     @Column(length = 20,nullable = false)
     private String marca;

@@ -112,13 +112,19 @@ Foram produzidos os protótipos iniciais de tela para os requisitos funcionais c
 
 ##### Padrões de projeto
 
-* Padrão método fábrica: Padrão utilizado para encapsular a criação de objetos, atribuindo a subclasses a responsabilidade da decisão de qual objeto criar. No projeto foi utilizado para resolver o problema de criação dos objetos Produto, permitindo a classe Fábrica definir a instanciação das classes de produto Gás e Água, desacoplando as classes do sistema.<br/>Diagrama do padrão destacado:
-
+* Padrão método fábrica: Padrão utilizado para encapsular a criação de objetos, atribuindo a subclasses a responsabilidade da decisão de qual objeto criar. No projeto foi utilizado para resolver o problema de criação dos objetos Produto, permitindo a classe Fábrica definir a instanciação das classes de produto Gás e Água, desacoplando as classes do sistema.<br/>Diagrama do padrão destacado:<br/>
+Fabrica produto:<br/>
 ![alt tag](https://github.com/GiseliSiqueira/POO2/blob/master/TRABALHO/Padrao%20m%C3%A9todo%20f%C3%A1brica.png)
+
+Fabrica Produto ComboBox:<br/>
+![alt tag](https://github.com/GiseliSiqueira/POO2/blob/master/TRABALHO/Padrao%20m%C3%A9todo%20f%C3%A1brica%20-%20ProdutoComboBox.png)
+
+Fábrica Compras:<br/>
+![alt tag](https://github.com/GiseliSiqueira/POO2/blob/master/TRABALHO/Padrao%20m%C3%A9todo%20f%C3%A1brica%20-%20Compras.png)
 
 * Padrão DAO: Padrão utilizado para separar as operações de acesso aos dados da aplicação, contendo uma Inteface DAO - define operações padrões a serem implementadas em uma classe concreta de acesso aos dados, uma classe DAO concreta - responsável pelo acesso ao mecanismo de armazenamento dos dados e uma classe model - objeto que terá seus dados persistidos.<br/> Diagrama do padrão:
 
-![alt tag](https://github.com/GiseliSiqueira/POO2/blob/master/TRABALHO/Padr%C3%A3o%20DAO.png)
+![alt tag](https://github.com/GiseliSiqueira/POO2/blob/master/TRABALHO/Padrao%20DAO.png)
 
 * Padrão Cadeia de Responsabilidade: Padrão utilizado para modelar a execução das formas de pagamento de uma venda, evitando o acoplamento do remetente da solicitação (Venda) com o receptor(Tipos de pagamento) e dando a mais de um objeto a oportunidade de tratar a solicitação, encadeando os receptores onde a solicitação vai passar por essa cadeia até que um objeto a trate. <br/>Diagrama do padrão:
 

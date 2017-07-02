@@ -41,6 +41,5 @@ public abstract class AbstractPagamentoHandler {
             proxOpcao.pagamentoHandler(opcaoDePagamento);
         }
     }
-    
     public abstract void processaFormaDePagamento();
 }

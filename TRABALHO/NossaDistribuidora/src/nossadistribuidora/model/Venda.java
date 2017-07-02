@@ -57,7 +57,8 @@ public class Venda implements Serializable {
 
     public Venda(int codigo, Date data, String statusEntrega, boolean statusPagamento, 
             Date dataRecebimento, List<Produto> listaDeProdutos, Cliente cliente,
-            float desconto, float valorTotal, String formaDePagamento, List<Integer> listaQuantidadeProdutos) {
+            float desconto, float valorTotal, String formaDePagamento,
+            List<Integer> listaQuantidadeProdutos) {
         this.codigo = codigo;
         this.data = data;
         this.statusEntrega = statusEntrega;

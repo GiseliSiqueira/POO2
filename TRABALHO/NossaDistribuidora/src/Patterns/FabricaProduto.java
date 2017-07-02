@@ -4,8 +4,6 @@ package Patterns;
 import nossadistribuidora.model.Produto;
 import nossadistribuidora.model.ProdutoAgua;
 import nossadistribuidora.model.ProdutoGas;
-import nossadistribuidora.view.ProdutoAguaView;
-import nossadistribuidora.view.ProdutoGasView;
 
 /**
  *

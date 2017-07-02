@@ -174,12 +174,6 @@ public class ClienteView extends javax.swing.JFrame {
 
         jLabel6.setText("Numero:");
 
-        jtEnderecoRua.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtEnderecoRuaActionPerformed(evt);
-            }
-        });
-
         jLabel7.setText("Bairro:");
 
         jLabel8.setText("Cidade:");
@@ -365,10 +359,6 @@ public class ClienteView extends javax.swing.JFrame {
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
         dispose();
     }//GEN-LAST:event_jbCancelarActionPerformed
-
-    private void jtEnderecoRuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtEnderecoRuaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtEnderecoRuaActionPerformed
     
     /*
     *Metodo para salvar ou atualizar as informações de cliente no banco de dados

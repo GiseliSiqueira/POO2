@@ -1,6 +1,8 @@
 
 package nossadistribuidora.controller;
 
+import java.util.Date;
+import java.util.List;
 import nossadistribuidora.model.DAO.VendaDAO;
 import nossadistribuidora.model.DAO.VendaDAOImpl;
 import nossadistribuidora.model.Venda;
@@ -27,7 +29,16 @@ public class VendaController {
         vendaDAO.alterar(venda);
     }
     
+    public List<Venda> listar(Class clazz) throws Exception{
+        return vendaDAO.listar(clazz);
+    }
+    
     public Venda buscaVendaPorCodigo(int codigo){
         return vendaDAO.buscaVendaPorCodigo(codigo);
     }
+    
+    public Venda buscaVendaPorData(Date data){
+        return vendaDAO.buscaVendaPorData(data);
+    }
+    
 }

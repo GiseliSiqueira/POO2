@@ -170,8 +170,10 @@
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Pagamentos"/>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbPagamentoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jbEntregas">
           <Properties>
@@ -179,8 +181,10 @@
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Entregas"/>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbEntregasActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

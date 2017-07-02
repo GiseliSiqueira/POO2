@@ -82,11 +82,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jbPagamento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jbPagamento.setText("Pagamentos");
-        jbPagamento.setEnabled(false);
+        jbPagamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbPagamentoActionPerformed(evt);
+            }
+        });
 
         jbEntregas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jbEntregas.setText("Entregas");
-        jbEntregas.setEnabled(false);
+        jbEntregas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEntregasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -164,6 +172,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         VendaView telaVenda = new VendaView();
         telaVenda.setVisible(true);
     }//GEN-LAST:event_jbVendaActionPerformed
+
+    private void jbEntregasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEntregasActionPerformed
+        EntregasView telaEntregas = new EntregasView();
+        telaEntregas.setVisible(true);
+    }//GEN-LAST:event_jbEntregasActionPerformed
+
+    private void jbPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPagamentoActionPerformed
+        PagamentosView telaPagamentos = new PagamentosView();
+        telaPagamentos.setVisible(true);
+    }//GEN-LAST:event_jbPagamentoActionPerformed
 
     /**
      * @param args the command line arguments

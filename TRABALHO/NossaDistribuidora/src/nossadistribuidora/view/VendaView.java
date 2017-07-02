@@ -6,7 +6,6 @@ import Patterns.CadRespFormaPagamento.FormaDePagamento;
 import Patterns.FabricaProdutoComboBox;
 import Util.ConverteDatas;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -44,7 +43,7 @@ public class VendaView extends javax.swing.JFrame {
     private int cont = 0; //Contador que controla a inserção de itens na tabela de itens da venda.
     private float valorTotal = 0; //Variável que calcula o valor total da venda de acordo com os produtos inseridos
     private List<Produto> lstProdutos;
-    private ArrayList<Integer> lstQuantidadeProduto;
+    private List<Integer> lstQuantidadeProduto;
     /*
     *Construtor que cria a instancia do controller necessário para as operações no banco e
     *criação do botao com os produtos cadastrados no banco de dados.
@@ -59,6 +58,7 @@ public class VendaView extends javax.swing.JFrame {
         lstQuantidadeProduto = new ArrayList<Integer>();
         initComponents();
         jftDataVenda.setValue(Calendar.getInstance().getTime());//seta a data da venda com a data atual do sistema
+        
     }
     
     /*
@@ -143,6 +143,8 @@ public class VendaView extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jcQuantidadeProduto = new javax.swing.JComboBox<>();
         jLabel18 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jcStatusEntrega = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Venda");
@@ -184,7 +186,7 @@ public class VendaView extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(141, Short.MAX_VALUE)
                 .addComponent(jbBuscarVenda)
                 .addGap(18, 18, 18)
                 .addComponent(jbSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -296,7 +298,7 @@ public class VendaView extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpEnderecoLayout.createSequentialGroup()
                                 .addGap(4, 4, 4)
                                 .addComponent(jtEnderecoCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
                                 .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel17)
                                     .addComponent(jLabel7)
@@ -340,16 +342,13 @@ public class VendaView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpEnderecoLayout.createSequentialGroup()
-                        .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpEnderecoLayout.createSequentialGroup()
-                                .addGap(62, 62, 62)
-                                .addComponent(jLabel12)
-                                .addGap(16, 16, 16)
-                                .addComponent(jLabel13))
-                            .addGroup(jpEnderecoLayout.createSequentialGroup()
-                                .addComponent(jLabel17)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel7)))
+                        .addComponent(jLabel17)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel7)
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel12)
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel13)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jpEnderecoLayout.createSequentialGroup()
                         .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -444,6 +443,11 @@ public class VendaView extends javax.swing.JFrame {
 
         jLabel18.setText("Quantidade:");
 
+        jLabel20.setText("Status Entrega:");
+
+        jcStatusEntrega.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pendente", "Em andamento", "Concluida" }));
+        jcStatusEntrega.setEnabled(false);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -453,30 +457,6 @@ public class VendaView extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jLabel15)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jftDataVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jLabel16)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jtDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(219, 219, 219)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jLabel21)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jcFormaDePagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel11))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jftDataPagamento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jtValorTotal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
@@ -491,7 +471,39 @@ public class VendaView extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jcQuantidadeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jbAdicionarProduto)))
+                                .addComponent(jbAdicionarProduto))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel15)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jftDataVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jLabel20))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jcStatusEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jftDataPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel21)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jcFormaDePagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                        .addGap(53, 53, 53)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                                .addComponent(jLabel11)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jtValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                                .addComponent(jLabel16)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jtDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(24, 24, 24)))
                         .addGap(47, 47, 47))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -507,8 +519,8 @@ public class VendaView extends javax.swing.JFrame {
                                 .addComponent(jbBuscarCliente)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jpEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(37, 37, 37))
+                .addComponent(jpEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -539,18 +551,23 @@ public class VendaView extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jftDataVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15)
-                    .addComponent(jftDataPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jtValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jcFormaDePagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel21))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel11)
+                        .addComponent(jtValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(jftDataPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jcFormaDePagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel21)
+                        .addComponent(jcStatusEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel20))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -563,15 +580,15 @@ public class VendaView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 603, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 603, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -603,17 +620,19 @@ public class VendaView extends javax.swing.JFrame {
                     Cliente cliente = getClienteController().buscaClientePorId(Integer.parseInt(jtCodigoCliente.getText()));
                     venda.setCliente(cliente);
                     venda.setListaDeProdutos(lstProdutos);
+                    venda.setListaQuantidadeProdutos(lstQuantidadeProduto);
                     venda.setData((Date)jftDataVenda.getValue());
 
                     //Verifica se há descondo definido para a venda
                     if(!(jtDesconto.getText().equals(""))){
-                        venda.setDesconto(valorTotal);
-                        valorTotal = valorTotal - Float.parseFloat(jtDesconto.getText());
+                        float desconto = Float.parseFloat(jtDesconto.getText());
+                        venda.setDesconto(desconto);
+                        valorTotal = valorTotal - desconto;
                     }else{
                         venda.setDesconto(0);
                     }
                     venda.setValorTotal(valorTotal);
-                    venda.setStatusEntrega("pendente");
+                    venda.setStatusEntrega("Pendente");
                     venda.setStatusPagamento(false);
                     //Verifica a forma de pagamento
                     FormaDePagamento formaPagamento = new FormaDePagamento();
@@ -630,7 +649,7 @@ public class VendaView extends javax.swing.JFrame {
                     try {
 
                         getVendaController().inserir(venda);
-                        cliente.setStatusPagamento(false);
+                        cliente.setStatusPagamento(false);//altera o status de pagamento do cliente ao concluir uma venda
                         getClienteController().alterar(cliente);
                         JOptionPane.showMessageDialog(this, "Venda inserida com sucesso!", 
                         "Inserir venda",JOptionPane.INFORMATION_MESSAGE);
@@ -647,9 +666,61 @@ public class VendaView extends javax.swing.JFrame {
                 Logger.getLogger(VendaView.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
-            JOptionPane.showMessageDialog(this, "O campo 'Código' da venda deve estar vazio para inserção de nova venda. "
-                    + "Verifique essa informação e tente novamente!", "Inserir venda",JOptionPane.INFORMATION_MESSAGE);
+            
+            //RECEBER AS NOVAS INFORMAÇÕES PARA ATUALIZAR
+            //Busca a venda pelo código para atualização.
+            Venda venda = getVendaController().buscaVendaPorCodigo(Integer.parseInt(jtCodigoVenda.getText()));
+            //Se a venda já está concluída (pagamento e entrega confirmados), não poderá ser alterada
+            if(venda.getStatusEntrega().equalsIgnoreCase("Concluída") && 
+                    venda.getStatusPagamento()== true){
+                JOptionPane.showMessageDialog(this, "A venda selecionada já foi entregue, "
+                        + "não podendo ser alterada!", "Atualizar venda",JOptionPane.INFORMATION_MESSAGE);
                 dispose();
+            }else{
+
+                //Substituição das informações atualizadas na classe Venda
+                venda.setListaDeProdutos(lstProdutos);
+                venda.setListaQuantidadeProdutos(lstQuantidadeProduto);
+                
+                //Verifica se há descondo definido para a venda
+                valorTotal = valorTotal + venda.getDesconto(); //elimina o desconto do total da venda
+                Float desconto = Float.parseFloat(jtDesconto.getText());//recebe o valor de desconto informado
+                venda.setDesconto(desconto);
+                valorTotal = valorTotal - desconto;
+                
+                venda.setValorTotal(valorTotal);
+                
+                //verifica se a data de pagamento é maior ou igual a data da compra
+                ConverteDatas converterDatas = new ConverteDatas();
+                try {
+                    Date novaDataPagamento = converterDatas.converteData(jftDataPagamento.getText());
+                    //Se a data for maior ou igual a data da venda
+                    if((novaDataPagamento.after(venda.getData())) || (novaDataPagamento.equals(venda.getData()))){
+                        venda.setDataRecebimento(novaDataPagamento);
+                    }else{
+                        JOptionPane.showMessageDialog(this, "Data de pagamento informada é inválida. Verifique essa informação e"
+                            + "tente novamente!",
+                            "Inserir venda",JOptionPane.INFORMATION_MESSAGE);
+                    }
+                } catch (ParseException ex) {
+                    Logger.getLogger(VendaView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                venda.setFormaDePagamento(jcFormaDePagamento.getSelectedItem().toString());
+
+                /*
+                *Envio das informações da venda para o respectivo controlador
+                *para que sejam realizadas as operações de atualização no banco de dados.
+                */
+                try {
+                    getVendaController().alterar(venda);
+                    JOptionPane.showMessageDialog(this, "Informações de venda alteradas com "
+                    + "sucesso!", "Atualizar venda",JOptionPane.INFORMATION_MESSAGE);
+                    dispose();
+                } catch (Exception ex) {
+                    Logger.getLogger(VendaView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
     }//GEN-LAST:event_jbSalvarActionPerformed
 
@@ -658,7 +729,63 @@ public class VendaView extends javax.swing.JFrame {
     }//GEN-LAST:event_jbCancelarActionPerformed
 
     private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
+        /*
+        *Recebe o código da venda que foi pesquisada e chama o metodo de
+        *exclusão do registro do banco da entidade referente.
+        *Só sendo possível excluir vendas que nao estenham status de entrega concluido.
+        */
         
+        Venda venda = getVendaController().buscaVendaPorCodigo(Integer.parseInt(jtCodigoVenda.getText()));
+        /*Verifica se a venda possui status de entrega concluído.
+        *Caso possua, a venda selecionada não poderá ser excluída.
+        */
+        if(!(venda.getStatusEntrega().equalsIgnoreCase("concluída"))){
+            if(JOptionPane.showConfirmDialog(this, "Confirma a exclusão?", "Confirma a exclusão?", JOptionPane.YES_NO_OPTION) ==
+                    JOptionPane.YES_OPTION){
+                //Altera o status de pagamento do cliente da venda
+                Cliente cliente = venda.getCliente();
+                cliente.setStatusPagamento(true);
+                try {
+                    getClienteController().alterar(cliente);
+
+                } catch (Exception ex) {
+                    Logger.getLogger(VendaView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                //Altera a quantidade de estoque dos produtos da lista
+                for(Produto produto : venda.getListaDeProdutos()){
+                    //A quantidade em estoque terá a quantidade do produto adicionado na venda somado ao seu valor;
+                    produto.setQuantidadeEstoque(produto.getQuantidadeEstoque() + 
+                        venda.getListaQuantidadeProdutos().get(venda.getListaDeProdutos().indexOf(produto)));
+                    if(produto.getClass().equals(ProdutoAgua.class)){
+                        try {
+                            getAguaController().alterar((ProdutoAgua) produto);
+                        } catch (Exception ex) {
+                            Logger.getLogger(VendaView.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }else if(produto.getClass().equals(ProdutoGas.class)){
+                        try {
+                            getGasController().alterar((ProdutoGas) produto);
+                        } catch (Exception ex) {
+                            Logger.getLogger(VendaView.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }
+
+                //Deleta a venda.
+                try {
+                    getVendaController().deletar(venda);
+                    JOptionPane.showMessageDialog(this, "Venda excluída com sucesso!", 
+                        "Excluir venda", JOptionPane.INFORMATION_MESSAGE);
+                        dispose();
+                } catch (Exception ex) {
+                    Logger.getLogger(VendaView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "A venda selecionada já foi entregue, não podendo ser excluída!", 
+                    "Excluir venda", JOptionPane.INFORMATION_MESSAGE);
+                    dispose();
+        }
     }//GEN-LAST:event_jbExcluirActionPerformed
 
     private void jbAdicionarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAdicionarProdutoActionPerformed
@@ -680,10 +807,11 @@ public class VendaView extends javax.swing.JFrame {
                 lstProdutos.add(selecionado); //Adiciona o produto selecionado à lista de produtos da venda
                 //Adiciona a quantidade do produto selecionado em uma lista.
                 lstQuantidadeProduto.add(Integer.parseInt(jcQuantidadeProduto.getSelectedItem().toString()));
-                //Reduz a quantidade de produto selecionada da quantidade de produto em estoque
-                selecionado.setQuantidadeEstoque(selecionado.getQuantidadeEstoque()-lstQuantidadeProduto.get(cont));
+                
                 try {
                     getGasController().alterar(selecionado);
+                    //Reduz a quantidade de produto selecionada da quantidade de produto em estoque
+                    selecionado.setQuantidadeEstoque(selecionado.getQuantidadeEstoque()-lstQuantidadeProduto.get(cont));
                 } catch (Exception ex) {
                     Logger.getLogger(VendaView.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -697,6 +825,7 @@ public class VendaView extends javax.swing.JFrame {
             
         }else if(jcbProduto.getSelectedItem().equals("Água")){
             ProdutoAgua selecionado = (ProdutoAgua)jcbMarca.getSelectedItem();
+            
             if(Integer.parseInt(jcQuantidadeProduto.getSelectedItem().toString())<= selecionado.getQuantidadeEstoque()){
                 jtbListaProdutos.setValueAt(selecionado.getID(), cont, 0);
                 jtbListaProdutos.setValueAt(selecionado.getNome(), cont, 1);
@@ -707,10 +836,11 @@ public class VendaView extends javax.swing.JFrame {
                 lstProdutos.add(selecionado);//Adiciona o produto selecionado à lista de produtos da venda
                 //Adiciona a quantidade do produto selecionado em uma lista.
                 lstQuantidadeProduto.add(Integer.parseInt(jcQuantidadeProduto.getSelectedItem().toString()));
-                //Reduz a quantidade de produto selecionada da quantidade de produto em estoque
-                selecionado.setQuantidadeEstoque(selecionado.getQuantidadeEstoque()-lstQuantidadeProduto.get(cont));
+                
                 try {
                     getAguaController().alterar(selecionado);
+                    //Reduz a quantidade de produto selecionada da quantidade de produto em estoque
+                    selecionado.setQuantidadeEstoque(selecionado.getQuantidadeEstoque()-lstQuantidadeProduto.get(cont));
                 } catch (Exception ex) {
                     Logger.getLogger(VendaView.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -807,54 +937,78 @@ public class VendaView extends javax.swing.JFrame {
         //Verifica se o numero da venda que se deseja buscar foi informado
         if(!(jtCodigoVenda.getText().equals(""))){
             venda = getVendaController().buscaVendaPorCodigo(Integer.parseInt(jtCodigoVenda.getText()));
+            /*Seta o contador que controla a inserção de itens na tabela com o tamanho da lista de produtos,
+            *assim, quando um novo produto for inserido a uma lista que já contenha produtos ele será incluído
+            *na posição seguinte do ultimo produto da lista;
+            */
+            cont = venda.getListaDeProdutos().size();
+            /*Inicializa as variáveis globais da venda com os valores recebidos da venda pesquisada.
+            *Esses valores serão utilizados quando houver inserção de novos produtos na lista que já
+            *contenha produtos;
+            */
+            lstProdutos = venda.getListaDeProdutos();
+            lstQuantidadeProduto = venda.getListaQuantidadeProdutos();
+            valorTotal = venda.getValorTotal();
         }
         /*
         *Exibe as informações da compra nos jTextField da janela.
         */
         if(venda != null){
             jtCodigoVenda.setText(String.valueOf(venda.getCodigo()));
-            
+            jtCodigoVenda.setEditable(false);//desabilita a edição no campo
             //Informações de cliente
             jtNomeCliente.setText(venda.getCliente().getNome());
+            jtNomeCliente.setEditable(false); // desabilita a edição do campo
             jtCodigoCliente.setText(String.valueOf(venda.getCliente().getCodigo()));
             jtEnderecoCep.setText(venda.getCliente().getEndereco().getCep());
             jtEnderecoRua.setText(venda.getCliente().getEndereco().getRua());
             jtEnderecoBairro.setText(venda.getCliente().getEndereco().getBairro());
             jtEnderecoCidade.setText(venda.getCliente().getEndereco().getCidade());
             jcEnderecoEstado.setSelectedItem(venda.getCliente().getEndereco().getEstado());
-            jtbListaProdutos.setValueAt(5,0, 0);
+            jtEnderecoNumero.setText(String.valueOf(venda.getCliente().getEndereco().getNumero()));
+            jtTelefone.setText(venda.getCliente().getTelefone());
+            if(venda.getCliente().getStatusAtivacao() == true){
+                jtAtivacao.setText("Ativo");
+            }else{
+                jtAtivacao.setText("Desativado");
+            }
+            if(venda.getCliente().getStatusPagamento() == true){
+                jtStatusPagamento.setText("Ok");
+            }else{
+                jtStatusPagamento.setText("Pendente");
+            }
+            
+            
             //Preenche a lista de produtos da compra e a quantidade respectiva de cada um
-            //for(int indice = 0; indice < venda.getListaDeProdutos().size(); indice++){
-            int indice = 0;
             for(Produto produto : venda.getListaDeProdutos()){ 
                 int linha = venda.getListaDeProdutos().indexOf(produto);
-                jtbListaProdutos.setValueAt(linha, linha, linha);
-                if(venda.getListaDeProdutos().get(indice).getClass().equals(ProdutoAgua.class)){
-                    System.out.println(venda.getListaDeProdutos().get(indice));
-                    ProdutoAgua agua = (ProdutoAgua) venda.getListaDeProdutos().get(indice);
-                    jtbListaProdutos.setValueAt(agua.getID(), indice, 0);
-                    jtbListaProdutos.setValueAt(agua.getNome(), indice, 1);
-                    jtbListaProdutos.setValueAt(agua.getMarca(), indice, 2);
-                    jtbListaProdutos.setValueAt(agua.getCapacidade(), indice, 3);
-                    jtbListaProdutos.setValueAt(agua.getValor(), indice, 4);
-                    jtbListaProdutos.setValueAt(lstQuantidadeProduto.get(indice), indice, 5);
-                }else if(venda.getListaDeProdutos().get(indice).getClass().equals(ProdutoGas.class)){
-                    System.out.println(venda.getListaDeProdutos().get(indice));
-                    ProdutoGas gas = (ProdutoGas) venda.getListaDeProdutos().get(indice);
-                    jtbListaProdutos.setValueAt(gas.getID(), indice, 0);
-                    jtbListaProdutos.setValueAt(gas.getNome(), indice, 1);
-                    jtbListaProdutos.setValueAt(gas.getMarca(), indice, 2);
-                    jtbListaProdutos.setValueAt(gas.getPeso(), indice, 3);
-                    jtbListaProdutos.setValueAt(gas.getValor(), indice, 4);
-                    jtbListaProdutos.setValueAt(lstQuantidadeProduto.get(indice), indice, 5);
+                if(venda.getListaDeProdutos().get(linha).getClass().equals(ProdutoAgua.class)){
+                    ProdutoAgua agua = (ProdutoAgua) venda.getListaDeProdutos().get(linha);
+                    jtbListaProdutos.setValueAt(agua.getID(), linha, 0);
+                    jtbListaProdutos.setValueAt(agua.getNome(), linha, 1);
+                    jtbListaProdutos.setValueAt(agua.getMarca(), linha, 2);
+                    jtbListaProdutos.setValueAt(agua.getCapacidade(), linha, 3);
+                    jtbListaProdutos.setValueAt(agua.getValor(), linha, 4);
+                    jtbListaProdutos.setValueAt(venda.getListaQuantidadeProdutos().get(linha), linha, 5);
+                }else if(venda.getListaDeProdutos().get(linha).getClass().equals(ProdutoGas.class)){
+                    ProdutoGas gas = (ProdutoGas) venda.getListaDeProdutos().get(linha);
+                    jtbListaProdutos.setValueAt(gas.getID(), linha, 0);
+                    jtbListaProdutos.setValueAt(gas.getNome(), linha, 1);
+                    jtbListaProdutos.setValueAt(gas.getMarca(), linha, 2);
+                    jtbListaProdutos.setValueAt(gas.getPeso(), linha, 3);
+                    jtbListaProdutos.setValueAt(gas.getValor(), linha, 4);
+                    jtbListaProdutos.setValueAt(venda.getListaQuantidadeProdutos().get(linha), linha, 5);
                 }
-                indice++;
             }
+            ConverteDatas converteData = new ConverteDatas();//Classe que converte data
             jftDataVenda.setValue(venda.getData());
-            jftDataPagamento.setValue(venda.getDataRecebimento());
+            jftDataPagamento.setValue(converteData.converteDataParaString(venda.getDataRecebimento()));
+            jcStatusEntrega.setSelectedItem(venda.getStatusEntrega());
             jtDesconto.setText(String.valueOf(venda.getDesconto()));
             jtValorTotal.setText(String.valueOf(venda.getValorTotal()));
             jcFormaDePagamento.setSelectedItem(venda.getFormaDePagamento());
+            
+            
        }    /*
             *Caso o dado para busca(codigo da venda) não tenha sido informado
             */
@@ -919,6 +1073,7 @@ public class VendaView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -939,6 +1094,7 @@ public class VendaView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jcEnderecoEstado;
     private javax.swing.JComboBox<String> jcFormaDePagamento;
     private javax.swing.JComboBox<String> jcQuantidadeProduto;
+    private javax.swing.JComboBox<String> jcStatusEntrega;
     private javax.swing.JComboBox<String> jcbMarca;
     private javax.swing.JComboBox<String> jcbProduto;
     private javax.swing.JFormattedTextField jftDataPagamento;

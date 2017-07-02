@@ -85,5 +85,9 @@ public class Endereco implements Serializable {
         this.cep = cep;
     }
     
-    
+    public String toString(){
+        String endereco = "Cep: " + getCep() + " | Rua: \n" + getRua() + " | Num: \n" + getNumero() + 
+                " | Bairro: \n" + getBairro() + " | Cidade: \n" + getCidade() + " | Estado: \n" + getEstado();
+        return endereco;
+    }
 }

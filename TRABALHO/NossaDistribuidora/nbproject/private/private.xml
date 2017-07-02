@@ -3,10 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Giseli/Desktop/IFES/periodo%205/POO2/POO2/TRABALHO/NossaDistribuidora/src/Patterns/CadRespFormaPagamento/DinheiroHandler.java</file>
-            <file>file:/C:/Users/Giseli/Desktop/IFES/periodo%205/POO2/POO2/TRABALHO/NossaDistribuidora/src/Patterns/CadRespFormaPagamento/FormaDePagamento.java</file>
-            <file>file:/C:/Users/Giseli/Desktop/IFES/periodo%205/POO2/POO2/TRABALHO/NossaDistribuidora/src/Patterns/CadRespFormaPagamento/CartaoHandler.java</file>
-            <file>file:/C:/Users/Giseli/Desktop/IFES/periodo%205/POO2/POO2/TRABALHO/NossaDistribuidora/src/Patterns/CadRespFormaPagamento/AbstractPagamentoHandler.java</file>
+            <file>file:/C:/Users/Giseli/Desktop/IFES/periodo%205/POO2/POO2/TRABALHO/NossaDistribuidora/src/nossadistribuidora/view/MenuPrincipal.java</file>
+            <file>file:/C:/Users/Giseli/Desktop/IFES/periodo%205/POO2/POO2/TRABALHO/NossaDistribuidora/src/nossadistribuidora/view/ClienteView.java</file>
+            <file>file:/C:/Users/Giseli/Desktop/IFES/periodo%205/POO2/POO2/TRABALHO/NossaDistribuidora/src/Patterns/StateEntrega/SetupEntrega.java</file>
+            <file>file:/C:/Users/Giseli/Desktop/IFES/periodo%205/POO2/POO2/TRABALHO/NossaDistribuidora/src/nossadistribuidora/view/EntregasView.java</file>
+            <file>file:/C:/Users/Giseli/Desktop/IFES/periodo%205/POO2/POO2/TRABALHO/NossaDistribuidora/src/Patterns/StateEntrega/Pendente.java</file>
+            <file>file:/C:/Users/Giseli/Desktop/IFES/periodo%205/POO2/POO2/TRABALHO/NossaDistribuidora/src/Patterns/StateEntrega/Concluida.java</file>
+            <file>file:/C:/Users/Giseli/Desktop/IFES/periodo%205/POO2/POO2/TRABALHO/NossaDistribuidora/src/Patterns/StateEntrega/EmAndamento.java</file>
+            <file>file:/C:/Users/Giseli/Desktop/IFES/periodo%205/POO2/POO2/TRABALHO/NossaDistribuidora/src/Patterns/StateEntrega/EntregaState.java</file>
         </group>
     </open-files>
 </project-private>

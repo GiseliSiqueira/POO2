@@ -4,7 +4,6 @@ package nossadistribuidora.model.DAO;
 import java.util.List;
 import nossadistribuidora.factoryDAO.GenericDAOImpl;
 import nossadistribuidora.factoryDAO.HibernateUtil;
-import nossadistribuidora.model.Produto;
 import nossadistribuidora.model.ProdutoGas;
 
 /**

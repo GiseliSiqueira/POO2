@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -42,9 +43,10 @@ public class Venda implements Serializable {
     private float desconto; // Vai estar em ItemVenda
     @Column(length = 10)
     private float valorTotal; // Vai estar em ItemVenda
+    @ElementCollection
+    private List<Integer> listaQuantidadeProdutos; //vai estar em itemVenda
     
     @ManyToOne
-    @Cascade(CascadeType.DELETE)
     private Cliente cliente;
     
     @ManyToMany
@@ -55,7 +57,7 @@ public class Venda implements Serializable {
 
     public Venda(int codigo, Date data, String statusEntrega, boolean statusPagamento, 
             Date dataRecebimento, List<Produto> listaDeProdutos, Cliente cliente,
-            float desconto, float valorTotal, String formaDePagamento) {
+            float desconto, float valorTotal, String formaDePagamento, List<Integer> listaQuantidadeProdutos) {
         this.codigo = codigo;
         this.data = data;
         this.statusEntrega = statusEntrega;
@@ -66,6 +68,7 @@ public class Venda implements Serializable {
         this.desconto = desconto;
         this.valorTotal = valorTotal;
         this.formaDePagamento = formaDePagamento;
+        this.listaQuantidadeProdutos = listaQuantidadeProdutos;
     }
     
     public int getCodigo() {
@@ -146,5 +149,13 @@ public class Venda implements Serializable {
 
     public void setFormaDePagamento(String formaDePagamento) {
         this.formaDePagamento = formaDePagamento;
+    }
+
+    public List<Integer> getListaQuantidadeProdutos() {
+        return listaQuantidadeProdutos;
+    }
+
+    public void setListaQuantidadeProdutos(List<Integer> listaQuantidadeProdutos) {
+        this.listaQuantidadeProdutos = listaQuantidadeProdutos;
     }
 }

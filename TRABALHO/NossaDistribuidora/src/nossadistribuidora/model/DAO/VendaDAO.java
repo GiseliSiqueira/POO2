@@ -1,6 +1,7 @@
 
 package nossadistribuidora.model.DAO;
 
+import java.util.Date;
 import nossadistribuidora.factoryDAO.GenericDAO;
 import nossadistribuidora.model.Venda;
 
@@ -14,5 +15,7 @@ import nossadistribuidora.model.Venda;
 public interface VendaDAO extends GenericDAO<Venda>{
 
     public Venda buscaVendaPorCodigo(int codigo);
+
+    public Venda buscaVendaPorData(Date data);
     
 }
